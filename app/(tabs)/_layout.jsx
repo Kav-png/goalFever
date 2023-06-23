@@ -1,13 +1,13 @@
 import { Tabs } from "expo-router";
 
-const TabsScreen = () => {
+const tabsNavigator = () => {
   return (
     <Tabs>
-      <Tabs.Screen name="home" />
-      <Tabs.Screen name="list" />
-      {/* // TODO: change list to the actual tab values  */}
+      <Tabs.Screen name="Home" />
+      <Tabs.Screen name="Stats" />
+      <Tabs.Screen name="Maps" />
     </Tabs>
   );
 };
 
-export default TabsScreen;
+export default tabsNavigator;
