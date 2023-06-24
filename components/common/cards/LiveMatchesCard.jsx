@@ -1,7 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
-import { checkImageURL } from "../../../utils";
-import useFetch from "../../../hook/useFetch";
 
 const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
   const id = item?.id;

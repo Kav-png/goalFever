@@ -19,7 +19,7 @@ const Home = () => {
           <View style={{ flex: 1, padding: 10 }}>
             <SafeAreaView>
               <Welcome />
-              <LiveMatches />
+              {/* <LiveMatches /> */}
             </SafeAreaView>
             <UpcomingMatches />
           </View>

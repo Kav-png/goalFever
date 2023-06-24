@@ -57,7 +57,7 @@ function LiveMatches(props) {
             keyExtractor={(item) => item?.id}
             horizontal={true}
             contentContainerStyle={{ columnGap: 12 }}
-            initialNumToRender={12}
+            maxToRenderPerBatch={12}
           />
         )}
       </View>

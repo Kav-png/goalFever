@@ -7,19 +7,33 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import LiveMatchesCard from "../../common/cards/LiveMatchesCard";
+
+import { getCurrentDate, getNextDate } from "../../../utils";
 import UpcomingMatchesCard from "../../common/cards/UpcomingMatchesCard";
+import useFetch from "../../../hook/useFetch";
 
 function UpcomingMatches(props) {
   const isLoading = false;
   const error = false;
+  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // dummy data
+  const [cardDate, setCardDate] = useState(getCurrentDate());
+  const dateCurrent = getCurrentDate();
+  const dateNext = getNextDate((dayIncrement = 1));
+
+  console.log(dateCurrent);
+
+  console.log(dateNext);
+
+  // const { data, isLoading, error } = useFetch(`sports/1/events/date/${cardDate}`, {
+  //   page: "1",
+  // });
+
   const [selectedMatch, setSelectedMatch] = useState();
 
-  const handleCardPress = (item) => {
+  const handleCardPress = (id) => {
     // TODO: Route to a specific live match
-    setSelectedMatch(item);
+    setSelectedMatch(id);
   };
 
   return (

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
-import { checkImageURL } from "../../../utils";
+import { checkImageURL } from "../../../utils"; // deprecated
 
 const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
   return (
