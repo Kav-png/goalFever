@@ -59,7 +59,9 @@ function LiveMatches(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: 20,
+  },
   text: {
     fontFamily: "DMRegular",
     color: "#121212",

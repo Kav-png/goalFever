@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import Welcome from "../../components/home/welcome/Welcome";
 import LiveMatches from "../../components/home/livematches/LiveMatches";
+import UpcomingMatches from "../../components/home/upcomingmatches/UpcomingMatches";
 
 const Home = () => {
   const router = useRouter();
@@ -14,14 +15,15 @@ const Home = () => {
   return (
     <View>
       <QueryClientProvider client={queryClient}>
-        <SafeAreaView>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={{ flex: 1 }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ flex: 1, padding: 10 }}>
+            <SafeAreaView>
               <Welcome />
               <LiveMatches />
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+            </SafeAreaView>
+            <UpcomingMatches />
+          </View>
+        </ScrollView>
       </QueryClientProvider>
     </View>
   );
