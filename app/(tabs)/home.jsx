@@ -33,21 +33,22 @@ export default Home;
 
 // Home structure --------------------------------
 //  - Home.jsx
-// TODO: - Welcome.jsx
+// *   - Welcome.jsx
 //         - Should Contain Search Bar and filter buttons for the data
-//         - SearchBar.jsx
-//         - FilterButtons.jsx
+// *         - SearchBar.jsx
+//  TODO: 1  - FilterButtons.jsx
 //         - SearchResults.jsx (routing)
 //         - FilterResults.jsx (routing)
-// TODO: - LiveMatches.jsx
-//         - Live Matches Heading
-//         - Live Matches Cards
+// * - LiveMatches.jsx
+//  *      - Live Matches Heading
+// *       - Live Matches Cards
 //         - Live Matches Cards Details (routing)
-//         - LiveMatchCard.jsx
+// *        - LiveMatchCard.jsx
 //         - LiveMatchCardDetails.jsx (routing)
-// TODO: - UpcomingMatches.jsx
-//         - UpcomingMatchesHeading
-//         - UpcomingMatches Cards
+// * - UpcomingMatches.jsx
+//  *       - UpcomingMatchesHeading
+//  *       - UpcomingMatches Cards
 //         - UpcomingMatches Cards Details (routing)
-//         - UpcomingMatchCard.jsx
+//  *       - UpcomingMatchCard.jsx
 //         - UpcomingMatchCardDetails.jsx (routing)
+// TODO: 2 Fetch Data from API

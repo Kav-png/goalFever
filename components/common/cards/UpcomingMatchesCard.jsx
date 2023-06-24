@@ -41,11 +41,9 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
           Date and Time
         </Text>
         <Text style={styles.stateOfMatch(selectedMatch, item)}>
-          Country Image
+          Country and League
         </Text>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>
-          League Image
-        </Text>
+        <Text style={styles.stateOfMatch(selectedMatch, item)}>Venue</Text>
       </View>
     </TouchableOpacity>
   );

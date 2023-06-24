@@ -21,6 +21,12 @@ const tabsNavigator = () => {
           headerShown: false,
         }}
       />
+      <Tabs.Screen
+        name="News"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 };
