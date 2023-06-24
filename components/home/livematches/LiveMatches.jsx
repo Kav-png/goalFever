@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -14,12 +14,24 @@ function LiveMatches(props) {
   const error = false;
 
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // dummy data
+  const [selectedMatch, setSelectedMatch] = useState();
+
+  const handleCardPress = (item) => {
+    // TODO: Route to a specific live match
+    setSelectedMatch(item);
+  };
 
   return (
     <View style={[styles.container, props.style]}>
       <View style={styles.textRow}>
         <Text style={styles.text}>Live Matches</Text>
-        <Text>Show all</Text>
+        <TouchableOpacity
+          onPress={() => {
+            // TODO: Route to all live matches
+          }}
+        >
+          <Text>Show all</Text>
+        </TouchableOpacity>
       </View>
       <View>
         {isLoading ? (
@@ -29,7 +41,13 @@ function LiveMatches(props) {
         ) : (
           <FlatList
             data={data}
-            renderItem={({ item }) => <LiveMatchesCard item={item} />}
+            renderItem={({ item }) => (
+              <LiveMatchesCard
+                item={item}
+                selectedMatch={selectedMatch}
+                handleCardPress={handleCardPress}
+              />
+            )}
             keyExtractor={(item) => item}
             horizontal={true}
             contentContainerStyle={{ columnGap: 12 }}

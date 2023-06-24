@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   welcomeMessage: {
     fontFamily: "DMBold",
     fontSize: 20,
-    textAlign: "center",
+    paddingHorizontal: 15,
   },
 });
 
