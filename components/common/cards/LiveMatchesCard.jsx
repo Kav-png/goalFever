@@ -47,15 +47,27 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
         </TouchableOpacity>
       </TouchableOpacity>
       <View style={styles.teamNameWrapper}>
-        <Text style={styles.teamName(selectedMatch, id)}>
-          {item.home_team.name}
-        </Text>
-        <Text style={styles.teamName(selectedMatch, id)}>
-          {item.away_team.name}
-        </Text>
+        {item.home_team.name.length > 12 ? (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.home_team.name.substring(0, 12)}...
+          </Text>
+        ) : (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.home_team.name}
+          </Text>
+        )}
+        {item.away_team.name.length > 12 ? (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.away_team.name.substring(0, 12)}...
+          </Text>
+        ) : (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.away_team.name}
+          </Text>
+        )}
       </View>
       <View style={styles.container}></View>
-      <View style={{ ...styles.container, flex: 1, alignContent: "center" }}>
+      <View style={{ ...styles.container, justifyContent: "flex-start" }}>
         <TouchableOpacity style={styles.logoLeagueContainer(selectedMatch, id)}>
           {item.league.has_logo ? (
             <Image
@@ -69,7 +81,7 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
             <View></View>
           )}
         </TouchableOpacity>
-        <View style={{ flexDirection: "column" }}>
+        <View style={{ justifyContent: "center", paddingLeft: 5 }}>
           <Text style={styles.teamName(selectedMatch, id)}>
             {item.league.name}
           </Text>
