@@ -4,11 +4,11 @@ import { checkImageURL } from "../../../utils";
 
 const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
   return (
-    <View style={styles.containerWrapper(selectedMatch, item)}>
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => handleCardPress(item)}
-      >
+    <TouchableOpacity
+      style={styles.containerWrapper(selectedMatch, item)}
+      onPress={() => handleCardPress(item)}
+    >
+      <View style={styles.container}>
         <TouchableOpacity style={styles.logoContainer(selectedMatch, item)}>
           <Image
             source={{
@@ -31,7 +31,7 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
             style={styles.logoImage}
           />
         </TouchableOpacity>
-      </TouchableOpacity>
+      </View>
       <View style={styles.container}>
         <Text style={styles.teamName(selectedMatch, item)}>Team A</Text>
         <Text style={styles.teamName(selectedMatch, item)}>Team B</Text>
@@ -41,7 +41,7 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
         <Text style={styles.stateOfMatch(selectedMatch, item)}>Country</Text>
         <Text style={styles.stateOfMatch(selectedMatch, item)}>League</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
