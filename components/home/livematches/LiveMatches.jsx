@@ -19,6 +19,7 @@ function LiveMatches(props) {
     <View style={[styles.container, props.style]}>
       <View style={styles.textRow}>
         <Text style={styles.text}>Live Matches</Text>
+        <Text>Show all</Text>
       </View>
       <View>
         {isLoading ? (
@@ -42,15 +43,18 @@ function LiveMatches(props) {
 const styles = StyleSheet.create({
   container: {},
   text: {
+    fontFamily: "DMRegular",
     color: "#121212",
     height: 26,
     width: 183,
     fontSize: 20,
   },
   textRow: {
+    marginBottom: 8,
     height: 26,
+    paddingHorizontal: 16,
     flexDirection: "row",
-    marginRight: 148,
+    justifyContent: "space-between",
   },
 });
 
