@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+const dayjs = require("dayjs");
 
-import { getCurrentDate, getNextDate } from "../../../utils";
 import UpcomingMatchesCard from "../../common/cards/UpcomingMatchesCard";
 import useFetch from "../../../hook/useFetch";
 
@@ -17,19 +17,27 @@ function UpcomingMatches(props) {
   const error = false;
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const [cardDate, setCardDate] = useState(getCurrentDate());
-  const dateCurrent = getCurrentDate();
-  const dateNext = getNextDate((dayIncrement = 1));
+  var today = dayjs();
 
-  console.log(dateCurrent);
+  let dateToPassAsQuery = [];
+  dateToPassAsQuery.push(today.format("YYYY-MM-DD"));
+  for (var i = 1; i < 5; i++) {
+    const day1 = dayjs(today).add(i, "days").format("YYYY-MM-DD");
+    dateToPassAsQuery.push(day1);
+  }
 
-  console.log(dateNext);
-
+  let dateToDisplay = [];
+  dateToDisplay.push("Today");
+  for (var i = 1; i < 5; i++) {
+    const day2 = dayjs(today).add(i, "days").format("ddd D MMM");
+    dateToDisplay.push(day2);
+  }
   // const { data, isLoading, error } = useFetch(`sports/1/events/date/${cardDate}`, {
   //   page: "1",
   // });
 
   const [selectedMatch, setSelectedMatch] = useState();
+  const [selectedDate, setSelectedDate] = useState();
 
   const handleCardPress = (id) => {
     // TODO: Route to a specific live match
@@ -47,6 +55,25 @@ function UpcomingMatches(props) {
         >
           <Text>Show all</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.tabsContainer}>
+        <FlatList
+          data={dateToDisplay}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.tab(selectedDate, item)}
+              onPress={() => {
+                // TODO: Route to a specific live match with the selected date
+                setSelectedDate(item);
+              }}
+            >
+              <Text style={styles.tabText(selectedDate, item)}>{item}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item}
+          contentContainerStyle={{ columnGap: 4 }}
+          horizontal
+        />
       </View>
       <View>
         {isLoading ? (
@@ -86,6 +113,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  tabsContainer: {
+    width: "100%",
+    marginBottom: 12,
+  },
+  tab: (selectedDate, item) => ({
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: selectedDate === item ? "#444262" : "#C1C0C8",
+  }),
+  tabText: (selectedDate, item) => ({
+    fontFamily: "DMMedium",
+    color: selectedDate === item ? "#444262" : "#C1C0C8",
+  }),
 });
 
 export default UpcomingMatches;
