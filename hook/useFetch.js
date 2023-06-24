@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 
 const useFetch = (endpoint, query) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["football"],
+    queryKey: ["liveEvent"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://sportscore1.p.rapidapi.com/sports${endpoint}`,
+        `https://sportscore1.p.rapidapi.com/${endpoint}`,
         {
           params: { ...query },
           headers: {

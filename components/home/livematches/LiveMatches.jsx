@@ -16,15 +16,15 @@ function LiveMatches(props) {
   // const error = false;
   // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const { data, isLoading, error } = useFetch("/1/events/live", {
+  const { data, isLoading, error } = useFetch("sports/1/events/live", {
     page: "1",
   });
 
   const [selectedMatch, setSelectedMatch] = useState();
 
-  const handleCardPress = (item) => {
+  const handleCardPress = (id) => {
     // TODO: Route to a specific live match
-    setSelectedMatch(item);
+    setSelectedMatch(id);
   };
 
   return (
@@ -45,20 +45,20 @@ function LiveMatches(props) {
         ) : error ? (
           <Text>Something went wrong</Text> //  Something went wrong error message
         ) : (
-          // <FlatList
-          //   data={data}
-          //   renderItem={({ item }) => (
-          //     <LiveMatchesCard
-          //       item={item}
-          //       selectedMatch={selectedMatch}
-          //       handleCardPress={handleCardPress}
-          //     />
-          //   )}
-          //   keyExtractor={(item) => item}
-          //   horizontal={true}
-          //   contentContainerStyle={{ columnGap: 12 }}
-          // />
-          console.log(data)
+          <FlatList
+            data={data.data}
+            renderItem={({ item }) => (
+              <LiveMatchesCard
+                item={item}
+                selectedMatch={selectedMatch}
+                handleCardPress={handleCardPress}
+              />
+            )}
+            keyExtractor={(item) => item?.id}
+            horizontal={true}
+            contentContainerStyle={{ columnGap: 12 }}
+            initialNumToRender={12}
+          />
         )}
       </View>
     </View>
