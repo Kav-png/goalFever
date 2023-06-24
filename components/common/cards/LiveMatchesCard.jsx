@@ -6,7 +6,7 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
   return (
     <View style={styles.containerWrapper(selectedMatch, item)}>
       <View style={styles.stateOfMatchWrapper}>
-        <Text style={styles.stateOfMatch}>{item}</Text>
+        <Text style={styles.stateOfMatch(selectedMatch, item)}>{item}</Text>
       </View>
       <TouchableOpacity
         style={styles.container}
@@ -23,15 +23,9 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
             style={styles.logoImage}
           />
         </TouchableOpacity>
-        <View>
-          <Text>0</Text>
-        </View>
-        <View>
-          <Text>-</Text>
-        </View>
-        <View>
-          <Text>0</Text>
-        </View>
+        <Text style={styles.scoreText(selectedMatch, item)}>0</Text>
+        <Text style={styles.scoreText(selectedMatch, item)}>-</Text>
+        <Text style={styles.scoreText(selectedMatch, item)}>0</Text>
         <TouchableOpacity style={styles.logoContainer(selectedMatch, item)}>
           <Image
             source={{
@@ -45,8 +39,8 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
         </TouchableOpacity>
       </TouchableOpacity>
       <View style={styles.container}>
-        <Text>Team A</Text>
-        <Text>Team B</Text>
+        <Text style={styles.teamName(selectedMatch, item)}>Team A</Text>
+        <Text style={styles.teamName(selectedMatch, item)}>Team B</Text>
       </View>
     </View>
   );
@@ -54,6 +48,7 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 5,
     justifyContent: "space-between",
     flexDirection: "row",
   },
@@ -85,28 +80,24 @@ const styles = StyleSheet.create({
     width: "70%",
     height: "70%",
   },
-  teamName: {
-    fontSize: 16,
-    fontFamily: "DMRegular",
-    color: "#B3AEC6",
-    marginTop: 8 / 1.5,
-  },
-  infoContainer: {
-    marginTop: 20,
-  },
+  scoreText: (selectedMatch, item) => ({
+    fontSize: 30,
+    fontFamily: "DMBold",
+    color: selectedMatch === item ? "#FAFAFC" : "#312651",
+  }),
   stateOfMatch: (selectedMatch, item) => ({
     fontSize: 10,
-    fontFamily: "DMMedium",
-    color: selectedMatch === item ? "#83829A" : "#312651",
+    fontFamily: "DMBold",
+    color: selectedMatch === item ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  publisher: (selectedMatch, item) => ({
+  teamName: (selectedMatch, item) => ({
     fontSize: 14,
-    fontFamily: "DMRegular",
-    color: selectedMatch === item ? "#FFF" : "#312651",
+    fontFamily: "DMBold",
+    color: selectedMatch === item ? "#FAFAFC" : "#312651",
   }),
   location: {
     fontSize: 14,
