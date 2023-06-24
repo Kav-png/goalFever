@@ -37,9 +37,15 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
         <Text style={styles.teamName(selectedMatch, item)}>Team B</Text>
       </View>
       <View style={styles.stateOfMatchWrapper}>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>Date</Text>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>Country</Text>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>League</Text>
+        <Text style={styles.stateOfMatch(selectedMatch, item)}>
+          Date and Time
+        </Text>
+        <Text style={styles.stateOfMatch(selectedMatch, item)}>
+          Country Image
+        </Text>
+        <Text style={styles.stateOfMatch(selectedMatch, item)}>
+          League Image
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -48,7 +54,6 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
 const styles = StyleSheet.create({
   containerWrapper: (selectedMatch, item) => ({
     flexDirection: "row",
-    justifyContent: "space-between",
     marginBottom: 10,
     width: "100%",
     padding: 14,
@@ -68,8 +73,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "space-around",
     flexDirection: "column",
+    flex: 1,
   },
   logoContainer: (selectedMatch, item) => ({
+    marginBottom: 10,
     width: 50,
     height: 50,
     backgroundColor: selectedMatch === item ? "#FFF" : "#F3F4F8",
@@ -87,13 +94,15 @@ const styles = StyleSheet.create({
     color: selectedMatch === item ? "#FAFAFC" : "#312651",
   }),
   stateOfMatch: (selectedMatch, item) => ({
-    fontSize: 10,
+    fontSize: 12,
     fontFamily: "DMBold",
     color: selectedMatch === item ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
     justifyContent: "space-around",
-    alignItems: "center",
+    alignItems: "flex-end",
+    paddingHorizontal: 10,
+    flex: 3,
   },
   teamName: (selectedMatch, item) => ({
     fontSize: 14,
