@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Welcome from "../../components/home/welcome/Welcome";
+import LiveMatches from "../../components/home/livematches/LiveMatches";
 
 const Home = () => {
   const router = useRouter();
@@ -15,8 +16,9 @@ const Home = () => {
       <QueryClientProvider client={queryClient}>
         <SafeAreaView>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={{ flex: 1, padding: 16 }}>
+            <View style={{ flex: 1 }}>
               <Welcome />
+              <LiveMatches />
             </View>
           </ScrollView>
         </SafeAreaView>

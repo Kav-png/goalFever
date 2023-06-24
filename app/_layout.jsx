@@ -32,19 +32,4 @@ const Layout = ({ children }) => {
   );
 };
 
-const LayoutScreen = () => {
-  return (
-    <Stack>
-      <Layout>
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Layout>
-    </Stack>
-  );
-};
-
 export default Layout;

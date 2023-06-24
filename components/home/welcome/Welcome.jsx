@@ -1,11 +1,22 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import SearchBarCard from "../../common/searchbar/SearchBarCard";
+import { useRouter } from "expo-router";
 
 const Welcome = () => {
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-    <View>
-      <Text style={styles.welcomeMessage}>Welcome</Text>
-      <View></View>
+    <View style={styles.container}>
+      <Text style={styles.welcomeMessage}>Discover that Goal Fever</Text>
+      <SearchBarCard
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleClick={() => {
+          // TODO: Handle Click event in SearchBarCard
+        }}
+      />
     </View>
   );
 };
@@ -15,10 +26,9 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   welcomeMessage: {
-    fontFamily: "DMRegular",
+    fontFamily: "DMBold",
     fontSize: 20,
     textAlign: "center",
-    margin: 10,
   },
 });
 
