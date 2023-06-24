@@ -45,6 +45,7 @@ function UpcomingMatches(props) {
               item={item}
               selectedMatch={selectedMatch}
               handleCardPress={handleCardPress}
+              key={(item) => item} // TODO: Temp key, add key from API when needed
             />
           ))
         )}
