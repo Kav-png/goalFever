@@ -7,13 +7,19 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+
 import LiveMatchesCard from "../../common/cards/LiveMatchesCard";
+import useFetch from "../../../hook/useFetch";
 
 function LiveMatches(props) {
-  const isLoading = false;
-  const error = false;
+  // const isLoading = false;
+  // const error = false;
+  // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // dummy data
+  const { data, isLoading, error } = useFetch("/1/events/live", {
+    page: "1",
+  });
+
   const [selectedMatch, setSelectedMatch] = useState();
 
   const handleCardPress = (item) => {
@@ -39,19 +45,20 @@ function LiveMatches(props) {
         ) : error ? (
           <Text>Something went wrong</Text> //  Something went wrong error message
         ) : (
-          <FlatList
-            data={data}
-            renderItem={({ item }) => (
-              <LiveMatchesCard
-                item={item}
-                selectedMatch={selectedMatch}
-                handleCardPress={handleCardPress}
-              />
-            )}
-            keyExtractor={(item) => item}
-            horizontal={true}
-            contentContainerStyle={{ columnGap: 12 }}
-          />
+          // <FlatList
+          //   data={data}
+          //   renderItem={({ item }) => (
+          //     <LiveMatchesCard
+          //       item={item}
+          //       selectedMatch={selectedMatch}
+          //       handleCardPress={handleCardPress}
+          //     />
+          //   )}
+          //   keyExtractor={(item) => item}
+          //   horizontal={true}
+          //   contentContainerStyle={{ columnGap: 12 }}
+          // />
+          console.log(data)
         )}
       </View>
     </View>

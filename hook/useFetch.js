@@ -1,19 +1,18 @@
-import { useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 const useFetch = (endpoint, query) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["search"],
+    queryKey: ["football"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://jsearch.p.rapidapi.com/${endpoint}`,
+        `https://sportscore1.p.rapidapi.com/sports${endpoint}`,
         {
           params: { ...query },
           headers: {
             "X-RapidAPI-Key":
               "1f6e575a84mshd541683c0aa837cp192745jsndeaa023f7c48",
-            "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
+            "X-RapidAPI-Host": "sportscore1.p.rapidapi.com",
           },
         }
       );
