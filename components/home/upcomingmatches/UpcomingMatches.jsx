@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useCallback, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -27,26 +27,43 @@ function UpcomingMatches(props) {
   }
 
   let dateToDisplay = [];
-  dateToDisplay.push("Today");
+  dateToDisplay.push(today.format("ddd D MMM"));
   for (var i = 1; i < 5; i++) {
     const day2 = dayjs(today).add(i, "days").format("ddd D MMM");
     dateToDisplay.push(day2);
   }
-
   const [selectedMatch, setSelectedMatch] = useState();
-  const [selectedDate, setSelectedDate] = useState(dateToDisplay[0]); // Selected date to display
+  const [selectedDate, setSelectedDate] = useState(today.format("YYYY-MM-DD"));
   const [selectedDateQuery, setSelectedDateQuery] = useState(
-    dateToPassAsQuery[0]
+    today.format("ddd D MMM")
   );
-  // const { data, isLoading, error } = useFetch(`sports/1/events/date/${cardDate}`, {
-  //   page: "1",
-  // });
 
-  const handleSelectDatePressQueryFetch = (dateToDisplayItem) => {
-    setSelectedDate(dateToDisplayItem);
+  const [refreshing, setRefreshing] = useState(false);
+
+  // const { data, isLoading, error, refetch } = useFetch(
+  //   `sports/1/events/date/${selectedDate}`,
+  //   {
+  //     page: "1",
+  //   }
+  // );
+
+  const onRefresh = () =>
+    useCallback(() => {
+      setRefreshing(true);
+      refetch();
+      setRefreshing(false);
+    }, []);
+
+  const handleCardPress = (id) => {
+    // TODO: Route to a specific live match
+    setSelectedMatch(id);
+  };
+
+  const handleSelectedDateQuery = (selectedDate) => {
     for (let i = 0; i < dateToDisplay.length; i++) {
       if (dateToDisplay[i] === selectedDate) {
         setSelectedDateQuery(dateToPassAsQuery[i]);
+        break;
       }
     }
     console.log(
@@ -54,18 +71,6 @@ function UpcomingMatches(props) {
     );
     console.log(selectedDate);
     console.log(selectedDateQuery);
-    // TODO: Route to a specific live match with the selected date
-    // const { data, isLoading, error } = useFetch(
-    //   `sports/1/events/date/${dateToPassAsQuery}`,
-    //   {
-    //     page: "1",
-    //   }
-    // );
-  };
-
-  const handleCardPress = (id) => {
-    // TODO: Route to a specific live match
-    setSelectedMatch(id);
   };
 
   return (
@@ -83,10 +88,15 @@ function UpcomingMatches(props) {
       <View style={styles.tabsContainer}>
         <FlatList
           data={dateToDisplay}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <TouchableOpacity
               style={styles.tab(selectedDate, item)}
-              onPress={() => handleSelectDatePressQueryFetch(item)}
+              onPress={() => {
+                setSelectedDate(item);
+                setSelectedDateQuery(dateToPassAsQuery[index]);
+                // onRefresh;
+                // TODO: Route to a specific live match with the selected date
+              }}
             >
               <Text style={styles.tabText(selectedDate, item)}>{item}</Text>
             </TouchableOpacity>
@@ -95,6 +105,22 @@ function UpcomingMatches(props) {
           contentContainerStyle={{ columnGap: 4 }}
           horizontal
         />
+      </View>
+      <View>
+        {isLoading ? (
+          <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
+        ) : error ? (
+          <Text>Something went wrong</Text> //  Something went wrong error message
+        ) : (
+          data.map((item) => (
+            <UpcomingMatchesCard
+              item={item}
+              selectedMatch={selectedMatch}
+              handleCardPress={handleCardPress}
+              key={item} // TODO: Temp key, add key from API when needed
+            />
+          ))
+        )}
       </View>
     </View>
   );

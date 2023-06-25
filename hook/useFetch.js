@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 const useFetch = (endpoint, query) => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["liveEvent"],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -21,7 +21,7 @@ const useFetch = (endpoint, query) => {
   });
   //   Iteration 2 of code check JavascriptMastery for second way
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch };
 };
 
 export default useFetch;
