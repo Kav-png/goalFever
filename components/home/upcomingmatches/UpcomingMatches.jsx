@@ -73,7 +73,7 @@ function UpcomingMatches(props) {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      {displayTabContent(dateToPassAsQuery)}
+      <>{displayTabContent(dateToPassAsQuery)}</>
     </View>
   );
 }
