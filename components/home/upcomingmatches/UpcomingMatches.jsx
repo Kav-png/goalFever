@@ -34,41 +34,33 @@ function UpcomingMatches(props) {
   }
 
   const [selectedMatch, setSelectedMatch] = useState();
-  const [selectedDate, setSelectedDate] = useState(); // Selected date to display
+  const [selectedDate, setSelectedDate] = useState(dateToDisplay[0]); // Selected date to display
+  const [selectedDateQuery, setSelectedDateQuery] = useState(
+    dateToPassAsQuery[0]
+  );
   // const { data, isLoading, error } = useFetch(`sports/1/events/date/${cardDate}`, {
   //   page: "1",
   // });
 
-  const handleSelectDatePressQueryFetch = (
-    dateToPassAsQuery,
-    dateToDisplay
-  ) => {
-    setSelectedDate(dateToDisplay);
-    // TODO: Route to a specific live match with the selected date
-    const { data, isLoading, error } = useFetch(
-      `sports/1/events/date/${dateToPassAsQuery}`,
-      {
-        page: "1",
+  const handleSelectDatePressQueryFetch = (dateToDisplayItem) => {
+    setSelectedDate(dateToDisplayItem);
+    for (let i = 0; i < dateToDisplay.length; i++) {
+      if (dateToDisplay[i] === selectedDate) {
+        setSelectedDateQuery(dateToPassAsQuery[i]);
       }
+    }
+    console.log(
+      "----------------------------------------------------------------"
     );
-    return (
-      <View>
-        {isLoading ? (
-          <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
-        ) : error ? (
-          <Text>Something went wrong</Text> //  Something went wrong error message
-        ) : (
-          data.map((item) => (
-            <UpcomingMatchesCard
-              item={item}
-              selectedMatch={selectedMatch}
-              handleCardPress={handleCardPress}
-              key={item} // TODO: Temp key, add key from API when needed
-            />
-          ))
-        )}
-      </View>
-    );
+    console.log(selectedDate);
+    console.log(selectedDateQuery);
+    // TODO: Route to a specific live match with the selected date
+    // const { data, isLoading, error } = useFetch(
+    //   `sports/1/events/date/${dateToPassAsQuery}`,
+    //   {
+    //     page: "1",
+    //   }
+    // );
   };
 
   const handleCardPress = (id) => {
@@ -94,7 +86,7 @@ function UpcomingMatches(props) {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.tab(selectedDate, item)}
-              onPress={handleSelectDatePressQueryFetch}
+              onPress={() => handleSelectDatePressQueryFetch(item)}
             >
               <Text style={styles.tabText(selectedDate, item)}>{item}</Text>
             </TouchableOpacity>
