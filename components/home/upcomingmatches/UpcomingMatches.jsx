@@ -32,12 +32,44 @@ function UpcomingMatches(props) {
     const day2 = dayjs(today).add(i, "days").format("ddd D MMM");
     dateToDisplay.push(day2);
   }
+
+  const [selectedMatch, setSelectedMatch] = useState();
+  const [selectedDate, setSelectedDate] = useState(); // Selected date to display
   // const { data, isLoading, error } = useFetch(`sports/1/events/date/${cardDate}`, {
   //   page: "1",
   // });
 
-  const [selectedMatch, setSelectedMatch] = useState();
-  const [selectedDate, setSelectedDate] = useState();
+  const handleSelectDatePressQueryFetch = (
+    dateToPassAsQuery,
+    dateToDisplay
+  ) => {
+    setSelectedDate(dateToDisplay);
+    // TODO: Route to a specific live match with the selected date
+    const { data, isLoading, error } = useFetch(
+      `sports/1/events/date/${dateToPassAsQuery}`,
+      {
+        page: "1",
+      }
+    );
+    return (
+      <View>
+        {isLoading ? (
+          <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
+        ) : error ? (
+          <Text>Something went wrong</Text> //  Something went wrong error message
+        ) : (
+          data.map((item) => (
+            <UpcomingMatchesCard
+              item={item}
+              selectedMatch={selectedMatch}
+              handleCardPress={handleCardPress}
+              key={item} // TODO: Temp key, add key from API when needed
+            />
+          ))
+        )}
+      </View>
+    );
+  };
 
   const handleCardPress = (id) => {
     // TODO: Route to a specific live match
@@ -62,10 +94,7 @@ function UpcomingMatches(props) {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.tab(selectedDate, item)}
-              onPress={() => {
-                // TODO: Route to a specific live match with the selected date
-                setSelectedDate(item);
-              }}
+              onPress={handleSelectDatePressQueryFetch}
             >
               <Text style={styles.tabText(selectedDate, item)}>{item}</Text>
             </TouchableOpacity>
@@ -74,22 +103,6 @@ function UpcomingMatches(props) {
           contentContainerStyle={{ columnGap: 4 }}
           horizontal
         />
-      </View>
-      <View>
-        {isLoading ? (
-          <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
-        ) : error ? (
-          <Text>Something went wrong</Text> //  Something went wrong error message
-        ) : (
-          data.map((item) => (
-            <UpcomingMatchesCard
-              item={item}
-              selectedMatch={selectedMatch}
-              handleCardPress={handleCardPress}
-              key={item} // TODO: Temp key, add key from API when needed
-            />
-          ))
-        )}
       </View>
     </View>
   );
