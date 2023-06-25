@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import useFetch from "../../../hook/useFetch";
 
-const UpcomingMatchContent = (dateToPassAsQueryItem) => {
+const UpcomingMatchContent = ({ dateToPassAsQueryItem }) => {
   const [selectedMatch, setSelectedMatch] = useState(null);
   const handleCardPress = (id) => {
     // TODO: Route to a specific live match
@@ -15,7 +15,6 @@ const UpcomingMatchContent = (dateToPassAsQueryItem) => {
   //       page: "1",
   //     }
   //   );
-  console.log(dateToPassAsQueryItem);
   return (
     <View>
       {/* {isLoading ? (
@@ -33,7 +32,10 @@ const UpcomingMatchContent = (dateToPassAsQueryItem) => {
         ))
       )} */}
       <View>
-        <Text>{dateToPassAsQueryItem}</Text>
+        <Text>
+          {dateToPassAsQueryItem}
+          {console.log(dateToPassAsQueryItem)}
+        </Text>
       </View>
     </View>
   );
