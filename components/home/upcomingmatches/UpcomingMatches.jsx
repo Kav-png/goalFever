@@ -33,16 +33,24 @@ function UpcomingMatches(props) {
 
   const [activeTab, setActiveTab] = useState(dateToDisplay[0]);
 
-  const displayTabContent = (dateToPassAsQuery) => {
+  const displayTabContent = () => {
     switch (activeTab) {
       case dateToDisplay[0]:
-        return <UpcomingMatchContent dateToPassAsQueryItem={1} />;
+        return (
+          <UpcomingMatchContent dateToPassAsQueryItem={dateToPassAsQuery[0]} />
+        );
       case dateToDisplay[1]:
-        return <UpcomingMatchContent dateToPassAsQueryItem={2} />;
+        return (
+          <UpcomingMatchContent dateToPassAsQueryItem={dateToPassAsQuery[1]} />
+        );
       case dateToDisplay[2]:
-        return <UpcomingMatchContent dateToPassAsQueryItem={3} />;
+        return (
+          <UpcomingMatchContent dateToPassAsQueryItem={dateToPassAsQuery[2]} />
+        );
       case dateToDisplay[3]:
-        return <UpcomingMatchContent dateToPassAsQueryItem={4} />;
+        return (
+          <UpcomingMatchContent dateToPassAsQueryItem={dateToPassAsQuery[3]} />
+        );
     }
   };
 

@@ -9,34 +9,29 @@ const UpcomingMatchContent = ({ dateToPassAsQueryItem }) => {
     // TODO: Route to a specific live match
     setSelectedMatch(id);
   };
-  //   const { data, isLoading, error } = useFetch(
-  //     `sports/1/events/date/${dateToPassAsQuery}`,
-  //     {
-  //       page: "1",
-  //     }
-  //   );
+  const { data, isLoading, error } = useFetch(
+    `sports/1/events/date/${dateToPassAsQueryItem}`,
+    {
+      page: "1",
+    }
+  );
   return (
     <View>
-      {/* {isLoading ? (
+      {isLoading ? (
         <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
       ) : error ? (
         <Text>Something went wrong</Text> //  Something went wrong error message
       ) : (
-        data.map((item) => (
+        data.data?.map((item) => (
           <UpcomingMatchesCard
             item={item}
             selectedMatch={selectedMatch}
             handleCardPress={handleCardPress}
-            key={item} // TODO: Temp key, add key from API when needed
+            key={`upcoming-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
           />
         ))
-      )} */}
-      <View>
-        <Text>
-          {dateToPassAsQueryItem}
-          {console.log(dateToPassAsQueryItem)}
-        </Text>
-      </View>
+      )}
+      {console.log(data)}
     </View>
   );
 };

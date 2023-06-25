@@ -3,29 +3,30 @@ import React from "react";
 import { checkImageURL } from "../../../utils"; // deprecated
 
 const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
+  const id = item?.id;
   return (
     <TouchableOpacity
-      style={styles.containerWrapper(selectedMatch, item)}
-      onPress={() => handleCardPress(item)}
+      style={styles.containerWrapper(selectedMatch, id)}
+      onPress={() => handleCardPress(item?.id)}
     >
       <View style={styles.container}>
-        <TouchableOpacity style={styles.logoContainer(selectedMatch, item)}>
+        <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
           <Image
             source={{
-              uri: checkImageURL(item)
-                ? item.employer_logo
-                : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
+              uri: item.home_score?.has_logo
+                ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
+                : item.home_team.logo,
             }}
             resizeMode="contain"
             style={styles.logoImage}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.logoContainer(selectedMatch, item)}>
+        <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
           <Image
             source={{
-              uri: checkImageURL(item)
-                ? item.employer_logo
-                : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
+              uri: item.away_score?.has_logo
+                ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
+                : item.away_team.logo,
             }}
             resizeMode="contain"
             style={styles.logoImage}
@@ -33,24 +34,100 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <Text style={styles.teamName(selectedMatch, item)}>Team A</Text>
-        <Text style={styles.teamName(selectedMatch, item)}>Team B</Text>
+        {item.home_team.name.length > 18 ? (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.home_team.name.substring(0, 18)}...
+          </Text>
+        ) : (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.home_team.name}
+          </Text>
+        )}
+        {item.away_team.name.length > 18 ? (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.away_team.name.substring(0, 18)}...
+          </Text>
+        ) : (
+          <Text style={styles.teamName(selectedMatch, id)}>
+            {item.away_team.name}
+          </Text>
+        )}
       </View>
       <View style={styles.stateOfMatchWrapper}>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>
-          Date and Time
+        <Text style={styles.stateOfMatch(selectedMatch, id)}>
+          {item.status === "finished" || item.status === "inprogress"
+            ? item.status.charAt(0).toUpperCase() + item.status.slice(1)
+            : item.start_at.substring(11, 19)}
         </Text>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>
-          Country and League
+        <View>
+          {item.status === "inprogress" ? (
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.scoreText(selectedMatch, id)}>
+                {item.home_score?.display}
+              </Text>
+              <Text style={styles.scoreText(selectedMatch, id)}>-</Text>
+              <Text style={styles.scoreText(selectedMatch, id)}>
+                {item.away_score?.display}
+              </Text>
+            </View>
+          ) : (
+            <View></View>
+          )}
+          {item.status === "finished" ? (
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.scoreText(selectedMatch, id)}>
+                {item.home_score.display}
+              </Text>
+              <Text style={styles.scoreText(selectedMatch, id)}>-</Text>
+              <Text style={styles.scoreText(selectedMatch, id)}>
+                {item.away_score.display}
+              </Text>
+            </View>
+          ) : (
+            <View></View>
+          )}
+        </View>
+        <View
+          style={{
+            ...styles.container,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={styles.teamName(selectedMatch, id)}>
+              {item.league.name}
+            </Text>
+          </View>
+          {/* <TouchableOpacity
+            style={styles.logoLeagueContainer(selectedMatch, id)}
+          >
+            {item.league?.has_logo ? (
+              <Image
+                source={{
+                  uri: item.league.logo,
+                }}
+                resizeMode="contain"
+                style={styles.logoImage}
+              />
+            ) : (
+              <View></View>
+            )}
+          </TouchableOpacity> */}
+        </View>
+        <Text style={styles.stateOfMatch(selectedMatch, id)}>
+          {item.section.name}
         </Text>
-        <Text style={styles.stateOfMatch(selectedMatch, item)}>Venue</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  containerWrapper: (selectedMatch, item) => ({
+  containerWrapper: (selectedMatch, id) => ({
     flexDirection: "row",
     marginBottom: 10,
     width: "100%",
@@ -66,18 +143,18 @@ const styles = StyleSheet.create({
       shadowRadius: 3.84,
       elevation: 2,
     },
-    backgroundColor: selectedMatch === item ? "#312651" : "#FFF",
+    backgroundColor: selectedMatch === id ? "#312651" : "#FFF",
   }),
   container: {
     justifyContent: "space-around",
     flexDirection: "column",
     flex: 1,
   },
-  logoContainer: (selectedMatch, item) => ({
+  logoContainer: (selectedMatch, id) => ({
     marginBottom: 10,
     width: 50,
     height: 50,
-    backgroundColor: selectedMatch === item ? "#FFF" : "#F3F4F8",
+    backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -86,15 +163,15 @@ const styles = StyleSheet.create({
     width: "70%",
     height: "70%",
   },
-  scoreText: (selectedMatch, item) => ({
-    fontSize: 30,
-    fontFamily: "DMBold",
-    color: selectedMatch === item ? "#FAFAFC" : "#312651",
+  scoreText: (selectedMatch, id) => ({
+    fontSize: 10,
+    fontFamily: "DMRegular",
+    color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
-  stateOfMatch: (selectedMatch, item) => ({
+  stateOfMatch: (selectedMatch, id) => ({
     fontSize: 12,
     fontFamily: "DMBold",
-    color: selectedMatch === item ? "#FAFAFC" : "#312651",
+    color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
     justifyContent: "space-around",
@@ -102,16 +179,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flex: 3,
   },
-  teamName: (selectedMatch, item) => ({
+  teamName: (selectedMatch, id) => ({
     fontSize: 14,
     fontFamily: "DMBold",
-    color: selectedMatch === item ? "#FAFAFC" : "#312651",
+    color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   location: {
     fontSize: 14,
     fontFamily: "DMRegular",
     color: "#B3AEC6",
   },
+  logoLeagueContainer: (selectedMatch, id) => ({
+    width: 30,
+    height: 30,
+    backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  }),
 });
 
 export default UpcomingMatchesCard;
