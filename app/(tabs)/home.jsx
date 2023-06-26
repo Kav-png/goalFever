@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Welcome from "../../components/home/welcome/Welcome";
 import LiveMatches from "../../components/home/livematches/LiveMatches";
 import UpcomingMatches from "../../components/home/upcomingmatches/UpcomingMatches";
+import RecentMatches from "../../components/home/recentmatches/RecentMatches";
 
 const Home = () => {
   const router = useRouter();
@@ -21,7 +22,8 @@ const Home = () => {
               <Welcome />
               {/* <LiveMatches /> */}
             </SafeAreaView>
-            <UpcomingMatches />
+            {/* <UpcomingMatches /> */}
+            <RecentMatches />
           </View>
         </ScrollView>
       </QueryClientProvider>

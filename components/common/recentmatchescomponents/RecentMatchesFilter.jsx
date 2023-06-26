@@ -5,7 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
@@ -18,20 +18,27 @@ function TabButton({ name, activeTab, onHandleSearchType }) {
   );
 }
 
-const FilterTabs = ({ tabs, activeTab, setActiveTab, setPoint }) => {
+const RecentMatchesFilter = ({
+  dates,
+  onPressRefresh,
+  setCurrentDate,
+  activeTab,
+  setActiveTab,
+}) => {
   return (
     <View style={styles.tabsContainer}>
       <FlatList
-        data={tabs}
+        data={dates}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <TabButton
             name={item}
             activeTab={activeTab}
             onHandleSearchType={() => {
+              setCurrentDate(item);
               setActiveTab(item);
-              setPoint(index);
+              onPressRefresh();
             }}
           />
         )}
@@ -53,7 +60,6 @@ const styles = StyleSheet.create({
     backgroundColor: name === activeTab ? "#444262" : "#F3F4F8",
     borderRadius: 14,
     marginLeft: 2,
-    ...10,
     shadowColor: "FFFFFF",
   }),
   btnText: (name, activeTab) => ({
@@ -64,6 +70,7 @@ const styles = StyleSheet.create({
   tabsContainer: {
     width: "100%",
     marginBottom: 12,
+    color: "white",
   },
   tab: (activeTab, name) => ({
     paddingVertical: 4,
@@ -78,4 +85,4 @@ const styles = StyleSheet.create({
   }),
 });
 
-export default FilterTabs;
+export default RecentMatchesFilter;
