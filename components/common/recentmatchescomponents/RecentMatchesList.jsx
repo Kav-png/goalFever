@@ -15,6 +15,10 @@ const RecentMatchesList = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [activeTab, setActiveTab] = useState(dates[0]);
 
+  useEffect(() => {
+    console.log(currentDate);
+  });
+
   // const handleSearch = useCallback(async () => {
   //   setSearchLoader(true);
   //   setSearchResult([]);
@@ -47,25 +51,13 @@ const RecentMatchesList = () => {
   //   handleSearch();
   // }, []);
 
-  const onPressRefresh = () => {
-    console.log(currentDate);
-    return (
-      <View>
-        <RecentMatchesListLoader />
-        {setTimeout(() => {
-          console.log(currentDate);
-        }, 10000)}
-      </View>
-    );
-  };
-
   return (
     <View>
       {/* Should hold the Filter Buttons */}
       {/* Pass back: onPress Function, date selected */}
       <RecentMatchesFilter
         dates={dates}
-        onPressRefresh={onPressRefresh}
+        // onPressRefresh={onPressRefresh}
         setCurrentDate={setCurrentDate}
         activeTab={activeTab}
         setActiveTab={setActiveTab}

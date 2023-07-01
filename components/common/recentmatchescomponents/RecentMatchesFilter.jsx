@@ -7,7 +7,7 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
@@ -24,14 +24,11 @@ const RecentMatchesFilter = ({
   activeTab,
   setActiveTab,
 }) => {
-  const [localCurrentDate, setLocalCurrentDate] = useState(dates[0]);
-
   return (
     <ScrollView
       horizontal
       alwaysBounceHorizontal
       contentContainerStyle={styles.container}
-      showsHorizontalScrollIndicator={false}
     >
       <View style={{ ...styles.tabsContainer, flexDirection: "row" }}>
         {dates.map((item) => {
@@ -41,11 +38,8 @@ const RecentMatchesFilter = ({
               name={item}
               activeTab={activeTab}
               onHandleSearchType={() => {
-                setLocalCurrentDate(item);
-                console.log("Local Current Date", item);
                 setCurrentDate(item);
                 setActiveTab(item);
-                onPressRefresh();
               }}
             />
           );
