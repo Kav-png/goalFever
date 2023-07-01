@@ -4,17 +4,16 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Pressable,
+  ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
-    <TouchableOpacity
-      style={styles.tab(activeTab, name)}
-      onPress={onHandleSearchType}
-    >
+    <Pressable style={styles.tab(activeTab, name)} onPress={onHandleSearchType}>
       <Text style={styles.tabText(activeTab, name)}>{name}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -25,35 +24,39 @@ const RecentMatchesFilter = ({
   activeTab,
   setActiveTab,
 }) => {
+  const [localCurrentDate, setLocalCurrentDate] = useState(dates[0]);
+
   return (
-    <View style={styles.tabsContainer}>
-      <FlatList
-        data={dates}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <TabButton
-            name={item}
-            activeTab={activeTab}
-            onHandleSearchType={() => {
-              setCurrentDate(item);
-              setActiveTab(item);
-              onPressRefresh();
-            }}
-          />
-        )}
-        contentContainerStyle={{ columnGap: 4 }}
-        keyExtractor={(item) => item}
-      />
-    </View>
+    <ScrollView
+      horizontal
+      alwaysBounceHorizontal
+      contentContainerStyle={styles.container}
+      showsHorizontalScrollIndicator={false}
+    >
+      <View style={{ ...styles.tabsContainer, flexDirection: "row" }}>
+        {dates.map((item) => {
+          return (
+            <TabButton
+              key={item}
+              name={item}
+              activeTab={activeTab}
+              onHandleSearchType={() => {
+                setLocalCurrentDate(item);
+                console.log("Local Current Date", item);
+                setCurrentDate(item);
+                setActiveTab(item);
+                onPressRefresh();
+              }}
+            />
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 6,
-    marginBottom: 3,
-  },
+  container: {},
   btn: (name, activeTab) => ({
     paddingVertical: 10,
     paddingHorizontal: 16,
@@ -78,6 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: activeTab === name ? "#444262" : "#C1C0C8",
+    marginHorizontal: 3,
   }),
   tabText: (activeTab, name) => ({
     fontFamily: "DMMedium",
