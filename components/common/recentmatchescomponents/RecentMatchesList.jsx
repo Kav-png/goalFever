@@ -9,47 +9,24 @@ import RecentMatchesFilter from "./RecentMatchesFilter";
 const RecentMatchesList = () => {
   const dates = dateFetch(); // ********************************
 
-  const [currentDate, setCurrentDate] = useState(dates[0]);
-  const [searchLoader, setSearchLoader] = useState(false);
-  const [searchError, setSearchError] = useState(null);
-  const [searchResult, setSearchResult] = useState([]);
   const [activeTab, setActiveTab] = useState(dates[0]);
 
-  useEffect(() => {
-    console.log(currentDate);
-  });
-
-  // const handleSearch = useCallback(async () => {
-  //   setSearchLoader(true);
-  //   setSearchResult([]);
-
-  //   try {
-  //     const options = {
-  //       method: "GET",
-  //       url: `https://sportscore1.p.rapidapi.com/sports/1/events/date/${currentDate}`,
-  //       headers: {
-  //         "X-RapidAPI-Key":
-  //           "1f6e575a84mshd541683c0aa837cp192745jsndeaa023f7c48",
-  //         "X-RapidAPI-Host": "sportscore1.p.rapidapi.com",
-  //       },
-  //       params: {
-  //         page: "1",
-  //       },
-  //     };
-
-  //     const response = await axios.request(options);
-  //     setSearchResult(response.data.data);
-  //   } catch (error) {
-  //     setSearchError(error);
-  //     console.log(error);
-  //   } finally {
-  //     setSearchLoader(false);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   handleSearch();
-  // }, []);
+  const functionThatSavesOrBreaksMe = () => {
+    switch (activeTab) {
+      case dates[0]:
+        return <RecentMatchesListContainer currentDate={dates[0]} />;
+      case dates[1]:
+        return <RecentMatchesListContainer currentDate={dates[1]} />;
+      case dates[2]:
+        return <RecentMatchesListContainer currentDate={dates[2]} />;
+      case dates[3]:
+        return <RecentMatchesListContainer currentDate={dates[3]} />;
+      case dates[4]:
+        return <RecentMatchesListContainer currentDate={dates[4]} />;
+      default:
+        break;
+    }
+  };
 
   return (
     <View>
@@ -58,7 +35,6 @@ const RecentMatchesList = () => {
       <RecentMatchesFilter
         dates={dates}
         // onPressRefresh={onPressRefresh}
-        setCurrentDate={setCurrentDate}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
@@ -67,6 +43,7 @@ const RecentMatchesList = () => {
       ) : (
         <RecentMatchesListContainer data={searchResult} />
       )} */}
+      {functionThatSavesOrBreaksMe()}
     </View>
   );
 };

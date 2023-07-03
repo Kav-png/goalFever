@@ -17,13 +17,7 @@ function TabButton({ name, activeTab, onHandleSearchType }) {
   );
 }
 
-const RecentMatchesFilter = ({
-  dates,
-  onPressRefresh,
-  setCurrentDate,
-  activeTab,
-  setActiveTab,
-}) => {
+const RecentMatchesFilter = ({ dates, activeTab, setActiveTab }) => {
   return (
     <ScrollView
       horizontal
@@ -38,7 +32,6 @@ const RecentMatchesFilter = ({
               name={item}
               activeTab={activeTab}
               onHandleSearchType={() => {
-                setCurrentDate(item);
                 setActiveTab(item);
               }}
             />
