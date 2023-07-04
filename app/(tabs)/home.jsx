@@ -11,20 +11,23 @@ import RecentMatches from "../../components/home/recentmatches/RecentMatches";
 const Home = () => {
   const router = useRouter();
   const queryClient = new QueryClient();
+  const queryClient2 = new QueryClient();
 
   return (
     <View>
-      <QueryClientProvider client={queryClient}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, padding: 10 }}>
-            <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1, padding: 10 }}>
+          <SafeAreaView>
+            <QueryClientProvider client={queryClient}>
               <Welcome />
               <LiveMatches />
-            </SafeAreaView>
+            </QueryClientProvider>
+          </SafeAreaView>
+          <QueryClientProvider client={queryClient2}>
             <RecentMatches />
-          </View>
-        </ScrollView>
-      </QueryClientProvider>
+          </QueryClientProvider>
+        </View>
+      </ScrollView>
     </View>
   );
 };
