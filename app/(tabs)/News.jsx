@@ -1,13 +1,24 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import NewsHeading from "../../components/news/NewsHeading";
 import NewsList from "../../components/news/NewsList";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const News = () => {
+  const queryClient = new QueryClient();
   return (
     <View>
-      <NewsHeading />
-      <NewsList />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1, padding: 10 }}>
+          <SafeAreaView>
+            <NewsHeading />
+            <QueryClientProvider client={queryClient}>
+              <NewsList />
+            </QueryClientProvider>
+          </SafeAreaView>
+        </View>
+      </ScrollView>
     </View>
   );
 };

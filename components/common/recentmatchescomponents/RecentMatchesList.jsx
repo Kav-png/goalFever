@@ -2,7 +2,6 @@ import { View, Text } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import RecentMatchesListContainer from "./RecentMatchesListContainer";
-import RecentMatchesListLoader from "./RecentMatchesListLoader";
 import { dateFetch } from "../../../utils";
 import RecentMatchesFilter from "./RecentMatchesFilter";
 
@@ -38,11 +37,6 @@ const RecentMatchesList = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      {/* {searchLoader || searchError ? (
-        <RecentMatchesListLoader />
-      ) : (
-        <RecentMatchesListContainer data={searchResult} />
-      )} */}
       {functionThatSavesOrBreaksMe()}
     </View>
   );
