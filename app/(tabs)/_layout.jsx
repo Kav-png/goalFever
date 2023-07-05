@@ -10,12 +10,6 @@ const tabsNavigator = () => {
         }}
       />
       <Tabs.Screen
-        name="Stats"
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tabs.Screen
         name="Maps"
         options={{
           headerShown: false,

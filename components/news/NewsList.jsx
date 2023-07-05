@@ -1,12 +1,15 @@
 import { View, Text, ActivityIndicator } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import NewsListCard from "./NewsListCard";
 import useFetchNews from "../../hook/useFetchNews";
 
-const NewsList = () => {
-  const { data, isLoading, error } = useFetchNews(`premierleague`, {});
+const NewsList = ({ league }) => {
+  const { data, isLoading, error, refetch } = useFetchNews(`${league}`, {});
   // const data = [0, 1, 2, 3, 4, 5, 6, 7];
   // fetch data from api
+  useEffect(() => {
+    refetch();
+  }, [league]);
   return (
     <View>
       {/* Pass data using data.map to fetch news */}

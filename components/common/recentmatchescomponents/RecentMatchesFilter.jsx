@@ -11,9 +11,15 @@ import React from "react";
 
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
-    <Pressable style={styles.tab(activeTab, name)} onPress={onHandleSearchType}>
-      <Text style={styles.tabText(activeTab, name)}>{name}</Text>
-    </Pressable>
+    <TouchableOpacity
+      style={styles.tab(activeTab, name)}
+      onPress={onHandleSearchType}
+    >
+      <Text style={styles.tabText(activeTab, name)}>
+        {name.substring(0, 1).toUpperCase()}
+        {name.substring(1).toLowerCase()}
+      </Text>
+    </TouchableOpacity>
   );
 }
 
