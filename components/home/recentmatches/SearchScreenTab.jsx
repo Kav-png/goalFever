@@ -1,27 +1,35 @@
-import { View, Text, ActivityIndicator, Button } from "react-native";
 import React, { useEffect } from "react";
-import usePostFetch from "../../../hook/postFetch";
+import { View, Text } from "react-native";
+import fetchData from "../../../hook/postViaAxiosData";
 
-const SearchScreenTab = ({ searchSelected }) => {
-  const { refetch, isLoading, error } = usePostFetch(searchSelected, {
-    page: 1,
-  });
-  const handlePostData = async (postData) => {
-    // Perform any necessary validation or preprocessing of the postData
-    await refetch(postData);
-  };
+const SearchScreenTab = () => {
+  useEffect(() => {
+    const fetchDataFromAPI = async () => {
+      try {
+        const query = {
+          page: "1",
+          name: "Real Madrid",
+          locale: "en",
+          sport_id: "1",
+        };
+
+        const data = await fetchData("teams/search", query);
+        console.log(data); // This will log the response data from the API
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchDataFromAPI();
+  }, []);
 
   return (
     <View>
-      <Button
-        title={isLoading ? "Posting..." : "Post Data"}
-        onPress={() => handlePostData(formData)}
-        disabled={isLoading}
-      />
-      {error && <Text>Error: {error.message}</Text>}
+      <Text>Fetching data...</Text>
     </View>
   );
 };
 
 export default SearchScreenTab;
+
 // TODO: Using this to search for players etc

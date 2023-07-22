@@ -1,16 +1,48 @@
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import SearchBarCard from "../../common/searchbar/SearchBarCard";
-import { useRouter } from "expo-router";
-import RecentMatchesFilter from "../../common/recentmatchescomponents/RecentMatchesFilter";
-import SearchScreenTab from "../recentmatches/SearchScreenTab";
-import postFetch from "../../../hook/postFetch";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import SearchButtons from "./SearchButtons";
 
 const Welcome = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const search = ["leagues", "teams", "players", "managers"];
-  const [activeTab, setActiveTab] = useState("leagues");
+  const search = ["leagues", "teams", "players", "managers", "sections"];
+  const [activeTab, setActiveTab] = useState("");
+  const params = useLocalSearchParams();
+
+  const functionThatSavesOrBreaksMe = () => {
+    switch (activeTab) {
+      case search[0]:
+        console.log("Saving");
+        return router.push({
+          pathname: `/search-details/${search[0]}`,
+          params: { searchCurrentQuery: search[0] },
+        });
+      case search[1]:
+        return router.push({
+          pathname: `/search-details/${search[1]}`,
+          params: { searchCurrentQuery: search[1] },
+        });
+      case search[2]:
+        return router.push({
+          pathname: `/search-details/${search[2]}`,
+          params: { searchCurrentQuery: search[2] },
+        });
+      case search[3]:
+        return router.push({
+          pathname: `/search-details/${search[3]}`,
+          params: { searchCurrentQuery: search[3] },
+        });
+      case search[4]:
+        return router.push({
+          pathname: `/search-details/${search[4]}`,
+          params: { searchCurrentQuery: search[4] },
+        });
+      default:
+        break;
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -23,12 +55,12 @@ const Welcome = () => {
         }}
       />
       <View style={{ flexDirection: "row", paddingTop: 5 }}>
-        {/* <RecentMatchesFilter
+        <SearchButtons
           dates={search}
           // onPressRefresh={onPressRefresh}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-        /> */}
+        />
       </View>
       <View>
         {/* {() => {
@@ -46,7 +78,7 @@ const Welcome = () => {
           }
         }} */}
       </View>
-      <SearchScreenTab searchSelected={activeTab} />
+      {useEffect(() => functionThatSavesOrBreaksMe(), [activeTab])}
     </View>
   );
 };
@@ -63,3 +95,7 @@ const styles = StyleSheet.create({
 });
 
 export default Welcome;
+
+// PLAN:
+// - Create new Search Icon, on press decide to search teams and place name of the search term next to the search icon near the top so on search it will be decided, and this means that's what will happen
+// {/* Fixes component error problem  */} the useEfect function with active tab that updates everytime there is an active tab
