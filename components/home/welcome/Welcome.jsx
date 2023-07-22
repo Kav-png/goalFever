@@ -23,12 +23,12 @@ const Welcome = () => {
         }}
       />
       <View style={{ flexDirection: "row", paddingTop: 5 }}>
-        <RecentMatchesFilter
+        {/* <RecentMatchesFilter
           dates={search}
           // onPressRefresh={onPressRefresh}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-        />
+        /> */}
       </View>
       <View>
         {/* {() => {

@@ -3,12 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 const usePostFetch = (endpoint, query) => {
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation(async (postData) => {
+  const postData = async (data) => {
     const response = await axios.post(
       `https://football98.p.rapidapi.com/${endpoint}/search`,
-      postData,
+      data,
       {
         headers: {
           "X-RapidAPI-Key":
@@ -18,13 +16,13 @@ const usePostFetch = (endpoint, query) => {
       }
     );
     return response.data;
-  });
+  };
 
-  useEffect(() => {
-    if (mutation.isSuccess) {
+  const mutation = useMutation(postData, {
+    onSuccess: () => {
       queryClient.invalidateQueries(["search", endpoint, query]);
-    }
-  }, [mutation.isSuccess, queryClient, endpoint, query]);
+    },
+  });
 
   return {
     data: mutation.data,
