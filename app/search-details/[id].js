@@ -18,6 +18,7 @@ const SearchDetails = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
+  const [previousSearchPhrase, setPreviousSearchPhrase] = useState("");
 
   // const { data, isLoading, error, refetch } = useFetch(
   //   `${searchCurrentQuery}`,
@@ -36,12 +37,22 @@ const SearchDetails = () => {
   //   setRefreshing(false);
   // }, []);
 
+  function removeEmojis(str) {
+    var emojiRE = /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu;
+    return str.replace(emojiRE, "");
+  }
+
   useEffect(() => {
     if (searchPhrase === "") {
       console.log("No search phrase");
     }
     if (searchPhrase.length > 3) {
-      console.log(searchPhrase);
+      if (searchPhrase === previousSearchPhrase) {
+        console.log("Already found");
+      } else {
+        setPreviousSearchPhrase(searchPhrase);
+        console.log(removeEmojis(searchPhrase));
+      }
       // Carry out new post query and take results
     } else {
       console.log("Not enough characters");
@@ -64,6 +75,7 @@ const SearchDetails = () => {
             clicked={clicked}
             setClicked={setClicked}
             setSearchPhraseSubmitted={setSearchPhraseSubmitted}
+            searchPhraseSubmitted={searchPhraseSubmitted}
           />
         </View>
         <View style={{ margin: 10 }}>

@@ -70,6 +70,7 @@ const Welcome = () => {
         clicked={clicked}
         setClicked={setClicked}
         setSearchPhraseSubmitted={setSearchPhraseSubmitted}
+        searchPhraseSubmitted={searchPhraseSubmitted}
       />
       <View style={{ flexDirection: "row", paddingTop: 5 }}>
         <SearchButtons

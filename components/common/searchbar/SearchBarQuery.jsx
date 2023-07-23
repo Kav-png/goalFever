@@ -9,6 +9,7 @@ const SearchBarQuery = ({
   searchPhrase,
   setSearchPhrase,
   setSearchPhraseSubmitted,
+  searchPhraseSubmitted,
 }) => {
   const { searchCurrentQuery } = useLocalSearchParams();
   return (
@@ -25,7 +26,7 @@ const SearchBarQuery = ({
           color="black"
           style={{ marginLeft: 2 }}
           onPress={() => {
-            setSearchPhraseSubmitted(true);
+            setSearchPhraseSubmitted(searchPhraseSubmitted + 1);
           }}
         />
         {/* Input field */}
