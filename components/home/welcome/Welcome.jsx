@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import SearchBarCard from "../../common/searchbar/SearchBarCard";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchButtons from "./SearchButtons";
+import SearchBarQuery from "../../common/searchbar/SearchBarQuery";
 
 const Welcome = () => {
   const router = useRouter();
@@ -10,11 +11,13 @@ const Welcome = () => {
   const search = ["leagues", "teams", "players", "managers", "sections"];
   const [activeTab, setActiveTab] = useState("");
   const params = useLocalSearchParams();
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
 
   const functionThatSavesOrBreaksMe = () => {
     switch (activeTab) {
       case search[0]:
-        console.log("Saving");
         return router.push({
           pathname: `/search-details/${search[0]}`,
           params: { searchCurrentQuery: search[0] },
@@ -47,12 +50,13 @@ const Welcome = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeMessage}>Discover that Goal Fever</Text>
-      <SearchBarCard
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        handleClick={() => {
-          // TODO: Handle Click event in SearchBarCard
-        }}
+
+      <SearchBarQuery
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        clicked={clicked}
+        setClicked={setClicked}
+        setSearchPhraseSubmitted={setSearchPhraseSubmitted}
       />
       <View style={{ flexDirection: "row", paddingTop: 5 }}>
         <SearchButtons

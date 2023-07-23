@@ -10,37 +10,66 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
 import useFetch from "../../hook/useFetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SearchBarQuery from "../../components/common/searchbar/SearchBarQuery";
+import SearchCard from "../../components/common/cards/SearchCard";
 
 const SearchDetails = () => {
   const { searchCurrentQuery } = useLocalSearchParams();
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
 
-  const { data, isLoading, error, refetch } = useFetch(
-    `${searchCurrentQuery}`,
-    {}
-  );
+  // const { data, isLoading, error, refetch } = useFetch(
+  //   `${searchCurrentQuery}`,
+  //   {}
+  // );
+
+  // useEffect(() => {
+  //   // Fetch data whenever currentDate changes
+  //   refetch();
+  // }, [searchCurrentQuery]);
+
+  // const [refreshing, setRefreshing] = useState(false);
+  // const onRefresh = useCallback(() => {
+  //   setRefreshing(true);
+  //   refetch();
+  //   setRefreshing(false);
+  // }, []);
 
   useEffect(() => {
-    // Fetch data whenever currentDate changes
-    refetch();
-  }, [searchCurrentQuery]);
-
-  const [refreshing, setRefreshing] = useState(false);
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    refetch();
-    setRefreshing(false);
-  }, []);
+    if (searchPhrase === "") {
+      console.log("No search phrase");
+    }
+    if (searchPhrase.length > 3) {
+      console.log(searchPhrase);
+      // Carry out new post query and take results
+    } else {
+      console.log("Not enough characters");
+    }
+  }, [searchPhraseSubmitted]);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fcffff" }}>
+    <SafeAreaView style={{ backgroundColor: "#fcffff" }}>
       <Stack.Screen
         options={{
-          headerStyle: { backgroundColor: "#fcffff" },
+          headerStyle: {},
           headerShadowVisible: false,
           headerTitle: "",
         }}
       />
       <>
-        <ScrollView
+        <View style={{ margin: 5, position: "absolute" }}>
+          <SearchBarQuery
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            clicked={clicked}
+            setClicked={setClicked}
+            setSearchPhraseSubmitted={setSearchPhraseSubmitted}
+          />
+        </View>
+        <View style={{ margin: 10 }}>
+          <SearchCard />
+        </View>
+        {/* <ScrollView
           showVerticalScrollIndicator={false}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -54,10 +83,10 @@ const SearchDetails = () => {
             <Text>No data</Text>
           ) : (
             <View style={{ padding: 10, paddingBottom: 100 }}>
-              {console.log(data)}
+              <SearchCard />
             </View>
           )}
-        </ScrollView>
+        </ScrollView> */}
       </>
     </SafeAreaView>
   );
@@ -73,3 +102,5 @@ const SearchDetailsApp = () => {
 };
 
 export default SearchDetailsApp;
+
+// TODO: Design All in one search view that epo pushes into the seperate details page using the currect acticve array
