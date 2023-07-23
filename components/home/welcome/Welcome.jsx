@@ -14,6 +14,7 @@ const Welcome = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
+  const [sameTabClicked, setSameTabClicked] = useState(0);
 
   const functionThatSavesOrBreaksMe = () => {
     switch (activeTab) {
@@ -47,6 +48,18 @@ const Welcome = () => {
     }
   };
 
+  useEffect(() => {
+    if (searchPhrase === "") {
+      console.log("No search phrase");
+    }
+    if (searchPhrase.length > 3) {
+      console.log(searchPhrase);
+      // Carry out new post query and take results
+    } else {
+      console.log("Not enough characters");
+    }
+  }, [searchPhraseSubmitted]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeMessage}>Discover that Goal Fever</Text>
@@ -64,6 +77,8 @@ const Welcome = () => {
           // onPressRefresh={onPressRefresh}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          sameTabClicked={sameTabClicked}
+          setSameTabClicked={setSameTabClicked}
         />
       </View>
       <View>
@@ -83,6 +98,7 @@ const Welcome = () => {
         }} */}
       </View>
       {useEffect(() => functionThatSavesOrBreaksMe(), [activeTab])}
+      {useEffect(() => functionThatSavesOrBreaksMe(), [sameTabClicked])}
     </View>
   );
 };

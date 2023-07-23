@@ -25,7 +25,13 @@ function TabButton({ name, activeTab, onHandleSearchType }) {
   );
 }
 
-const SearchButtons = ({ dates, activeTab, setActiveTab }) => {
+const SearchButtons = ({
+  dates,
+  activeTab,
+  setActiveTab,
+  setSameTabClicked,
+  sameTabClicked,
+}) => {
   return (
     <ScrollView
       horizontal
@@ -40,6 +46,9 @@ const SearchButtons = ({ dates, activeTab, setActiveTab }) => {
               name={item}
               activeTab={activeTab}
               onHandleSearchType={() => {
+                if (activeTab === item) {
+                  setSameTabClicked(sameTabClicked + 1);
+                }
                 setActiveTab(item);
               }}
             />
