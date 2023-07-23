@@ -82,22 +82,6 @@ const Welcome = () => {
           setSameTabClicked={setSameTabClicked}
         />
       </View>
-      <View>
-        {/* {() => {
-          switch (activeTab) {
-            case search[0]:
-              return <SearchScreenTab searchSelected={search[0]} />;
-            case search[1]:
-              return <SearchScreenTab searchSelected={search[1]} />;
-            case search[2]:
-              return <SearchScreenTab searchSelected={search[2]} />;
-            case search[3]:
-              return <SearchScreenTab searchSelected={search[3]} />;
-            default:
-              break;
-          }
-        }} */}
-      </View>
       {useEffect(() => functionThatSavesOrBreaksMe(), [activeTab])}
       {useEffect(() => functionThatSavesOrBreaksMe(), [sameTabClicked])}
     </View>

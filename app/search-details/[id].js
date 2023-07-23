@@ -4,6 +4,7 @@ import {
   ScrollView,
   RefreshControl,
   ActivityIndicator,
+  Button,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +13,7 @@ import useFetch from "../../hook/useFetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SearchBarQuery from "../../components/common/searchbar/SearchBarQuery";
 import SearchCard from "../../components/common/cards/SearchCard";
+import fetchData from "../../hook/postViaAxiosData";
 
 const SearchDetails = () => {
   const { searchCurrentQuery } = useLocalSearchParams();
@@ -19,6 +21,8 @@ const SearchDetails = () => {
   const [clicked, setClicked] = useState(false);
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [previousSearchPhrase, setPreviousSearchPhrase] = useState("");
+  const isLoading = false;
+  const error = false;
 
   // const { data, isLoading, error, refetch } = useFetch(
   //   `${searchCurrentQuery}`,
@@ -37,6 +41,50 @@ const SearchDetails = () => {
   //   setRefreshing(false);
   // }, []);
 
+  // const searchRequest = () => {
+  //   return fetchData(`${searchCurrentQuery}`, { name: searchPhrase });
+  // };
+
+  // const { data } = fetchData(`${searchCurrentQuery}`, {
+  //   name: "Chelsea",
+  // });
+
+  // useEffect(() => {
+  //   const fetchDataFromAPI = async () => {
+  //     try {
+  //       const query = {
+  //         name: searchPhrase,
+  //       };
+
+  //       const data = await fetchData(`${searchCurrentQuery}/search`, query);
+  //       console.log(data); // This will log the response data from the API
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     }
+  //   };
+
+  //   fetchDataFromAPI();
+  // }, []);
+
+  // const handleFetchData = () => {
+  //   fetchMutation.mutate(`${searchCurrentQuery}/search`, {
+  //     name: searchPhrase,
+  //   });
+  // };
+
+  const handleFetchData = async () => {
+    try {
+      const query = {
+        name: searchPhrase,
+      };
+
+      const data = await fetchData(`${searchCurrentQuery}/search`, query);
+      console.log(data); // This will log the response data from the API
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   function removeEmojis(str) {
     var emojiRE = /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu;
     return str.replace(emojiRE, "");
@@ -51,7 +99,7 @@ const SearchDetails = () => {
         console.log("Already found");
       } else {
         setPreviousSearchPhrase(searchPhrase);
-        console.log(removeEmojis(searchPhrase));
+        console.log(searchPhrase);
       }
       // Carry out new post query and take results
     } else {
@@ -78,14 +126,14 @@ const SearchDetails = () => {
             searchPhraseSubmitted={searchPhraseSubmitted}
           />
         </View>
-        <View style={{ margin: 10 }}>
+        {/* <View style={{}}>
           <SearchCard />
-        </View>
+        </View> */}
         {/* <ScrollView
           showVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
+          // refreshControl={
+          //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          // }
         >
           {isLoading ? (
             <ActivityIndicator size="large" color={"lightgrey"} />
@@ -95,10 +143,11 @@ const SearchDetails = () => {
             <Text>No data</Text>
           ) : (
             <View style={{ padding: 10, paddingBottom: 100 }}>
-              <SearchCard />
+              {console.log(data)}
             </View>
           )}
         </ScrollView> */}
+        <Button title="Fetch Data" onPress={handleFetchData} />
       </>
     </SafeAreaView>
   );
