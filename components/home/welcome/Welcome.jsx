@@ -58,7 +58,7 @@ const Welcome = () => {
     } else {
       console.log("Not enough characters");
     }
-  }, [searchPhraseSubmitted]);
+  }, [searchPhrase]);
 
   return (
     <View style={styles.container}>
