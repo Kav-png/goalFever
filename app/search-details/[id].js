@@ -5,6 +5,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   Button,
+  FlatList,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,8 +22,10 @@ const SearchDetails = () => {
   const [clicked, setClicked] = useState(false);
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [previousSearchPhrase, setPreviousSearchPhrase] = useState("");
-  const isLoading = false;
-  const error = false;
+
+  const [fetchedData, setFetchedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // const { data, isLoading, error, refetch } = useFetch(
   //   `${searchCurrentQuery}`,
@@ -41,47 +44,21 @@ const SearchDetails = () => {
   //   setRefreshing(false);
   // }, []);
 
-  // const searchRequest = () => {
-  //   return fetchData(`${searchCurrentQuery}`, { name: searchPhrase });
-  // };
-
-  // const { data } = fetchData(`${searchCurrentQuery}`, {
-  //   name: "Chelsea",
-  // });
-
-  // useEffect(() => {
-  //   const fetchDataFromAPI = async () => {
-  //     try {
-  //       const query = {
-  //         name: searchPhrase,
-  //       };
-
-  //       const data = await fetchData(`${searchCurrentQuery}/search`, query);
-  //       console.log(data); // This will log the response data from the API
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     }
-  //   };
-
-  //   fetchDataFromAPI();
-  // }, []);
-
-  // const handleFetchData = () => {
-  //   fetchMutation.mutate(`${searchCurrentQuery}/search`, {
-  //     name: searchPhrase,
-  //   });
-  // };
-
   const handleFetchData = async () => {
+    setIsLoading(true);
+    setError("");
     try {
       const query = {
         name: searchPhrase,
       };
 
       const data = await fetchData(`${searchCurrentQuery}/search`, query);
-      console.log(data); // This will log the response data from the API
+      console.log(data.data);
+      setFetchedData(data.data);
     } catch (error) {
-      console.error(error.message);
+      setError("Failed to fetch data from the API.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -148,6 +125,18 @@ const SearchDetails = () => {
           )}
         </ScrollView> */}
         <Button title="Fetch Data" onPress={handleFetchData} />
+        {isLoading ? <Text>Loading...</Text> : null}
+        {error ? <Text>Error: {error}</Text> : null}
+        <FlatList
+          data={fetchedData}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.slug}</Text>
+              {/* Add other properties you want to display */}
+            </View>
+          )}
+        />
       </>
     </SafeAreaView>
   );
