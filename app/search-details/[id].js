@@ -84,7 +84,7 @@ const SearchDetails = () => {
     }
   }, [searchPhraseSubmitted]);
   return (
-    <SafeAreaView style={{ backgroundColor: "#fcffff" }}>
+    <SafeAreaView style={{}}>
       <Stack.Screen
         options={{
           headerStyle: {},
@@ -124,19 +124,16 @@ const SearchDetails = () => {
             </View>
           )}
         </ScrollView> */}
-        <Button title="Fetch Data" onPress={handleFetchData} />
-        {isLoading ? <Text>Loading...</Text> : null}
-        {error ? <Text>Error: {error}</Text> : null}
-        <FlatList
-          data={fetchedData}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View>
-              <Text>{item.slug}</Text>
-              {/* Add other properties you want to display */}
-            </View>
-          )}
-        />
+        <View style={{ paddingTop: 10 }}>
+          <Button title="Fetch Data" onPress={handleFetchData} />
+          {isLoading ? <Text>Loading...</Text> : null}
+          {error ? <Text>Error: {error}</Text> : null}
+          <FlatList
+            data={fetchedData}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <SearchCard item={item} />}
+          />
+        </View>
       </>
     </SafeAreaView>
   );

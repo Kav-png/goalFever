@@ -1,20 +1,82 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
+import { useLocalSearchParams } from "expo-router";
 
-const SearchCard = ({ selectedItem }) => {
+const SearchCard = ({ selectedItem, item }) => {
+  const { searchCurrentQuery } = useLocalSearchParams();
   // take id from item data
   const id = 1;
   return (
-    <View style={styles.containerWrapper(selectedItem, id)}>
-      <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
-        <Image
-          source={{
-            uri: "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
-          }}
-        />
-      </TouchableOpacity>
-      <Text>SearchCard</Text>
-    </View>
+    <TouchableOpacity style={styles.containerWrapper(selectedItem, id)}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
+          {searchCurrentQuery === "managers" ? (
+            <View>
+              <Image
+                source={{
+                  uri: item?.has_photo
+                    ? item.photo
+                    : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
+                }}
+                resizeMode="contain"
+                style={styles.logoImage}
+              />
+              {console.log("Manager", item.photo)}
+            </View>
+          ) : (
+            <View>
+              <Image
+                source={{
+                  uri: item?.has_logo
+                    ? item?.logo
+                    : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
+                }}
+                resizeMode="contain"
+                style={styles.logoImage}
+              />
+              {console.log("Other", item.logo)}
+            </View>
+          )}
+        </TouchableOpacity>
+        <Text style={styles.teamName(selectedItem, id)}>{item?.name}</Text>
+      </View>
+      <View style={{ justifyContent: "space-around" }}>
+        {searchCurrentQuery === "managers" ? (
+          <View>
+            <Text style={styles.scoreText(selectedItem, id)}>
+              Wins:{" "}
+              {item?.performance?.wins ? item.performance?.wins : "No data"}
+            </Text>
+            <Text style={styles.scoreText(selectedItem, id)}>
+              Losses:{" "}
+              {item?.performance?.losses ? item.performance?.losses : "No data"}
+            </Text>
+            <Text style={styles.scoreText(selectedItem, id)}>
+              Goals:{" "}
+              {item?.performance?.goals_scored
+                ? item.performance?.goals_scored
+                : "No data"}
+            </Text>
+            <Text style={styles.scoreText(selectedItem, id)}>
+              Formation:{" "}
+              {item?.performance?.preferred_formation
+                ? item.performance?.preferred_formation
+                : "No data"}
+            </Text>
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.scoreText(selectedItem, id)}>
+              {item?.country}
+            </Text>
+            <Text style={styles.scoreText(selectedItem, id)}>{item?.flag}</Text>
+          </View>
+        )}
+        <Text style={{ fontSize: 10, color: "grey" }}>
+          Click for more information
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -44,19 +106,21 @@ const styles = StyleSheet.create({
   },
   logoContainer: (selectedItem, id) => ({
     marginBottom: 10,
-    width: 50,
-    height: 50,
-    backgroundColor: selectedItem === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    width: 75,
+    height: 75,
+    backgroundColor: selectedItem === id ? "#F3F4F8" : "#FFF",
+    borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
+    borderColor: "lightgrey",
+    borderWidth: 1,
   }),
   logoImage: {
-    width: "70%",
-    height: "70%",
+    width: 50,
+    height: 50,
   },
   scoreText: (selectedItem, id) => ({
-    fontSize: 10,
+    fontSize: 15,
     fontFamily: "DMRegular",
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
