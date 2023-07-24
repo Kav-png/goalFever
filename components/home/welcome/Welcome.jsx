@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState, useCallback } from "react";
 import SearchBarCard from "../../common/searchbar/SearchBarCard";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchButtons from "./SearchButtons";
@@ -16,7 +16,7 @@ const Welcome = () => {
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [sameTabClicked, setSameTabClicked] = useState(0);
 
-  const functionThatSavesOrBreaksMe = () => {
+  const functionThatSavesOrBreaksMe = useCallback(() => {
     switch (activeTab) {
       case search[0]:
         return router.push({
@@ -46,7 +46,7 @@ const Welcome = () => {
       default:
         break;
     }
-  };
+  }, [activeTab, router, search]);
 
   useEffect(() => {
     if (searchPhrase === "") {
@@ -59,6 +59,14 @@ const Welcome = () => {
       console.log("Not enough characters");
     }
   }, [searchPhrase]);
+
+  useEffect(() => {
+    functionThatSavesOrBreaksMe();
+  }, [activeTab, functionThatSavesOrBreaksMe]);
+
+  useEffect(() => {
+    functionThatSavesOrBreaksMe();
+  }, [sameTabClicked, functionThatSavesOrBreaksMe]);
 
   return (
     <View style={styles.container}>
@@ -82,8 +90,6 @@ const Welcome = () => {
           setSameTabClicked={setSameTabClicked}
         />
       </View>
-      {useEffect(() => functionThatSavesOrBreaksMe(), [activeTab])}
-      {useEffect(() => functionThatSavesOrBreaksMe(), [sameTabClicked])}
     </View>
   );
 };
@@ -100,7 +106,3 @@ const styles = StyleSheet.create({
 });
 
 export default Welcome;
-
-// PLAN:
-// - Create new Search Icon, on press decide to search teams and place name of the search term next to the search icon near the top so on search it will be decided, and this means that's what will happen
-// {/* Fixes component error problem  */} the useEfect function with active tab that updates everytime there is an active tab
