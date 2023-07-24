@@ -47,6 +47,7 @@ const SearchDetails = () => {
   const handleFetchData = async () => {
     setIsLoading(true);
     setError("");
+    setFetchedData([]);
     try {
       const query = {
         name: searchPhrase,
@@ -130,7 +131,7 @@ const SearchDetails = () => {
           {error ? <Text>Error: {error}</Text> : null}
           <FlatList
             data={fetchedData}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => <SearchCard item={item} />}
           />
         </View>
