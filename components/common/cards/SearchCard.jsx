@@ -1,80 +1,96 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
+import SearchImageContainer from "./searchcomponents/SearchImageContainer";
+import ExtraInformationContainer from "./searchcomponents/ExtraInformationContainer";
 
 const SearchCard = ({ selectedItem, item }) => {
   const { searchCurrentQuery } = useLocalSearchParams();
   // take id from item data
-  const id = 1;
+  const id = item?.id;
+  const imageContainer = () => {
+    switch (searchCurrentQuery) {
+      case "managers":
+        return (
+          <SearchImageContainer img={item?.photo} has_image={item?.has_photo} />
+        );
+      case "players":
+        return (
+          <SearchImageContainer img={item?.photo} has_image={item?.has_photo} />
+        );
+      case "leagues":
+        return (
+          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+        );
+      case "teams":
+        return (
+          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+        );
+      default:
+        break;
+    }
+  };
+
+  const extraInformationContainer = () => {
+    switch (searchCurrentQuery) {
+      case "managers":
+        return (
+          <ExtraInformationContainer
+            type="managers"
+            selectedItem={selectedItem}
+            id={id}
+            item={item}
+          />
+        );
+      case "players":
+        return (
+          <ExtraInformationContainer
+            type="players"
+            selectedItem={selectedItem}
+            id={id}
+            item={item}
+          />
+        );
+      case "leagues":
+        return (
+          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+        );
+      case "teams":
+        return (
+          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+        );
+      default:
+        break;
+    }
+  };
   return (
-    <TouchableOpacity style={styles.containerWrapper(selectedItem, id)}>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
-          {searchCurrentQuery === "managers" ? (
-            <View>
-              <Image
-                source={{
-                  uri: item?.has_photo
-                    ? item.photo
-                    : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
-                }}
-                resizeMode="contain"
-                style={styles.logoImage}
-              />
-            </View>
-          ) : (
-            <View>
-              <Image
-                source={{
-                  uri: item?.has_logo
-                    ? item?.logo
-                    : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
-                }}
-                resizeMode="contain"
-                style={styles.logoImage}
-              />
-            </View>
-          )}
-        </TouchableOpacity>
-        <Text style={styles.teamName(selectedItem, id)}>{item?.name}</Text>
-      </View>
-      <View style={{ justifyContent: "space-around" }}>
-        {searchCurrentQuery === "managers" ? (
+    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <TouchableOpacity
+        style={[styles.containerWrapper(selectedItem, id), styles.container]}
+      >
+        <View style={styles.container}>
+          <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
+            {imageContainer()}
+          </TouchableOpacity>
           <View>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              Wins:{" "}
-              {item?.performance?.wins ? item.performance?.wins : "No data"}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              Losses:{" "}
-              {item?.performance?.losses ? item.performance?.losses : "No data"}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              Goals:{" "}
-              {item?.performance?.goals_scored
-                ? item.performance?.goals_scored
-                : "No data"}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              Formation:{" "}
-              {item?.performance?.preferred_formation
-                ? item.performance?.preferred_formation
-                : "No data"}
-            </Text>
+            <Text style={styles.teamName(selectedItem, id)}>{item?.name}</Text>
+            <View style={{ flexDirection: "column" }}>
+              {extraInformationContainer()}
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "grey",
+                  marginLeft: 5,
+                  marginTop: 5,
+                }}
+              >
+                Click for more information
+              </Text>
+            </View>
           </View>
-        ) : (
-          <View>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              {item?.country}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>{item?.flag}</Text>
-          </View>
-        )}
-        <Text style={{ fontSize: 10, color: "grey" }}>
-          Click for more information
-        </Text>
-      </View>
-    </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -83,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 10,
     width: "100%",
-    padding: 14,
+    padding: 10,
     borderRadius: 16,
     ...{
       shadowColor: "#FFF",
@@ -98,32 +114,27 @@ const styles = StyleSheet.create({
     backgroundColor: selectedItem === id ? "#312651" : "#FFF",
   }),
   container: {
-    justifyContent: "space-around",
-    flexDirection: "column",
-    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
   },
   logoContainer: (selectedItem, id) => ({
     marginBottom: 10,
-    width: 75,
-    height: 75,
+    width: 60,
+    height: 65,
     backgroundColor: selectedItem === id ? "#F3F4F8" : "#FFF",
-    borderRadius: 50,
+    borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",
     borderColor: "lightgrey",
-    borderWidth: 1,
+    borderWidth: 3,
   }),
-  logoImage: {
-    width: 50,
-    height: 50,
-  },
   scoreText: (selectedItem, id) => ({
-    fontSize: 15,
+    fontSize: 10,
     fontFamily: "DMRegular",
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatch: (selectedItem, id) => ({
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: "DMBold",
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
@@ -134,9 +145,10 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   teamName: (selectedItem, id) => ({
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: "DMBold",
     color: selectedItem === id ? "#FAFAFC" : "#312651",
+    marginLeft: 10,
   }),
   location: {
     fontSize: 14,

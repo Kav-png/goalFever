@@ -6,10 +6,11 @@ import {
   ActivityIndicator,
   Button,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useFocusEffect, useLocalSearchParams } from "expo-router";
 import useFetch from "../../hook/useFetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SearchBarQuery from "../../components/common/searchbar/SearchBarQuery";
@@ -89,7 +90,7 @@ const SearchDetails = () => {
     }
   }, [searchPhraseSubmitted]);
 
-  const uniqueData = fetchedData.reduce((acc, current) => {
+  const uniqueData = fetchedData?.reduce((acc, current) => {
     const x = acc.find((item) => item.id === current.id);
     if (!x) {
       return acc.concat([current]);
@@ -141,24 +142,47 @@ const SearchDetails = () => {
         <View style={{ paddingTop: 10 }}>
           {recentSearches.length > 0 && (
             <View>
-              <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+              <Text
+                style={{
+                  marginTop: 10,
+                  fontFamily: "DMBold",
+                  marginLeft: 10,
+                  fontSize: 16,
+                }}
+              >
                 Recent Searches:
               </Text>
               <FlatList
-                data={recentSearches}
+                data={recentSearches.slice(0, 4)}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => <Text>{item}</Text>}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={{
+                      borderColor: "grey",
+                      borderWidth: 1,
+                      padding: 5,
+                      paddingHorizontal: 5,
+                      marginHorizontal: 10,
+                      marginTop: 7,
+                      borderRadius: 8,
+                    }}
+                  >
+                    <Text style={{ fontFamily: "DMRegular" }}>{item}</Text>
+                  </TouchableOpacity>
+                )}
               />
             </View>
           )}
           <Button title="Fetch Data" onPress={handleFetchData} />
           {isLoading ? <Text>Loading...</Text> : null}
           {error ? <Text>Error: {error}</Text> : null}
-          <FlatList
-            data={uniqueData}
-            keyExtractor={(item, index) => `${item.id}-${index}`}
-            renderItem={({ item }) => <SearchCard item={item} />}
-          />
+          <View style={{ marginHorizontal: 15 }}>
+            <FlatList
+              data={uniqueData}
+              keyExtractor={(item, index) => `${item.id}-${index}`}
+              renderItem={({ item }) => <SearchCard item={item} />}
+            />
+          </View>
         </View>
       </>
     </SafeAreaView>
