@@ -22,6 +22,7 @@ const SearchDetails = () => {
   const [clicked, setClicked] = useState(false);
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [previousSearchPhrase, setPreviousSearchPhrase] = useState("");
+  const [recentSearches, setRecentSearches] = useState([]);
 
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,6 +57,9 @@ const SearchDetails = () => {
       const data = await fetchData(`${searchCurrentQuery}/search`, query);
       console.log(data.data);
       setFetchedData(data.data);
+      if (searchPhrase !== "" && !recentSearches.includes(searchPhrase)) {
+        setRecentSearches([searchPhrase, ...recentSearches]);
+      }
     } catch (error) {
       setError("Failed to fetch data from the API.");
     } finally {
@@ -84,6 +88,15 @@ const SearchDetails = () => {
       console.log("Not enough characters");
     }
   }, [searchPhraseSubmitted]);
+
+  const uniqueData = fetchedData.reduce((acc, current) => {
+    const x = acc.find((item) => item.id === current.id);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
   return (
     <SafeAreaView style={{}}>
       <Stack.Screen
@@ -126,12 +139,24 @@ const SearchDetails = () => {
           )}
         </ScrollView> */}
         <View style={{ paddingTop: 10 }}>
+          {recentSearches.length > 0 && (
+            <View>
+              <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+                Recent Searches:
+              </Text>
+              <FlatList
+                data={recentSearches}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => <Text>{item}</Text>}
+              />
+            </View>
+          )}
           <Button title="Fetch Data" onPress={handleFetchData} />
           {isLoading ? <Text>Loading...</Text> : null}
           {error ? <Text>Error: {error}</Text> : null}
           <FlatList
-            data={fetchedData}
-            keyExtractor={(item) => item.id}
+            data={uniqueData}
+            keyExtractor={(item, index) => `${item.id}-${index}`}
             renderItem={({ item }) => <SearchCard item={item} />}
           />
         </View>

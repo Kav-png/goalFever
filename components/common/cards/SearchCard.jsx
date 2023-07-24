@@ -21,7 +21,6 @@ const SearchCard = ({ selectedItem, item }) => {
                 resizeMode="contain"
                 style={styles.logoImage}
               />
-              {console.log("Manager", item.photo)}
             </View>
           ) : (
             <View>
@@ -34,7 +33,6 @@ const SearchCard = ({ selectedItem, item }) => {
                 resizeMode="contain"
                 style={styles.logoImage}
               />
-              {console.log("Other", item.logo)}
             </View>
           )}
         </TouchableOpacity>
