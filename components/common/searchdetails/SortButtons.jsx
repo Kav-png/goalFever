@@ -32,12 +32,6 @@ const SortButtons = ({
       >
         <Text style={styles.clearSortButtonText}>Clear Sort</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.clearSortButton}
-        onPress={handleClearSortButtonPress}
-      >
-        <Text style={styles.clearSortButtonText}>Clear Sort</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -56,17 +50,17 @@ const styles = StyleSheet.create({
   },
   sortButtonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 14,
   },
   clearSortButton: {
     backgroundColor: "#FF5733",
-    padding: 10,
+    padding: 8,
     borderRadius: 8,
     marginHorizontal: 5,
   },
   clearSortButtonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 14,
   },
 });
 

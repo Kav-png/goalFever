@@ -7,8 +7,7 @@ import SearchBarQuery from "../../common/searchbar/SearchBarQuery";
 
 const Welcome = () => {
   const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState("");
-  const search = ["leagues", "teams", "players", "managers", "sections"];
+  const search = ["leagues", "teams", "players", "managers", "events"];
   const [activeTab, setActiveTab] = useState("");
   const params = useLocalSearchParams();
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -16,6 +15,7 @@ const Welcome = () => {
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [sameTabClicked, setSameTabClicked] = useState(0);
 
+  // Pushes the search phrase and the pushes to the search screen with a unique id
   const functionThatSavesOrBreaksMe = useCallback(() => {
     switch (activeTab) {
       case search[0]:

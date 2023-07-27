@@ -118,8 +118,8 @@ const SearchDetails = () => {
   const handleClearSortButtonPress = () => {
     setAscending(true);
     setAgeAscending(true);
-    setSortedData(uniqueData);
-    setSortedByAgeData(uniqueData);
+    setSortedData(null);
+    setSortedByAgeData(null);
     setCurrentSort(null);
   };
 
@@ -165,18 +165,19 @@ const SearchDetails = () => {
             handleClearSortButtonPress={handleClearSortButtonPress}
           />
         </View>
-        <View style={{ paddingTop: 10 }}>
-          {recentSearches.length > 0 && (
-            <RecentSearches recentSearches={recentSearches} />
-          )}
+        <View style={{ paddingTop: 5 }}>
           {searchCurrentQuery === "players" ? (
             <SortButtons
               ageAscending={ageAscending}
               ascending={ascending}
               handleSortByAgeButtonPress={handleSortByAgeButtonPress}
               handleSortButtonPress={handleSortButtonPress}
+              handleClearSortButtonPress={handleClearSortButtonPress}
             />
           ) : null}
+          {recentSearches.length > 0 && (
+            <RecentSearches recentSearches={recentSearches} />
+          )}
           <Button title="Fetch Data" onPress={handleFetchData} />
           <SearchResults
             isLoading={isLoading}
