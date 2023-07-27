@@ -22,3 +22,9 @@ export const dateFetch = () => {
   }
   return dates;
 };
+
+// removes emoji from the string and returns without emojis to avoid server errors
+function removeEmojis(str) {
+  var emojiRE = /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu;
+  return str.replace(emojiRE, "");
+}

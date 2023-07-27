@@ -8,6 +8,8 @@ const SearchCard = ({ selectedItem, item }) => {
   const { searchCurrentQuery } = useLocalSearchParams();
   // take id from item data
   const id = item?.id;
+
+  // switches images fetch details based on the search parameters
   const imageContainer = () => {
     switch (searchCurrentQuery) {
       case "managers":
@@ -53,11 +55,21 @@ const SearchCard = ({ selectedItem, item }) => {
         );
       case "leagues":
         return (
-          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+          <ExtraInformationContainer
+            type="leagues"
+            selectedItem={selectedItem}
+            id={id}
+            item={item}
+          />
         );
       case "teams":
         return (
-          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+          <ExtraInformationContainer
+            type="teams"
+            selectedItem={selectedItem}
+            id={id}
+            item={item}
+          />
         );
       default:
         break;

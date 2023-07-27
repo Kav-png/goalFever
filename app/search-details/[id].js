@@ -12,20 +12,28 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useFocusEffect, useLocalSearchParams } from "expo-router";
-import useFetch from "../../hook/useFetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import useFetch from "../../hook/useFetch";
 import SearchBarQuery from "../../components/common/searchbar/SearchBarQuery";
 import SearchCard from "../../components/common/cards/SearchCard";
 import fetchData from "../../hook/postViaAxiosData";
+import { sortByAge, sortByTransferValue } from "../../utils/searchUtils";
+import RecentSearches from "../../components/common/searchdetails/RecentSearches";
+import SearchResults from "../../components/common/searchdetails/SearchResults";
+import SortButtons from "../../components/common/searchdetails/SortButtons";
 
 const SearchDetails = () => {
   const { searchCurrentQuery } = useLocalSearchParams();
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
+
+  // recent searches and current search results are held here
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [previousSearchPhrase, setPreviousSearchPhrase] = useState("");
   const [recentSearches, setRecentSearches] = useState([]);
 
+  // holds the fetched results, errors and loading status
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -40,7 +48,8 @@ const SearchDetails = () => {
   const [currentSort, setCurrentSort] = useState();
 
   // Posts search results onto the api
-  // This is an asynchronous function
+
+  // This is an asynchronous function - fetches results from the search by posting a POST request
   const handleFetchData = async () => {
     setIsLoading(true);
     setError("");
@@ -62,11 +71,7 @@ const SearchDetails = () => {
     }
   };
 
-  function removeEmojis(str) {
-    var emojiRE = /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu;
-    return str.replace(emojiRE, "");
-  }
-
+  // updates the variables depending on if searchPhraseSubmitted is updated or not, and checks if there is a match between the previous search and the current search
   useEffect(() => {
     if (searchPhrase === "") {
       console.log("No search phrase");
@@ -84,6 +89,7 @@ const SearchDetails = () => {
     }
   }, [searchPhraseSubmitted]);
 
+  // removes redundant data so the key is unique
   const uniqueData = fetchedData?.reduce((acc, current) => {
     const x = acc.find((item) => item.id === current.id);
     if (!x) {
@@ -92,6 +98,7 @@ const SearchDetails = () => {
       return acc;
     }
   }, []);
+
   // Function to handle sorting when the button is pressed
   const handleSortButtonPress = () => {
     setAscending((prevState) => !prevState);
@@ -100,16 +107,6 @@ const SearchDetails = () => {
     setCurrentSort("transfer");
   };
 
-  // Sort function (same as before)
-  const sortByTransferValue = (data, ascending = true) => {
-    return data.sort((a, b) => {
-      if (ascending) {
-        return a.market_value - b.market_value;
-      } else {
-        return b.market_value - a.market_value;
-      }
-    });
-  };
   // Function to handle sorting by age when the button is pressed
   const handleSortByAgeButtonPress = () => {
     setAgeAscending((prevState) => !prevState);
@@ -118,24 +115,14 @@ const SearchDetails = () => {
     setCurrentSort("age");
   };
 
-  // Function to sort by age
-  const sortByAge = (data, ascending = true) => {
-    return data.sort((a, b) => {
-      if (ascending) {
-        return a.age - b.age;
-      } else {
-        return b.age - a.age;
-      }
-    });
-  };
-
+  // the data is decided depending on which one is selected, and displays the results
   const sortedOrder = () => {
     switch (currentSort) {
       case "age":
         return (
           <FlatList
             data={sortedByAgeData}
-            keyExtractor={(item, index) => `${item.id}-${index}`}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => <SearchCard item={item} />}
           />
         );
@@ -143,7 +130,7 @@ const SearchDetails = () => {
         return (
           <FlatList
             data={sortedData}
-            keyExtractor={(item, index) => `${item.id}-${index}`}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => <SearchCard item={item} />}
           />
         );
@@ -171,72 +158,25 @@ const SearchDetails = () => {
         </View>
         <View style={{ paddingTop: 10 }}>
           {recentSearches.length > 0 && (
-            <View>
-              <Text
-                style={{
-                  marginTop: 10,
-                  fontFamily: "DMBold",
-                  marginLeft: 10,
-                  fontSize: 16,
-                }}
-              >
-                Recent Searches:
-              </Text>
-              <FlatList
-                data={recentSearches.slice(0, 4)}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={{
-                      borderColor: "grey",
-                      borderWidth: 1,
-                      padding: 5,
-                      paddingHorizontal: 5,
-                      marginHorizontal: 10,
-                      marginTop: 7,
-                      borderRadius: 8,
-                    }}
-                  >
-                    <Text style={{ fontFamily: "DMRegular" }}>{item}</Text>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
+            <RecentSearches recentSearches={recentSearches} />
           )}
           {searchCurrentQuery === "players" ? (
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.sortButton}
-                onPress={handleSortByAgeButtonPress}
-              >
-                <Text style={styles.sortButtonText}>
-                  Sort By Age {ageAscending ? "▲" : "▼"}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.sortButton}
-                onPress={handleSortButtonPress}
-              >
-                <Text style={styles.sortButtonText}>
-                  Sort By Transfer Value {ascending ? "▲" : "▼"}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <SortButtons
+              ageAscending={ageAscending}
+              ascending={ascending}
+              handleSortByAgeButtonPress={handleSortByAgeButtonPress}
+              handleSortButtonPress={handleSortButtonPress}
+            />
           ) : null}
           <Button title="Fetch Data" onPress={handleFetchData} />
-          {isLoading ? <Text>Loading...</Text> : null}
-          {error ? <Text>Error: {error}</Text> : null}
-          <View style={{ marginHorizontal: 15 }}>
-            {sortedData ? (
-              sortedOrder()
-            ) : (
-              <FlatList
-                data={uniqueData}
-                keyExtractor={(item, index) => `${item.id}-${index}`}
-                renderItem={({ item }) => <SearchCard item={item} />}
-              />
-            )}
-          </View>
+          <SearchResults
+            isLoading={isLoading}
+            error={error}
+            sortedData={sortedData}
+            sortedByAgeData={sortedByAgeData}
+            sortedOrder={sortedOrder}
+            uniqueData={uniqueData}
+          />
         </View>
       </>
     </SafeAreaView>
@@ -251,23 +191,7 @@ const SearchDetailsApp = () => {
     </QueryClientProvider>
   );
 };
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 10,
-  },
-  sortButton: {
-    backgroundColor: "#312651",
-    padding: 10,
-    borderRadius: 8,
-    marginHorizontal: 5,
-  },
-  sortButtonText: {
-    color: "white",
-    fontSize: 16,
-  },
-});
+
 export default SearchDetailsApp;
 
 // TODO: Design All in one search view that epo pushes into the seperate details page using the currect acticve array
