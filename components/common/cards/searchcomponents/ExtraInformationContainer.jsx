@@ -61,10 +61,25 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
         );
       case "leagues":
         return (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "column" }}>
             <Text style={styles.scoreTextBold(selectedItem, id)}>
               {item?.host?.country ? item?.host.country : null}
             </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                alignItems: "flex-start",
+              }}
+            >
+              {item?.facts
+                ? item.facts.slice(0, 3).map((fact) => (
+                    <Text style={styles.scoreText(selectedItem, id)}>
+                      {fact.name} - {fact.value}
+                    </Text>
+                  ))
+                : null}
+            </View>
           </View>
         );
       case "teams":
