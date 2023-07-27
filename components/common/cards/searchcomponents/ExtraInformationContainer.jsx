@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import React from "react";
 
 const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
@@ -61,11 +61,22 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
         );
       case "leagues":
         return (
-          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.scoreTextBold(selectedItem, id)}>
+              {item?.host?.country ? item?.host.country : null}
+            </Text>
+          </View>
         );
       case "teams":
         return (
-          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.scoreTextBold(selectedItem, id)}>
+              {item?.country
+                ? item.country.substring(0, 1).toUpperCase() +
+                  item.country.substring(1).toLowerCase()
+                : null}
+            </Text>
+          </View>
         );
       default:
         break;

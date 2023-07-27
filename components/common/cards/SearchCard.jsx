@@ -85,7 +85,13 @@ const SearchCard = ({ selectedItem, item }) => {
             {imageContainer()}
           </TouchableOpacity>
           <View>
-            <Text style={styles.teamName(selectedItem, id)}>{item?.name}</Text>
+            <Text style={styles.teamName(selectedItem, id)}>
+              {item?.name
+                ? item.name
+                : item?.name_translations?.en.length < 38
+                ? item?.name_translations?.en
+                : item?.name_translations?.en.substring(0, 36) + "..."}
+            </Text>
             <View style={{ flexDirection: "column" }}>
               {extraInformationContainer()}
               <Text

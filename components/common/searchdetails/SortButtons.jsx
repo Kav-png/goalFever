@@ -6,6 +6,7 @@ const SortButtons = ({
   handleSortByAgeButtonPress,
   ageAscending,
   ascending,
+  handleClearSortButtonPress,
 }) => {
   return (
     <View style={styles.buttonContainer}>
@@ -25,6 +26,18 @@ const SortButtons = ({
           Sort By Transfer Value {ascending ? "▲" : "▼"}
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.clearSortButton}
+        onPress={handleClearSortButtonPress}
+      >
+        <Text style={styles.clearSortButtonText}>Clear Sort</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.clearSortButton}
+        onPress={handleClearSortButtonPress}
+      >
+        <Text style={styles.clearSortButtonText}>Clear Sort</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,6 +55,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   sortButtonText: {
+    color: "white",
+    fontSize: 16,
+  },
+  clearSortButton: {
+    backgroundColor: "#FF5733",
+    padding: 10,
+    borderRadius: 8,
+    marginHorizontal: 5,
+  },
+  clearSortButtonText: {
     color: "white",
     fontSize: 16,
   },

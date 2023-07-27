@@ -115,6 +115,14 @@ const SearchDetails = () => {
     setCurrentSort("age");
   };
 
+  const handleClearSortButtonPress = () => {
+    setAscending(true);
+    setAgeAscending(true);
+    setSortedData(uniqueData);
+    setSortedByAgeData(uniqueData);
+    setCurrentSort(null);
+  };
+
   // the data is decided depending on which one is selected, and displays the results
   const sortedOrder = () => {
     switch (currentSort) {
@@ -154,6 +162,7 @@ const SearchDetails = () => {
             setClicked={setClicked}
             setSearchPhraseSubmitted={setSearchPhraseSubmitted}
             searchPhraseSubmitted={searchPhraseSubmitted}
+            handleClearSortButtonPress={handleClearSortButtonPress}
           />
         </View>
         <View style={{ paddingTop: 10 }}>
