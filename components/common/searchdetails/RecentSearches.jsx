@@ -8,18 +8,18 @@ import {
 import React from "react";
 
 const RecentSearches = ({ recentSearches }) => {
+  const recentSearchesList = recentSearches.slice(0, 4).map((item, index) => (
+    <TouchableOpacity
+      key={index.toString()}
+      style={styles.recentSearchesButton}
+    >
+      <Text style={{ fontFamily: "DMRegular" }}>{item}</Text>
+    </TouchableOpacity>
+  ));
   return (
     <View>
       <Text style={styles.recentSearchesText}>Recent Searches:</Text>
-      <FlatList
-        data={recentSearches.slice(0, 4)}
-        keyExtractor={(index) => index.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.recentSearchesButton}>
-            <Text style={{ fontFamily: "DMRegular" }}>{item}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      {recentSearchesList}
     </View>
   );
 };

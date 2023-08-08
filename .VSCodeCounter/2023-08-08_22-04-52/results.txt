@@ -1,0 +1,100 @@
+Date : 2023-08-08 22:04:52
+Directory : d:\Program-Files\Coding-Files\project-wboson\goalFever
+Total : 49 files,  8944 codes, 153 comments, 1220 blanks, all 10317 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| log            |          1 |      6,595 |          0 |      1,005 |      7,600 |
+| JavaScript JSX |         34 |      1,897 |         97 |        155 |      2,149 |
+| JavaScript     |         11 |        382 |         56 |         52 |        490 |
+| JSON           |          2 |         61 |          0 |          2 |         63 |
+| Markdown       |          1 |          9 |          0 |          6 |         15 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                            | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                               |         49 |      8,944 |        153 |      1,220 |     10,317 |
+| . (Files)                                                                                                                       |          6 |      6,677 |          0 |      1,015 |      7,692 |
+| app                                                                                                                             |          7 |        302 |         81 |         45 |        428 |
+| app (Files)                                                                                                                     |          2 |         36 |          1 |          9 |         46 |
+| app\(tabs)                                                                                                                      |          4 |         89 |         31 |         16 |        136 |
+| app\search-details                                                                                                              |          1 |        177 |         49 |         20 |        246 |
+| components                                                                                                                      |         27 |      1,761 |         65 |        125 |      1,951 |
+| components\common                                                                                                               |         15 |      1,169 |         30 |         64 |      1,263 |
+| components\common\cards                                                                                                         |          6 |        688 |         18 |         25 |        731 |
+| components\common\cards (Files)                                                                                                 |          3 |        526 |         17 |         14 |        557 |
+| components\common\cards\searchcomponents                                                                                        |          3 |        162 |          1 |         11 |        174 |
+| components\common\recentmatchescomponents                                                                                       |          4 |        190 |          7 |         20 |        217 |
+| components\common\searchbar                                                                                                     |          2 |        155 |          5 |          9 |        169 |
+| components\common\searchdetails                                                                                                 |          3 |        136 |          0 |         10 |        146 |
+| components\home                                                                                                                 |          5 |        304 |         11 |         34 |        349 |
+| components\home\livematches                                                                                                     |          1 |         75 |          5 |          9 |         89 |
+| components\home\recentmatches                                                                                                   |          2 |         41 |          3 |         10 |         54 |
+| components\home\welcome                                                                                                         |          2 |        188 |          3 |         15 |        206 |
+| components\maps                                                                                                                 |          2 |         61 |         15 |         10 |         86 |
+| components\news                                                                                                                 |          5 |        227 |          9 |         17 |        253 |
+| constants                                                                                                                       |          1 |         22 |          0 |          2 |         24 |
+| hook                                                                                                                            |          5 |        128 |          2 |         21 |        151 |
+| provider                                                                                                                        |          1 |         11 |          0 |          5 |         16 |
+| utils                                                                                                                           |          2 |         43 |          5 |          7 |         55 |
++---------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                        | language       | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\README.md                                                                | Markdown       |          9 |          0 |          6 |         15 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app.json                                                                 | JSON           |         10 |          0 |          1 |         11 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\Home.jsx                                                      | JavaScript JSX |         29 |         23 |          6 |         58 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\Maps.jsx                                                      | JavaScript JSX |         11 |          0 |          3 |         14 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\News.jsx                                                      | JavaScript JSX |         23 |          8 |          4 |         35 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\_layout.jsx                                                   | JavaScript JSX |         26 |          0 |          3 |         29 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\_layout.jsx                                                          | JavaScript JSX |         30 |          0 |          6 |         36 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\index.jsx                                                            | JavaScript JSX |          6 |          1 |          3 |         10 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\app\search-details\[id].js                                               | JavaScript     |        177 |         49 |         20 |        246 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\babel.config.js                                                          | JavaScript     |         11 |          0 |          1 |         12 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\LiveMatchesCard.jsx                              | JavaScript JSX |        163 |          0 |          4 |        167 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\SearchCard.jsx                                   | JavaScript JSX |        179 |          2 |          6 |        187 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\UpcomingMatchesCard.jsx                          | JavaScript JSX |        184 |         15 |          4 |        203 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\ExtraInformationContainer.jsx   | JavaScript JSX |        119 |          1 |          4 |        124 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\SearchImageContainer.jsx        | JavaScript JSX |         25 |          0 |          4 |         29 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\SearchImageManagers.jsx         | JavaScript JSX |         18 |          0 |          3 |         21 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesFilter.jsx        | JavaScript JSX |         81 |          0 |          5 |         86 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesList.jsx          | JavaScript JSX |         37 |          3 |          6 |         46 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesListContainer.jsx | JavaScript JSX |         35 |          1 |          5 |         41 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesTitle.jsx         | JavaScript JSX |         37 |          3 |          4 |         44 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchbar\SearchBarCard.jsx                            | JavaScript JSX |         58 |          1 |          5 |         64 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchbar\SearchBarQuery.jsx                           | JavaScript JSX |         97 |          4 |          4 |        105 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchdetails\RecentSearches.jsx                       | JavaScript JSX |         42 |          0 |          3 |         45 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchdetails\SearchResults.jsx                        | JavaScript JSX |         30 |          0 |          3 |         33 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchdetails\SortButtons.jsx                          | JavaScript JSX |         64 |          0 |          4 |         68 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\livematches\LiveMatches.jsx                              | JavaScript JSX |         75 |          5 |          9 |         89 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\recentmatches\RecentMatches.jsx                          | JavaScript JSX |         13 |          2 |          3 |         18 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\recentmatches\SearchScreenTab.jsx                        | JavaScript JSX |         28 |          1 |          7 |         36 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\welcome\SearchButtons.jsx                                | JavaScript JSX |         92 |          0 |          5 |         97 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\welcome\Welcome.jsx                                      | JavaScript JSX |         96 |          3 |         10 |        109 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\MapMarker.jsx                                            | JavaScript JSX |         13 |          0 |          3 |         16 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\ViewOfMap.jsx                                            | JavaScript JSX |         48 |         15 |          7 |         70 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsContent.jsx                                          | JavaScript JSX |         12 |          4 |          3 |         19 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsFooter.jsx                                           | JavaScript JSX |         44 |          0 |          4 |         48 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsHeading.jsx                                          | JavaScript JSX |         32 |          2 |          4 |         38 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsList.jsx                                             | JavaScript JSX |         22 |          3 |          3 |         28 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsListCard.jsx                                         | JavaScript JSX |        117 |          0 |          3 |        120 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\constants\icons.js                                                       | JavaScript     |         22 |          0 |          2 |         24 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\postData.js                                                         | JavaScript     |         32 |          0 |          4 |         36 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\postFetch.js                                                        | JavaScript     |         31 |          0 |          5 |         36 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\postViaAxiosData.js                                                 | JavaScript     |         19 |          0 |          4 |         23 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetch.js                                                         | JavaScript     |         23 |          1 |          4 |         28 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchNews.js                                                     | JavaScript     |         23 |          1 |          4 |         28 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\index.js                                                                 | JavaScript     |          1 |          0 |          1 |          2 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\package.json                                                             | JSON           |         51 |          0 |          1 |         52 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\provider\SearchDetailsContext.jsx                                        | JavaScript JSX |         11 |          0 |          5 |         16 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\utils\index.js                                                           | JavaScript     |         25 |          2 |          4 |         31 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\utils\searchUtils.js                                                     | JavaScript     |         18 |          3 |          3 |         24 |
+| d:\Program-Files\Coding-Files\project-wboson\goalFever\yarn-error.log                                                           | log            |      6,595 |          0 |      1,005 |      7,600 |
+| Total                                                                                                                           |                |      8,944 |        153 |      1,220 |     10,317 |
++---------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
