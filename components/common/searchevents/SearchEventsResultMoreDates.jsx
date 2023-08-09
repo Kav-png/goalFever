@@ -26,16 +26,8 @@ const SearchEventsResultsMoreDates = ({ date }) => {
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [originalDate, setOriginalDate] = useState("09/08/2023");
-  const [sortedData, setSortedData] = useState(uniqueData);
-  const [rearrangedDate, setRearrangedDate] = useState("");
 
-  const rearrangeDate = () => {
-    // Error: Using this to fix error, as api expected different date structure than the one being returned
-    const [day, month, year] = originalDate.split("/");
-    const newDate = `${year}-${month}-${day}`;
-    setRearrangedDate(newDate);
-  };
+  const [sortedData, setSortedData] = useState(uniqueData);
 
   const handleFetchData = async () => {
     setIsLoading(true);

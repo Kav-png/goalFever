@@ -62,6 +62,19 @@ const SearchEvents = () => {
     setShowDates(!showDates);
   };
 
+  const [originalDate, setOriginalDate] = useState("09/08/2023");
+  const [rearrangedDate, setRearrangedDate] = useState("");
+
+  const rearrangeDate = () => {
+    // Error: Using this to fix error, as api expected different date structure than the one being returned
+    const [day, month, year] = originalDate.split("/");
+    const newDate = `${year}-${month}-${day}`;
+    setRearrangedDate(newDate);
+  };
+  useEffect(() => {
+    rearrangeDate();
+  }, [date]);
+
   return (
     <SafeAreaView style={{}}>
       <Stack.Screen
