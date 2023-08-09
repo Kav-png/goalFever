@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
-const SearchBarQuery = ({
+const SearchBarQueryMain = ({
   setClicked,
   clicked,
   searchPhrase,
@@ -11,7 +11,7 @@ const SearchBarQuery = ({
   setSearchPhraseSubmitted,
   searchPhraseSubmitted,
 }) => {
-  const { searchCurrentQuery } = useLocalSearchParams();
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <View
@@ -32,7 +32,7 @@ const SearchBarQuery = ({
         {/* Input field */}
         <TextInput
           style={styles.input}
-          placeholder={`Search ${searchCurrentQuery}`}
+          placeholder={`Search Events`}
           placeholderTextColor="gray"
           value={searchPhrase}
           onChangeText={setSearchPhrase}
@@ -69,7 +69,7 @@ const SearchBarQuery = ({
   );
 };
 
-export default SearchBarQuery;
+export default SearchBarQueryMain;
 
 const styles = StyleSheet.create({
   container: {

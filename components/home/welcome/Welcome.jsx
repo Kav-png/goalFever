@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
-import SearchBarCard from "../../common/searchbar/SearchBarCard";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchButtons from "./SearchButtons";
-import SearchBarQuery from "../../common/searchbar/SearchBarQuery";
+import WelcomeTop from "./WelcomeTop";
 
 const Welcome = () => {
   const router = useRouter();
@@ -11,8 +10,6 @@ const Welcome = () => {
   const [activeTab, setActiveTab] = useState("");
   const params = useLocalSearchParams();
   const [searchPhrase, setSearchPhrase] = useState("");
-  const [clicked, setClicked] = useState(false);
-  const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
   const [sameTabClicked, setSameTabClicked] = useState(0);
 
   // Pushes the search phrase and the pushes to the search screen with a unique id
@@ -70,16 +67,7 @@ const Welcome = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeMessage}>Discover that Goal Fever</Text>
-
-      <SearchBarQuery
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        clicked={clicked}
-        setClicked={setClicked}
-        setSearchPhraseSubmitted={setSearchPhraseSubmitted}
-        searchPhraseSubmitted={searchPhraseSubmitted}
-      />
+      <WelcomeTop />
       <View style={{ flexDirection: "row", paddingTop: 5 }}>
         <SearchButtons
           dates={search}
@@ -97,11 +85,6 @@ const Welcome = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-  },
-  welcomeMessage: {
-    fontFamily: "DMBold",
-    fontSize: 20,
-    paddingHorizontal: 15,
   },
 });
 
