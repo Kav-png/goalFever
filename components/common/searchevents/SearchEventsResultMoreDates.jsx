@@ -37,7 +37,7 @@ const SearchEventsResultsMoreDates = ({ date }) => {
       const query = {
         name: searchPhrase,
         sport_id: 1,
-        date: rearrangedDate,
+        date: date,
       };
       const data = await fetchData(`events/search-similar-name`, query);
       console.log(data.data);
@@ -90,7 +90,7 @@ const SearchEventsResultsMoreDates = ({ date }) => {
     }
   }, [date, searchPhraseSubmitted]);
   return (
-    <View>
+    <View style={{ flex: 1, width: "100%" }}>
       <SearchBarQueryMain
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
@@ -106,20 +106,18 @@ const SearchEventsResultsMoreDates = ({ date }) => {
         {sortedData ? (
           sortedOrder()
         ) : (
-          <View style={{ flex: 1, width: "100%" }}>
-            <FlatList
-              contentContainerStyle={{ paddingBottom: 20 }}
-              data={uniqueData}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <UpcomingMatchesCard
-                  item={item}
-                  handleCardPress={() => {}}
-                  activeTab={2020}
-                />
-              )}
-            />
-          </View>
+          <FlatList
+            contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
+            data={uniqueData}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <UpcomingMatchesCard
+                item={item}
+                handleCardPress={() => {}}
+                activeTab={2020}
+              />
+            )}
+          />
         )}
       </View>
     </View>

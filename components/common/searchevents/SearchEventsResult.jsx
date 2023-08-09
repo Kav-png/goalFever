@@ -100,6 +100,7 @@ const SearchEventsResult = ({ index }) => {
           sortedOrder()
         ) : (
           <FlatList
+            contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
             data={uniqueData}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (

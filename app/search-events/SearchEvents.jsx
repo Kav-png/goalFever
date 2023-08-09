@@ -50,26 +50,22 @@ const SearchEvents = () => {
   const [originalDate, setOriginalDate] = useState("09/08/2023");
   const [rearrangedDate, setRearrangedDate] = useState("");
 
-  const rearrangeDate = () => {
-    // Error: Using this to fix error, as api expected different date structure than the one being returned
-    const [day, month, year] = originalDate.split("/");
-    const newDate = `${year}-${month}-${day}`;
-    setRearrangedDate(newDate);
-  };
+  const rearrangeDate = () => {};
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
 
     setDate(currentDate);
-  };
-
-  useEffect(() => {
-    console.log("Log #1" + date.toLocaleString());
-    setOriginalDate(date.toLocaleString().substring(0, 10));
-    console.log("Log #2" + originalDate);
-    rearrangeDate();
+    console.log("Log #1" + currentDate.toLocaleString());
+    // Error: Using this to fix error, as api expected different currentDate structure than the one being returned
+    const [day, month, year] = currentDate
+      .toLocaleString()
+      .substring(0, 10)
+      .split("/");
+    const newDate = `${year}-${month}-${day}`;
+    setRearrangedDate(newDate);
     console.log("Log #3" + rearrangedDate);
-  }, [date]);
+  };
 
   const showMode = (currentMode) => {
     setMode(currentMode);
@@ -124,6 +120,7 @@ const SearchEvents = () => {
             )}
 
             {console.log("selected:" + date.toLocaleString())}
+            {console.log("Log #3 inside the function" + rearrangedDate)}
           </View>
           {showDates === false ? (
             functionThatSavesOrBreaksMe()
