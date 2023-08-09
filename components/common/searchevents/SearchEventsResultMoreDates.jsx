@@ -13,9 +13,7 @@ import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import { dateFetch } from "../../../utils";
 import { useEffect } from "react";
 
-const SearchEventsResult = ({ index }) => {
-  const datesForDataPost = dateFetch();
-
+const SearchEventsResultsMoreDates = ({ date }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
@@ -28,7 +26,16 @@ const SearchEventsResult = ({ index }) => {
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [originalDate, setOriginalDate] = useState("09/08/2023");
   const [sortedData, setSortedData] = useState(uniqueData);
+  const [rearrangedDate, setRearrangedDate] = useState("");
+
+  const rearrangeDate = () => {
+    // Error: Using this to fix error, as api expected different date structure than the one being returned
+    const [day, month, year] = originalDate.split("/");
+    const newDate = `${year}-${month}-${day}`;
+    setRearrangedDate(newDate);
+  };
 
   const handleFetchData = async () => {
     setIsLoading(true);
@@ -38,7 +45,7 @@ const SearchEventsResult = ({ index }) => {
       const query = {
         name: searchPhrase,
         sport_id: 1,
-        date: datesForDataPost[index],
+        date: rearrangedDate,
       };
       const data = await fetchData(`events/search-similar-name`, query);
       console.log(data.data);
@@ -82,6 +89,18 @@ const SearchEventsResult = ({ index }) => {
   }, []);
   const sortedOrder = () => {};
 
+  useEffect(() => {
+    if (searchPhrase === "") {
+      console.log("No search phrase to fetch data");
+    } else {
+      setOriginalDate(date.substring(0, 10));
+      console.log(originalDate);
+      rearrangeDate();
+      console.log(rearrangedDate);
+      handleFetchData();
+      console.log("handled fetch data");
+    }
+  }, [date, searchPhraseSubmitted]);
   return (
     <View>
       <SearchBarQueryMain
@@ -99,21 +118,24 @@ const SearchEventsResult = ({ index }) => {
         {sortedData ? (
           sortedOrder()
         ) : (
-          <FlatList
-            data={uniqueData}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <UpcomingMatchesCard
-                item={item}
-                handleCardPress={() => {}}
-                activeTab={2020}
-              />
-            )}
-          />
+          <View style={{ flex: 1, width: "100%" }}>
+            <FlatList
+              contentContainerStyle={{ paddingBottom: 20 }}
+              data={uniqueData}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <UpcomingMatchesCard
+                  item={item}
+                  handleCardPress={() => {}}
+                  activeTab={2020}
+                />
+              )}
+            />
+          </View>
         )}
       </View>
     </View>
   );
 };
 
-export default SearchEventsResult;
+export default SearchEventsResultsMoreDates;
