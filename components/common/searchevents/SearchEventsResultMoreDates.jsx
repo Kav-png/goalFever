@@ -13,6 +13,8 @@ import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import { dateFetch } from "../../../utils";
 import { useEffect } from "react";
 
+const ITEMS_PER_PAGE = 4;
+
 const SearchEventsResultsMoreDates = ({ date }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
@@ -29,7 +31,11 @@ const SearchEventsResultsMoreDates = ({ date }) => {
 
   const [sortedData, setSortedData] = useState(uniqueData);
 
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const handleFetchData = async () => {
+    setIsDataAvailable(false);
     setIsLoading(true);
     setError("");
     setFetchedData([]);
@@ -41,6 +47,7 @@ const SearchEventsResultsMoreDates = ({ date }) => {
       };
       const data = await fetchData(`events/search-similar-name`, query);
       console.log(data.data);
+      setIsDataAvailable(true);
       setFetchedData(data.data);
       if (searchPhrase !== "" && !recentSearches.includes(searchPhrase)) {
         setRecentSearches([searchPhrase, ...recentSearches]);
@@ -89,6 +96,50 @@ const SearchEventsResultsMoreDates = ({ date }) => {
       console.log("handled fetch data");
     }
   }, [date, searchPhraseSubmitted]);
+
+  const PaginationControls = ({ currentPage, totalPages, goToPage }) => {
+    return (
+      <View style={styles.paginationButtons}>
+        <Button
+          title="Previous Page"
+          disabled={currentPage === 1}
+          onPress={() => goToPage(currentPage - 1)}
+        />
+        <Text>Page {currentPage}</Text>
+        <Button
+          title="Next Page"
+          disabled={currentPage === totalPages}
+          onPress={() => goToPage(currentPage + 1)}
+        />
+      </View>
+    );
+  };
+
+  const RenderFlatList = ({ data, currentPage, itemsPerPage, renderItem }) => {
+    return (
+      <>
+        <FlatList
+          data={data.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+          ListFooterComponent={
+            isDataAvailable ? (
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={Math.ceil(data.length / itemsPerPage)}
+                goToPage={(page) => setCurrentPage(page)}
+              />
+            ) : (
+              console.log("No data --------------------------------")
+            )
+          }
+        />
+      </>
+    );
+  };
   return (
     <View style={{ flex: 1, width: "100%" }}>
       <SearchBarQueryMain
@@ -102,26 +153,36 @@ const SearchEventsResultsMoreDates = ({ date }) => {
       <Button title="Fetch Data" onPress={handleFetchData} />
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text>Error: {error}</Text> : null}
-      <View style={{ marginHorizontal: 15 }}>
+      <View style={{ marginHorizontal: 15, flex: 1 }}>
         {sortedData ? (
           sortedOrder()
         ) : (
-          <FlatList
-            contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
-            data={uniqueData}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <UpcomingMatchesCard
-                item={item}
-                handleCardPress={() => {}}
-                activeTab={2020}
-              />
-            )}
-          />
+          <View>
+            <RenderFlatList
+              data={uniqueData}
+              currentPage={currentPage}
+              itemsPerPage={ITEMS_PER_PAGE}
+              renderItem={({ item }) => (
+                <UpcomingMatchesCard
+                  key={item.id}
+                  item={item}
+                  handleCardPress={() => {}}
+                  activeTab={2020}
+                />
+              )}
+            />
+          </View>
         )}
       </View>
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  paginationButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 5,
+    paddingBottom: 10,
+  },
+});
 export default SearchEventsResultsMoreDates;

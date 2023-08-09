@@ -14,7 +14,7 @@ import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import { dateFetch } from "../../../utils";
 import { useEffect } from "react";
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 4;
 
 const SearchEventsResult = ({ index }) => {
   const datesForDataPost = dateFetch();
@@ -31,6 +31,7 @@ const SearchEventsResult = ({ index }) => {
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
   const [sortedData, setSortedData] = useState(uniqueData);
 
   // Paging
@@ -39,6 +40,7 @@ const SearchEventsResult = ({ index }) => {
   const handleFetchData = async () => {
     Keyboard.dismiss();
 
+    setIsDataAvailable(false);
     setIsLoading(true);
     setError("");
     setFetchedData([]);
@@ -51,6 +53,7 @@ const SearchEventsResult = ({ index }) => {
       const data = await fetchData(`events/search-similar-name`, query);
       console.log(data.data);
       setFetchedData(data.data);
+      setIsDataAvailable(true);
       if (searchPhrase !== "" && !recentSearches.includes(searchPhrase)) {
         setRecentSearches([searchPhrase, ...recentSearches]);
       }
@@ -61,11 +64,6 @@ const SearchEventsResult = ({ index }) => {
     }
   };
 
-  const totalPages = Math.ceil(fetchedData.length / ITEMS_PER_PAGE);
-
-  const goToPage = (page) => {
-    setCurrentPage(page);
-  };
   // Error: Not switching request when the dates are changed, problem solution is found in recent matches section
   // updates the variables depending on if searchPhraseSubmitted is updated or not, and checks if there is a match between the previous search and the current search
   useEffect(() => {
@@ -94,16 +92,7 @@ const SearchEventsResult = ({ index }) => {
       return acc;
     }
   }, []);
-  const sortedOrder = () => {};
-  const renderUpcomingMatches = ({ item }) => {
-    return (
-      <UpcomingMatchesCard
-        item={item}
-        handleCardPress={() => {}}
-        activeTab={2020}
-      />
-    );
-  };
+
   const PaginationControls = ({ currentPage, totalPages, goToPage }) => {
     return (
       <View style={styles.paginationButtons}>
@@ -122,14 +111,6 @@ const SearchEventsResult = ({ index }) => {
     );
   };
 
-  const RenderData = ({ data, currentPage, itemsPerPage, renderItem }) => {
-    const startIdx = (currentPage - 1) * itemsPerPage;
-    const endIdx = startIdx + itemsPerPage;
-    const visibleData = data.slice(startIdx, endIdx);
-
-    return visibleData.map((item) => renderItem(item));
-  };
-
   const RenderFlatList = ({ data, currentPage, itemsPerPage, renderItem }) => {
     return (
       <>
@@ -140,18 +121,26 @@ const SearchEventsResult = ({ index }) => {
           )}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
-        />
-        <PaginationControls
-          currentPage={currentPage}
-          totalPages={Math.ceil(data.length / itemsPerPage)}
-          goToPage={(page) => setCurrentPage(page)}
+          ListFooterComponent={
+            isDataAvailable ? (
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={Math.ceil(data.length / itemsPerPage)}
+                goToPage={(page) => setCurrentPage(page)}
+              />
+            ) : (
+              console.log("No data --------------------------------")
+            )
+          }
         />
       </>
     );
   };
 
+  const sortedOrder = () => {};
+
   return (
-    <SafeAreaView>
+    <View style={{ paddingBottom: 10 }}>
       <View>
         <SearchBarQueryMain
           searchPhrase={searchPhrase}
@@ -166,10 +155,12 @@ const SearchEventsResult = ({ index }) => {
 
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text>Error: {error}</Text> : null}
-      <View>
-        <View style={{ marginHorizontal: 15 }}>
+      {sortedData ? (
+        sortedOrder()
+      ) : (
+        <View>
           <RenderFlatList
-            data={fetchedData}
+            data={uniqueData}
             currentPage={currentPage}
             itemsPerPage={ITEMS_PER_PAGE}
             renderItem={({ item }) => (
@@ -182,8 +173,8 @@ const SearchEventsResult = ({ index }) => {
             )}
           />
         </View>
-      </View>
-    </SafeAreaView>
+      )}
+    </View>
   );
 };
 
@@ -191,7 +182,8 @@ const styles = StyleSheet.create({
   paginationButtons: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: 5,
+    paddingBottom: 10,
   },
 });
 

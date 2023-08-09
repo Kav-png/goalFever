@@ -35,22 +35,22 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
-          {item.home_team.name.length > 18 ? (
+          {item.home_team.name?.length > 18 ? (
             <Text style={styles.teamName(selectedMatch, id)}>
-              {item.home_team.name.substring(0, 18)}...
+              {item.home_team.name?.substring(0, 18)}...
             </Text>
           ) : (
             <Text style={styles.teamName(selectedMatch, id)}>
-              {item.home_team.name}
+              {item.home_team?.name}
             </Text>
           )}
           {item.away_team.name.length > 18 ? (
             <Text style={styles.teamName(selectedMatch, id)}>
-              {item.away_team.name.substring(0, 18)}...
+              {item.away_team.name?.substring(0, 18)}...
             </Text>
           ) : (
             <Text style={styles.teamName(selectedMatch, id)}>
-              {item.away_team.name}
+              {item.away_team?.name}
             </Text>
           )}
         </View>
@@ -100,7 +100,7 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
               }}
             >
               <Text style={styles.teamName(selectedMatch, id)}>
-                {item.league.name}
+                {item.league?.name}
               </Text>
             </View>
             {/* <TouchableOpacity
@@ -120,7 +120,7 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
           </TouchableOpacity> */}
           </View>
           <Text style={styles.stateOfMatch(selectedMatch, id)}>
-            {item.section.name}
+            {item.section?.name}
           </Text>
         </View>
       </TouchableOpacity>

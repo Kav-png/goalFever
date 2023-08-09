@@ -23,6 +23,8 @@ import RecentSearches from "../../components/common/searchdetails/RecentSearches
 import SearchResults from "../../components/common/searchdetails/SearchResults";
 import SortButtons from "../../components/common/searchdetails/SortButtons";
 
+const ITEMS_PER_PAGE = 5;
+
 const SearchDetails = () => {
   const { searchCurrentQuery } = useLocalSearchParams();
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -49,8 +51,14 @@ const SearchDetails = () => {
 
   // Posts search results onto the api
 
+  //Paging results
+
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
   // This is an asynchronous function - fetches results from the search by posting a POST request
   const handleFetchData = async () => {
+    setIsDataAvailable(false);
     setIsLoading(true);
     setError("");
     setFetchedData([]);
@@ -61,6 +69,7 @@ const SearchDetails = () => {
       const data = await fetchData(`${searchCurrentQuery}/search`, query);
       console.log(data.data);
       setFetchedData(data.data);
+      setIsDataAvailable(true);
       if (searchPhrase !== "" && !recentSearches.includes(searchPhrase)) {
         setRecentSearches([searchPhrase, ...recentSearches]);
       }
@@ -128,21 +137,71 @@ const SearchDetails = () => {
     switch (currentSort) {
       case "age":
         return (
-          <FlatList
+          <RenderFlatList
             data={sortedByAgeData}
-            keyExtractor={(item) => item.id}
+            currentPage={currentPage}
+            itemsPerPage={ITEMS_PER_PAGE}
             renderItem={({ item }) => <SearchCard item={item} />}
           />
         );
       case "transfer":
         return (
-          <FlatList
+          <RenderFlatList
             data={sortedData}
-            keyExtractor={(item) => item.id}
+            currentPage={currentPage}
+            itemsPerPage={ITEMS_PER_PAGE}
             renderItem={({ item }) => <SearchCard item={item} />}
           />
         );
     }
+  };
+
+  const PaginationControls = ({ currentPage, totalPages, goToPage }) => {
+    return (
+      <View style={styles.paginationButtons}>
+        <Button
+          title="Previous Page"
+          disabled={currentPage === 1}
+          onPress={() => goToPage(currentPage - 1)}
+        />
+        <Text>Page {currentPage}</Text>
+        <Button
+          title="Next Page"
+          disabled={currentPage === totalPages}
+          onPress={() => goToPage(currentPage + 1)}
+        />
+      </View>
+    );
+  };
+
+  const RenderFlatList = ({ data, currentPage, itemsPerPage, renderItem }) => {
+    return (
+      <>
+        {sortedData || sortedByAgeData ? (
+          sortedOrder()
+        ) : (
+          <FlatList
+            data={data.slice(
+              (currentPage - 1) * itemsPerPage,
+              currentPage * itemsPerPage
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderItem}
+            ListFooterComponent={
+              isDataAvailable ? (
+                <PaginationControls
+                  currentPage={currentPage}
+                  totalPages={Math.ceil(data.length / itemsPerPage)}
+                  goToPage={(page) => setCurrentPage(page)}
+                />
+              ) : (
+                console.log("No data --------------------------------")
+              )
+            }
+          />
+        )}
+      </>
+    );
   };
   return (
     <SafeAreaView style={{}}>
@@ -179,14 +238,28 @@ const SearchDetails = () => {
             <RecentSearches recentSearches={recentSearches} />
           )}
           <Button title="Fetch Data" onPress={handleFetchData} />
-          <SearchResults
+          {/* <SearchResults
             isLoading={isLoading}
             error={error}
             sortedData={sortedData}
             sortedByAgeData={sortedByAgeData}
             sortedOrder={sortedOrder}
             uniqueData={uniqueData}
-          />
+          /> */}
+          {isLoading ? <Text>Loading...</Text> : null}
+          {error ? <Text>Error: {error}</Text> : null}
+          {sortedData ? (
+            sortedOrder()
+          ) : (
+            <View>
+              <RenderFlatList
+                data={uniqueData}
+                currentPage={currentPage}
+                itemsPerPage={ITEMS_PER_PAGE}
+                renderItem={({ item }) => <SearchCard item={item} />}
+              />
+            </View>
+          )}
         </View>
       </>
     </SafeAreaView>
@@ -201,6 +274,15 @@ const SearchDetailsApp = () => {
     </QueryClientProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  paginationButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 5,
+    paddingBottom: 10,
+  },
+});
 
 export default SearchDetailsApp;
 
