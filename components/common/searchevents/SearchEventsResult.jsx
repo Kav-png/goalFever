@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   FlatList,
   Button,
+  Keyboard,
 } from "react-native";
 import React, { useState } from "react";
 import fetchData from "../../../hook/postViaAxiosData";
@@ -12,6 +13,8 @@ import SearchBarQueryMain from "../searchbar/SearchBarQueryMain";
 import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import { dateFetch } from "../../../utils";
 import { useEffect } from "react";
+
+const ITEMS_PER_PAGE = 2;
 
 const SearchEventsResult = ({ index }) => {
   const datesForDataPost = dateFetch();
@@ -30,7 +33,12 @@ const SearchEventsResult = ({ index }) => {
   const [error, setError] = useState("");
   const [sortedData, setSortedData] = useState(uniqueData);
 
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+
   const handleFetchData = async () => {
+    Keyboard.dismiss();
+
     setIsLoading(true);
     setError("");
     setFetchedData([]);
@@ -51,6 +59,12 @@ const SearchEventsResult = ({ index }) => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const totalPages = Math.ceil(fetchedData.length / ITEMS_PER_PAGE);
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
   };
   // Error: Not switching request when the dates are changed, problem solution is found in recent matches section
   // updates the variables depending on if searchPhraseSubmitted is updated or not, and checks if there is a match between the previous search and the current search
@@ -81,40 +95,104 @@ const SearchEventsResult = ({ index }) => {
     }
   }, []);
   const sortedOrder = () => {};
+  const renderUpcomingMatches = ({ item }) => {
+    return (
+      <UpcomingMatchesCard
+        item={item}
+        handleCardPress={() => {}}
+        activeTab={2020}
+      />
+    );
+  };
+  const PaginationControls = ({ currentPage, totalPages, goToPage }) => {
+    return (
+      <View style={styles.paginationButtons}>
+        <Button
+          title="Previous Page"
+          disabled={currentPage === 1}
+          onPress={() => goToPage(currentPage - 1)}
+        />
+        <Text>Page {currentPage}</Text>
+        <Button
+          title="Next Page"
+          disabled={currentPage === totalPages}
+          onPress={() => goToPage(currentPage + 1)}
+        />
+      </View>
+    );
+  };
+
+  const RenderData = ({ data, currentPage, itemsPerPage, renderItem }) => {
+    const startIdx = (currentPage - 1) * itemsPerPage;
+    const endIdx = startIdx + itemsPerPage;
+    const visibleData = data.slice(startIdx, endIdx);
+
+    return visibleData.map((item) => renderItem(item));
+  };
+
+  const RenderFlatList = ({ data, currentPage, itemsPerPage, renderItem }) => {
+    return (
+      <>
+        <FlatList
+          data={data.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+        />
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={Math.ceil(data.length / itemsPerPage)}
+          goToPage={(page) => setCurrentPage(page)}
+        />
+      </>
+    );
+  };
 
   return (
-    <View>
-      <SearchBarQueryMain
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        clicked={clicked}
-        setClicked={setClicked}
-        setSearchPhraseSubmitted={setSearchPhraseSubmitted}
-        searchPhraseSubmitted={searchPhraseSubmitted}
-      />
-      <Button title="Fetch Data" onPress={handleFetchData} />
+    <SafeAreaView>
+      <View>
+        <SearchBarQueryMain
+          searchPhrase={searchPhrase}
+          setSearchPhrase={setSearchPhrase}
+          clicked={clicked}
+          setClicked={setClicked}
+          setSearchPhraseSubmitted={setSearchPhraseSubmitted}
+          searchPhraseSubmitted={searchPhraseSubmitted}
+        />
+        <Button title="Fetch Data" onPress={handleFetchData} />
+      </View>
+
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text>Error: {error}</Text> : null}
-      <View style={{ marginHorizontal: 15 }}>
-        {sortedData ? (
-          sortedOrder()
-        ) : (
-          <FlatList
-            contentContainerStyle={{ flexGrow: 1, paddingBottom: 5 }}
-            data={uniqueData}
-            keyExtractor={(item) => item.id}
+      <View>
+        <View style={{ marginHorizontal: 15 }}>
+          <RenderFlatList
+            data={fetchedData}
+            currentPage={currentPage}
+            itemsPerPage={ITEMS_PER_PAGE}
             renderItem={({ item }) => (
               <UpcomingMatchesCard
+                key={item.id}
                 item={item}
                 handleCardPress={() => {}}
                 activeTab={2020}
               />
             )}
           />
-        )}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  paginationButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+});
 
 export default SearchEventsResult;

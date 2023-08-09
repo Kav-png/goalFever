@@ -122,11 +122,13 @@ const SearchEvents = () => {
             {console.log("selected:" + date.toLocaleString())}
             {console.log("Log #3 inside the function" + rearrangedDate)}
           </View>
-          {showDates === false ? (
-            functionThatSavesOrBreaksMe()
-          ) : (
-            <SearchEventsResultsMoreDates date={rearrangedDate} />
-          )}
+          <View>
+            {showDates === false ? (
+              functionThatSavesOrBreaksMe()
+            ) : (
+              <SearchEventsResultsMoreDates date={rearrangedDate} />
+            )}
+          </View>
         </View>
       </>
     </SafeAreaView>

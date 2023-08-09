@@ -5,104 +5,105 @@ import { checkImageURL } from "../../../utils"; // deprecated
 const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
   const id = item?.id;
   return (
-    <TouchableOpacity
-      style={styles.containerWrapper(selectedMatch, id)}
-      onPress={() => handleCardPress(item?.id)}
-    >
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
-          <Image
-            source={{
-              uri: item.home_score?.has_logo
-                ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
-                : item.home_team.logo,
-            }}
-            resizeMode="contain"
-            style={styles.logoImage}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
-          <Image
-            source={{
-              uri: item.away_score?.has_logo
-                ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
-                : item.away_team.logo,
-            }}
-            resizeMode="contain"
-            style={styles.logoImage}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.container}>
-        {item.home_team.name.length > 18 ? (
-          <Text style={styles.teamName(selectedMatch, id)}>
-            {item.home_team.name.substring(0, 18)}...
-          </Text>
-        ) : (
-          <Text style={styles.teamName(selectedMatch, id)}>
-            {item.home_team.name}
-          </Text>
-        )}
-        {item.away_team.name.length > 18 ? (
-          <Text style={styles.teamName(selectedMatch, id)}>
-            {item.away_team.name.substring(0, 18)}...
-          </Text>
-        ) : (
-          <Text style={styles.teamName(selectedMatch, id)}>
-            {item.away_team.name}
-          </Text>
-        )}
-      </View>
-      <View style={styles.stateOfMatchWrapper}>
-        <Text style={styles.stateOfMatch(selectedMatch, id)}>
-          {item.status === "finished" || item.status === "inprogress"
-            ? item.status.charAt(0).toUpperCase() + item.status.slice(1)
-            : item.start_at.substring(11, 19)}
-        </Text>
-        <View>
-          {item.status === "inprogress" ? (
-            <View style={{ flexDirection: "row" }}>
-              <Text style={styles.scoreText(selectedMatch, id)}>
-                {item.home_score?.display}
-              </Text>
-              <Text style={styles.scoreText(selectedMatch, id)}>-</Text>
-              <Text style={styles.scoreText(selectedMatch, id)}>
-                {item.away_score?.display}
-              </Text>
-            </View>
+    <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={styles.containerWrapper(selectedMatch, id)}
+        onPress={() => handleCardPress(item?.id)}
+      >
+        <View style={styles.container}>
+          <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+            <Image
+              source={{
+                uri: item.home_score?.has_logo
+                  ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
+                  : item.home_team.logo,
+              }}
+              resizeMode="contain"
+              style={styles.logoImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+            <Image
+              source={{
+                uri: item.away_score?.has_logo
+                  ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
+                  : item.away_team.logo,
+              }}
+              resizeMode="contain"
+              style={styles.logoImage}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.container}>
+          {item.home_team.name.length > 18 ? (
+            <Text style={styles.teamName(selectedMatch, id)}>
+              {item.home_team.name.substring(0, 18)}...
+            </Text>
           ) : (
-            <View></View>
+            <Text style={styles.teamName(selectedMatch, id)}>
+              {item.home_team.name}
+            </Text>
           )}
-          {item.status === "finished" ? (
-            <View style={{ flexDirection: "row" }}>
-              <Text style={styles.scoreText(selectedMatch, id)}>
-                {item.home_score.display}
-              </Text>
-              <Text style={styles.scoreText(selectedMatch, id)}>-</Text>
-              <Text style={styles.scoreText(selectedMatch, id)}>
-                {item.away_score.display}
-              </Text>
-            </View>
+          {item.away_team.name.length > 18 ? (
+            <Text style={styles.teamName(selectedMatch, id)}>
+              {item.away_team.name.substring(0, 18)}...
+            </Text>
           ) : (
-            <View></View>
+            <Text style={styles.teamName(selectedMatch, id)}>
+              {item.away_team.name}
+            </Text>
           )}
         </View>
-        <View
-          style={{
-            ...styles.container,
-          }}
-        >
+        <View style={styles.stateOfMatchWrapper}>
+          <Text style={styles.stateOfMatch(selectedMatch, id)}>
+            {item.status === "finished" || item.status === "inprogress"
+              ? item.status.charAt(0).toUpperCase() + item.status.slice(1)
+              : item.start_at.substring(11, 19)}
+          </Text>
+          <View>
+            {item.status === "inprogress" ? (
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.scoreText(selectedMatch, id)}>
+                  {item.home_score?.display}
+                </Text>
+                <Text style={styles.scoreText(selectedMatch, id)}>-</Text>
+                <Text style={styles.scoreText(selectedMatch, id)}>
+                  {item.away_score?.display}
+                </Text>
+              </View>
+            ) : (
+              <View></View>
+            )}
+            {item.status === "finished" ? (
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.scoreText(selectedMatch, id)}>
+                  {item.home_score.display}
+                </Text>
+                <Text style={styles.scoreText(selectedMatch, id)}>-</Text>
+                <Text style={styles.scoreText(selectedMatch, id)}>
+                  {item.away_score.display}
+                </Text>
+              </View>
+            ) : (
+              <View></View>
+            )}
+          </View>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "center",
+              ...styles.container,
             }}
           >
-            <Text style={styles.teamName(selectedMatch, id)}>
-              {item.league.name}
-            </Text>
-          </View>
-          {/* <TouchableOpacity
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={styles.teamName(selectedMatch, id)}>
+                {item.league.name}
+              </Text>
+            </View>
+            {/* <TouchableOpacity
             style={styles.logoLeagueContainer(selectedMatch, id)}
           >
             {item.league?.has_logo ? (
@@ -117,12 +118,13 @@ const UpcomingMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
               <View></View>
             )}
           </TouchableOpacity> */}
+          </View>
+          <Text style={styles.stateOfMatch(selectedMatch, id)}>
+            {item.section.name}
+          </Text>
         </View>
-        <Text style={styles.stateOfMatch(selectedMatch, id)}>
-          {item.section.name}
-        </Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 
