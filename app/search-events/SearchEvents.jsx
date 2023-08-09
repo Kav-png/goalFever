@@ -47,21 +47,6 @@ const SearchEvents = () => {
 
   const [showDates, setShowDates] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-
-    setDate(currentDate);
-  };
-
-  const showMode = (currentMode) => {
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode("date");
-    setShowDates(!showDates);
-  };
-
   const [originalDate, setOriginalDate] = useState("09/08/2023");
   const [rearrangedDate, setRearrangedDate] = useState("");
 
@@ -71,9 +56,29 @@ const SearchEvents = () => {
     const newDate = `${year}-${month}-${day}`;
     setRearrangedDate(newDate);
   };
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+
+    setDate(currentDate);
+  };
+
   useEffect(() => {
+    console.log("Log #1" + date.toLocaleString());
+    setOriginalDate(date.toLocaleString().substring(0, 10));
+    console.log("Log #2" + originalDate);
     rearrangeDate();
+    console.log("Log #3" + rearrangedDate);
   }, [date]);
+
+  const showMode = (currentMode) => {
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+    setShowDates(!showDates);
+  };
 
   return (
     <SafeAreaView style={{}}>
@@ -123,7 +128,7 @@ const SearchEvents = () => {
           {showDates === false ? (
             functionThatSavesOrBreaksMe()
           ) : (
-            <SearchEventsResultsMoreDates date={date.toLocaleString()} />
+            <SearchEventsResultsMoreDates date={rearrangedDate} />
           )}
         </View>
       </>

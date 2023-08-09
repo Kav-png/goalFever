@@ -85,10 +85,6 @@ const SearchEventsResultsMoreDates = ({ date }) => {
     if (searchPhrase === "") {
       console.log("No search phrase to fetch data");
     } else {
-      setOriginalDate(date.substring(0, 10));
-      console.log(originalDate);
-      rearrangeDate();
-      console.log(rearrangedDate);
       handleFetchData();
       console.log("handled fetch data");
     }
