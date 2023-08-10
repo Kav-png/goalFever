@@ -20,7 +20,7 @@ const MapsSearchScreen = ({
   data,
   error,
   isLoading,
-  re,
+  refetch,
 }) => {
   return (
     <View style={{ flex: 1 }}>

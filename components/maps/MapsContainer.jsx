@@ -13,14 +13,25 @@ const MapsContainer = () => {
   };
 
   const { data, isLoading, error, refetch } = useFetchMaps({
-    location: "51.328809,-0.410842",
+    location: "51.481688,-0.190973",
     type: "stadium",
     radius: 10000,
   });
 
+  function extractTeamNameFromURL(url) {
+    const urlParts = url.split("/");
+    const teamName = urlParts[3]; // The team name is at the 4th part of the URL
+    return teamName;
+  }
+
+  // Example usage:
+  const url = "https://www.chelseafc.com/en";
+  const teamName = extractTeamNameFromURL(url);
+  console.log(teamName); // Output: "chelseafc"
+
   return (
     <View style={{ flex: 1 }}>
-      {showContentA ? (
+      {/* {showContentA ? (
         <MapsSearchScreen
           onPress={toggleContent}
           isActive={showContentA}
@@ -38,7 +49,7 @@ const MapsContainer = () => {
           error={error}
           refetch={refetch}
         />
-      )}
+      )} */}
     </View>
   );
 };
