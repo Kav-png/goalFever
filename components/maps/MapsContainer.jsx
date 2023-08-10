@@ -4,30 +4,38 @@ import MapsSearchScreen from "./MapsSearchScreen";
 import ViewOfMap from "./ViewOfMap";
 import ToggleSwitch from "./ToggleSwitch";
 import useFetchMaps from "../../hook/useFetchMaps";
+import GetTeamsByStadium from "./GetTeamsByStadium";
 
 const MapsContainer = () => {
-  const [showContentA, setShowContentA] = useState(true);
+  //   const [showContentA, setShowContentA] = useState(true);
 
-  const toggleContent = () => {
-    setShowContentA(!showContentA);
-  };
+  //   const toggleContent = () => {
+  //     setShowContentA(!showContentA);
+  //   };
 
-  const { data, isLoading, error, refetch } = useFetchMaps({
-    location: "51.481688,-0.190973",
-    type: "stadium",
-    radius: 10000,
-  });
+  //   const { data, isLoading, error, refetch } = useFetchMaps({
+  //     location: "51.481688,-0.190973",
+  //     type: "stadium",
+  //     radius: 10000,
+  //   });
 
-  function extractTeamNameFromURL(url) {
-    const urlParts = url.split("/");
-    const teamName = urlParts[3]; // The team name is at the 4th part of the URL
-    return teamName;
-  }
+  //   function extractTeamNameFromURL(url) {
+  //     const urlWithoutProtocol = url.replace(/^(https?:\/\/)?(www\.)?/, ""); // Remove protocol and "www"
+  //     const parts = urlWithoutProtocol.split("."); // Split by "."
+  //     const teamName = parts[0]; // The team name is the first part before the domain
+  //     return teamName;
+  //   }
 
-  // Example usage:
-  const url = "https://www.chelseafc.com/en";
-  const teamName = extractTeamNameFromURL(url);
-  console.log(teamName); // Output: "chelseafc"
+  //   // Example usage:
+  //   const urls = [
+  //     "https://www.chelseafc.com/en",
+  //     "https://www.arsenal.com/the-club/emirates-stadium",
+  //     "https://www.liverpoolfc.com/fans/fan-experience/visiting-anfield",
+  //   ];
+
+  //   const teamNames = urls.map((url) => extractTeamNameFromURL(url));
+  //   console.log(teamNames);
+  //   // Output: ["chelseafc", "arsenal", "liverpoolfc"]
 
   return (
     <View style={{ flex: 1 }}>
@@ -50,6 +58,7 @@ const MapsContainer = () => {
           refetch={refetch}
         />
       )} */}
+      <GetTeamsByStadium />
     </View>
   );
 };
