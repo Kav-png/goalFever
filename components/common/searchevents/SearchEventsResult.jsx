@@ -128,9 +128,7 @@ const SearchEventsResult = ({ index }) => {
                 totalPages={Math.ceil(data.length / itemsPerPage)}
                 goToPage={(page) => setCurrentPage(page)}
               />
-            ) : (
-              console.log("No data --------------------------------")
-            )
+            ) : null
           }
         />
       </>

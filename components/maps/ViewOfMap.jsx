@@ -1,9 +1,19 @@
 import React, { useRef, useState } from "react";
-import { View, Text, Platform } from "react-native";
+import {
+  View,
+  Text,
+  Platform,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  SafeAreaView,
+} from "react-native";
 import MapView from "react-native-maps";
 import MapMarker from "./MapMarker";
 import { useNavigation } from "expo-router";
-
+import { Feather, Entypo } from "@expo/vector-icons";
+import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
+const { width, height } = Dimensions.get("window");
 const ViewOfMap = () => {
   const londonLocations = [
     { latitude: 51.5074, longitude: -0.1278 }, // London city center
@@ -35,8 +45,15 @@ const ViewOfMap = () => {
     }
   };
 
+  const unFocusProperty = () => {
+    setActiveIndex(-1);
+    // navigation.setOptions({ tabBarStyle: { display: "flex" } });
+  };
+
+  // position cross at centre of screen
+
   return (
-    <View>
+    <SafeAreaView style={{ flex: 1 }}>
       <MapView style={{ height: "100%", width: "100%" }}>
         {londonLocations.map((i, index) => (
           <MapMarker
@@ -48,22 +65,64 @@ const ViewOfMap = () => {
           />
         ))}
       </MapView>
-      {/* {activeIndex > -1 && (
+      {activeIndex > -1 && (
         <>
           {Platform.OS === "ios" && (
             <TouchableOpacity style={styles.exit} onPress={unFocusProperty}>
-              <MaterialCommunityIcons
-                name="close"
-                color={theme["color-primary-500"]}
-                size={24}
+              <Entypo
+                name="cross"
+                size={30}
+                color="black"
+                style={{ padding: 1 }}
+                onPress={unFocusProperty}
               />
             </TouchableOpacity>
           )}
-          // TODO: Place Card have, preferably a card relating to information on the club, and from google map  find an expo route that takes them to the cluib information where they can see the recent informations about events and etc
+          <View style={styles.stadiumCardStyle}>
+            <StadiumCard item={activeIndex} selectedMatch={0} id={1} />
+          </View>
         </>
-      )} */}
-    </View>
+      )}
+    </SafeAreaView>
   );
 };
 
+const styles = StyleSheet.create({
+  map: {
+    flex: 1,
+  },
+  exit: {
+    position: "absolute",
+    top: height * 0.08,
+    left: width * 0.87,
+    width: "7.5%",
+    height: "3.75%",
+    borderRadius: 20,
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  attachedComponent: {
+    position: "absolute",
+    top: 20, // Adjust the top position as needed
+    left: 20, // Adjust the left position as needed
+    // Add other styling properties for your attached component
+    // For example:
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 5,
+    elevation: 4,
+  },
+  stadiumCardStyle: {
+    flexDirection: "column-reverse",
+    top: height * 0.14,
+    paddingLeft: width * 0.05,
+    width: "95%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
 export default ViewOfMap;
+
+// TODO: Place Card have, preferably a card relating to information on the club, and from google map find an expo route that takes them to the cluib information where they can see the recent informations about events and etc

@@ -24,7 +24,7 @@ const RecentMatchesListContainer = ({ currentDate }) => {
       ) : error ? (
         <Text>Something went wrong</Text> //  Something went wrong error message
       ) : (
-        data.data?.slice(0, 10).map((item) => (
+        data.data?.slice(0, 50).map((item) => (
           <UpcomingMatchesCard
             item={item}
             selectedMatch={2023} // change this to match the ID of the match you want to see
