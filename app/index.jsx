@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { Redirect } from "expo-router";
 
 const StartPage = () => {
-  return <Redirect href="/Home" />;
+  return <Redirect href="/Maps" />;
   // Force redirects to the home screen
 };
 

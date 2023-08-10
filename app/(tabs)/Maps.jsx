@@ -1,12 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
 import ViewOfMap from "../../components/maps/ViewOfMap";
+import MapsContainer from "../../components/maps/MapsContainer";
 
 const Maps = () => {
   return (
-    <View style={{ flex: 1, overflow: "hidden" }}>
-      <ViewOfMap />
-    </View>
+    <SafeAreaView style={{ flex: 1, overflow: "hidden" }}>
+      <MapsContainer />
+    </SafeAreaView>
   );
 };
 

@@ -53,37 +53,39 @@ const ViewOfMap = () => {
   // position cross at centre of screen
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <MapView style={{ height: "100%", width: "100%" }}>
-        {londonLocations.map((i, index) => (
-          <MapMarker
-            lat={i.latitude}
-            long={i.longitude}
-            onPress={() => handleMarkerPress(index)}
-            color={activeIndex === index ? "#399bc6" : "#49c03f"}
-            key={index}
-          />
-        ))}
-      </MapView>
-      {activeIndex > -1 && (
-        <>
-          {Platform.OS === "ios" && (
-            <TouchableOpacity style={styles.exit} onPress={unFocusProperty}>
-              <Entypo
-                name="cross"
-                size={30}
-                color="black"
-                style={{ padding: 1 }}
-                onPress={unFocusProperty}
-              />
-            </TouchableOpacity>
-          )}
-          <View style={styles.stadiumCardStyle}>
-            <StadiumCard item={activeIndex} selectedMatch={0} id={1} />
-          </View>
-        </>
-      )}
-    </SafeAreaView>
+    <View style={{ flex: 1, overflow: "hidden" }}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <MapView style={{ height: "100%", width: "100%" }}>
+          {londonLocations.map((i, index) => (
+            <MapMarker
+              lat={i.latitude}
+              long={i.longitude}
+              onPress={() => handleMarkerPress(index)}
+              color={activeIndex === index ? "#399bc6" : "#49c03f"}
+              key={index}
+            />
+          ))}
+        </MapView>
+        {activeIndex > -1 && (
+          <>
+            {Platform.OS === "ios" && (
+              <TouchableOpacity style={styles.exit} onPress={unFocusProperty}>
+                <Entypo
+                  name="cross"
+                  size={30}
+                  color="black"
+                  style={{ padding: 1 }}
+                  onPress={unFocusProperty}
+                />
+              </TouchableOpacity>
+            )}
+            <View style={styles.stadiumCardStyle}>
+              <StadiumCard item={activeIndex} selectedMatch={0} id={1} />
+            </View>
+          </>
+        )}
+      </SafeAreaView>
+    </View>
   );
 };
 
