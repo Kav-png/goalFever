@@ -1,20 +1,34 @@
+import React from "react";
 import {
   View,
   Text,
+  Button,
   Linking,
-  TouchableOpacity,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
-import React from "react";
 
-const NewsFooter = ({ url }) => {
+const makePhoneCall = (phoneNumber) => {
+  const url = `tel:${phoneNumber}`;
+  Linking.canOpenURL(url)
+    .then((supported) => {
+      if (!supported) {
+        console.log(`Phone call is not supported on this device.`);
+      } else {
+        return Linking.openURL(url);
+      }
+    })
+    .catch((error) => console.error("An error occurred", error));
+};
+
+const PhoneCallButton = ({ phoneNumber }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.applyBtn}
-        onPress={() => Linking.openURL(url)}
+        onPress={() => makePhoneCall(phoneNumber)}
       >
-        <Text style={styles.applyBtnText}>More Information</Text>
+        <Text style={styles.applyBtnText}>{`Call ${phoneNumber}`}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -44,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewsFooter;
+export default PhoneCallButton;

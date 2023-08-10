@@ -1,12 +1,17 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import NewsFooter from "../../../news/NewsFooter";
+import PhoneCallButton from "./PhoneCallButton";
 
 const StadiumCard = ({ item, selectedMatch, id }) => {
   return (
     <View style={styles.containerWrapper(selectedMatch, id)}>
       <View style={styles.attachedComponent}>
-        <Text>StadiumCard</Text>
-        <Text>{item}</Text>
+        <Text style={styles.nameHeader}>{item?.name}</Text>
+        <Text>{item?.distance}</Text>
+        <Text>{item?.address}</Text>
+        <NewsFooter url={item?.website} />
+        <PhoneCallButton phoneNumber={item?.phone_number} />
       </View>
     </View>
   );
@@ -15,9 +20,8 @@ const StadiumCard = ({ item, selectedMatch, id }) => {
 const styles = StyleSheet.create({
   containerWrapper: (selectedMatch, id) => ({
     flexDirection: "row",
-    marginBottom: 10,
     width: "100%",
-    padding: 14,
+    padding: 10,
     borderRadius: 16,
     ...{
       shadowColor: "#FFF",
@@ -62,7 +66,6 @@ const styles = StyleSheet.create({
   stateOfMatchWrapper: {
     justifyContent: "space-around",
     alignItems: "flex-end",
-    paddingHorizontal: 10,
     flex: 3,
   },
   teamName: (selectedMatch, id) => ({
@@ -92,6 +95,20 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     elevation: 4,
+  },
+  applyBtn: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "grey",
+  },
+  applyBtnText: {
+    fontSize: 15,
+    color: "grey",
   },
 });
 

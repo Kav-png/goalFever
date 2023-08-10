@@ -15,7 +15,7 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
 import ToggleSwitch from "./ToggleSwitch";
 const { width, height } = Dimensions.get("window");
-const ViewOfMap = ({ onPress, isActive }) => {
+const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
   const londonLocations = [
     { latitude: 51.5074, longitude: -0.1278 }, // London city center
     { latitude: 51.5282, longitude: -0.0836 }, // Shoreditch
@@ -57,16 +57,27 @@ const ViewOfMap = ({ onPress, isActive }) => {
     <View style={{ flex: 1, overflow: "hidden" }}>
       <SafeAreaView style={{ flex: 1 }}>
         <MapView style={{ height: "100%", width: "100%" }}>
-          {londonLocations.map((i, index) => (
-            <MapMarker
-              lat={i.latitude}
-              long={i.longitude}
-              onPress={() => handleMarkerPress(index)}
-              color={activeIndex === index ? "#399bc6" : "#49c03f"}
-              key={index}
-            />
-          ))}
+          {isLoading ? (
+            <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
+          ) : error ? (
+            <Text>Something went wrong</Text> //  Something went wrong error message
+          ) : (
+            data.results?.map((i, index) => (
+              <MapMarker
+                lat={i.location.lat}
+                long={i.location.lng}
+                onPress={() => handleMarkerPress(index)}
+                color={activeIndex === index ? "#399bc6" : "#49c03f"}
+                key={index}
+              />
+            ))
+          )}
         </MapView>
+        <>
+          <View style={styles.toggleStyle}>
+            <ToggleSwitch onPress={onPress} isActive={isActive} />
+          </View>
+        </>
         {activeIndex > -1 && (
           <>
             {Platform.OS === "ios" && (
@@ -81,15 +92,14 @@ const ViewOfMap = ({ onPress, isActive }) => {
               </TouchableOpacity>
             )}
             <View style={styles.stadiumCardStyle}>
-              <StadiumCard item={activeIndex} selectedMatch={0} id={1} />
+              <StadiumCard
+                item={data.results[activeIndex]}
+                selectedMatch={0}
+                id={1}
+              />
             </View>
           </>
         )}
-        <>
-          <View style={styles.toggleStyle}>
-            <ToggleSwitch onPress={onPress} isActive={isActive} />
-          </View>
-        </>
       </SafeAreaView>
     </View>
   );
@@ -101,7 +111,7 @@ const styles = StyleSheet.create({
   },
   exit: {
     position: "absolute",
-    top: height * 0.08,
+    top: height * 0.015,
     left: width * 0.87,
     width: "7.5%",
     height: "3.75%",
@@ -123,7 +133,7 @@ const styles = StyleSheet.create({
   },
   stadiumCardStyle: {
     flexDirection: "column-reverse",
-    top: height * 0.14,
+    top: height * 0.24,
     paddingLeft: width * 0.05,
     width: "95%",
     justifyContent: "center",
@@ -133,7 +143,7 @@ const styles = StyleSheet.create({
     flexDirection: "column-reverse",
     top: height * 0.85,
     paddingRight: width * 0.25,
-    width: "45%",
+    width: "75%",
     justifyContent: "center",
     alignItems: "center",
   },
