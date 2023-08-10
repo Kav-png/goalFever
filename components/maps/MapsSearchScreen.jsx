@@ -38,7 +38,12 @@ const MapsSearchScreen = ({
         ) : (
           data.results?.map((item) => (
             <View style={styles.stadiumCardStyle}>
-              <StadiumCard item={item} selectedMatch={0} id={item.id} />
+              <StadiumCard
+                item={item}
+                selectedMatch={0}
+                id={item.id}
+                key={item.id}
+              />
             </View>
           ))
         )}

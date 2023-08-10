@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   toggleStyle: {
     flexDirection: "column-reverse",
-    top: height * 0.85,
+    top: height * 0.795,
     paddingRight: width * 0.25,
     width: "75%",
     justifyContent: "center",

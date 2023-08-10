@@ -6,7 +6,7 @@ import WelcomeTop from "./WelcomeTop";
 
 const Welcome = () => {
   const router = useRouter();
-  const search = ["leagues", "teams", "players", "managers", "events"];
+  const search = ["leagues", "teams", "players", "managers"];
   const [activeTab, setActiveTab] = useState("");
   const params = useLocalSearchParams();
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -34,11 +34,6 @@ const Welcome = () => {
         return router.push({
           pathname: `/search-details/${search[3]}`,
           params: { searchCurrentQuery: search[3] },
-        });
-      case search[4]:
-        return router.push({
-          pathname: `/search-details/${search[4]}`,
-          params: { searchCurrentQuery: search[4] },
         });
       default:
         break;

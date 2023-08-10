@@ -4,42 +4,37 @@ import MapsSearchScreen from "./MapsSearchScreen";
 import ViewOfMap from "./ViewOfMap";
 import ToggleSwitch from "./ToggleSwitch";
 import useFetchMaps from "../../hook/useFetchMaps";
-import GetTeamsByStadium from "./GetTeamsbyStadium";
+// import GetTeamsByStadium from "./GetTeamsByStadium";
+import SearchBarQueryMain from "../common/searchbar/SearchBarQueryMain";
 
 const MapsContainer = () => {
-  //   const [showContentA, setShowContentA] = useState(true);
+  const [showContentA, setShowContentA] = useState(true);
 
-  //   const toggleContent = () => {
-  //     setShowContentA(!showContentA);
-  //   };
+  const toggleContent = () => {
+    setShowContentA(!showContentA);
+  };
 
-  //   const { data, isLoading, error, refetch } = useFetchMaps({
-  //     location: "51.481688,-0.190973",
-  //     type: "stadium",
-  //     radius: 10000,
-  //   });
+  const { data, isLoading, error, refetch } = useFetchMaps({
+    location: "51.481688,-0.190973",
+    type: "stadium",
+    radius: 10000,
+  });
 
-  //   function extractTeamNameFromURL(url) {
-  //     const urlWithoutProtocol = url.replace(/^(https?:\/\/)?(www\.)?/, ""); // Remove protocol and "www"
-  //     const parts = urlWithoutProtocol.split("."); // Split by "."
-  //     const teamName = parts[0]; // The team name is the first part before the domain
-  //     return teamName;
-  //   }
-
-  //   // Example usage:
-  //   const urls = [
-  //     "https://www.chelseafc.com/en",
-  //     "https://www.arsenal.com/the-club/emirates-stadium",
-  //     "https://www.liverpoolfc.com/fans/fan-experience/visiting-anfield",
-  //   ];
-
-  //   const teamNames = urls.map((url) => extractTeamNameFromURL(url));
-  //   console.log(teamNames);
-  //   // Output: ["chelseafc", "arsenal", "liverpoolfc"]
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
 
   return (
     <View style={{ flex: 1 }}>
-      {/* {showContentA ? (
+      <SearchBarQueryMain
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        clicked={clicked}
+        setClicked={setClicked}
+        setSearchPhraseSubmitted={setSearchPhraseSubmitted}
+        searchPhraseSubmitted={searchPhraseSubmitted}
+      />
+      {showContentA ? (
         <MapsSearchScreen
           onPress={toggleContent}
           isActive={showContentA}
@@ -57,8 +52,8 @@ const MapsContainer = () => {
           error={error}
           refetch={refetch}
         />
-      )} */}
-      <GetTeamsByStadium />
+      )}
+      {/* <GetTeamsByStadium /> */}
     </View>
   );
 };
