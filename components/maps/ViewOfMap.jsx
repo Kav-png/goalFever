@@ -13,8 +13,9 @@ import MapMarker from "./MapMarker";
 import { useNavigation } from "expo-router";
 import { Feather, Entypo } from "@expo/vector-icons";
 import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
+import ToggleSwitch from "./ToggleSwitch";
 const { width, height } = Dimensions.get("window");
-const ViewOfMap = () => {
+const ViewOfMap = ({ onPress, isActive }) => {
   const londonLocations = [
     { latitude: 51.5074, longitude: -0.1278 }, // London city center
     { latitude: 51.5282, longitude: -0.0836 }, // Shoreditch
@@ -84,6 +85,11 @@ const ViewOfMap = () => {
             </View>
           </>
         )}
+        <>
+          <View style={styles.toggleStyle}>
+            <ToggleSwitch onPress={onPress} isActive={isActive} />
+          </View>
+        </>
       </SafeAreaView>
     </View>
   );
@@ -120,6 +126,14 @@ const styles = StyleSheet.create({
     top: height * 0.14,
     paddingLeft: width * 0.05,
     width: "95%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  toggleStyle: {
+    flexDirection: "column-reverse",
+    top: height * 0.85,
+    paddingRight: width * 0.25,
+    width: "45%",
     justifyContent: "center",
     alignItems: "center",
   },

@@ -13,8 +13,11 @@ const MapsContainer = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <ToggleSwitch onPress={toggleContent} isActive={showContentA} />
-      {showContentA ? <MapsSearchScreen /> : <ViewOfMap />}
+      {showContentA ? (
+        <MapsSearchScreen onPress={toggleContent} isActive={showContentA} />
+      ) : (
+        <ViewOfMap onPress={toggleContent} isActive={showContentA} />
+      )}
     </View>
   );
 };
