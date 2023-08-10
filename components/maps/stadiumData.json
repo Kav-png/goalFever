@@ -7158,6 +7158,903 @@
             "team": "AE Giannena"
         }
     ],
+    "England": [
+        {
+            "stadium_name": "Wembley Stadium",
+            "team": "England (Men's,women'sandyouth)"
+        },
+        {
+            "stadium_name": "Old Trafford",
+            "team": "Manchester United"
+        },
+        {
+            "stadium_name": "Tottenham Hotspur Stadium",
+            "team": "Tottenham Hotspur"
+        },
+        {
+            "stadium_name": "London Stadium[n 1]",
+            "team": "West Ham United"
+        },
+        {
+            "stadium_name": "Emirates Stadium[n 3]",
+            "team": "Arsenal"
+        },
+        {
+            "stadium_name": "CityÂ ofÂ Manchester Stadium[n 4]",
+            "team": "Manchester City"
+        },
+        {
+            "stadium_name": "Anfield",
+            "team": "Liverpool"
+        },
+        {
+            "stadium_name": "St James' Park",
+            "team": "Newcastle United"
+        },
+        {
+            "stadium_name": "Stadium of Light",
+            "team": "Sunderland"
+        },
+        {
+            "stadium_name": "Villa Park",
+            "team": "Aston Villa"
+        },
+        {
+            "stadium_name": "Stamford Bridge",
+            "team": "Chelsea"
+        },
+        {
+            "stadium_name": "Goodison Park",
+            "team": "Everton"
+        },
+        {
+            "stadium_name": "Elland Road",
+            "team": "Leeds United"
+        },
+        {
+            "stadium_name": "Hillsborough",
+            "team": "Sheffield Wednesday"
+        },
+        {
+            "stadium_name": "Riverside Stadium",
+            "team": "Middlesbrough"
+        },
+        {
+            "stadium_name": "Cardiff City Stadium",
+            "team": "Cardiff City"
+        },
+        {
+            "stadium_name": "Pride Park",
+            "team": "Derby County"
+        },
+        {
+            "stadium_name": "Coventry Building Society Arena",
+            "team": "Coventry City"
+        },
+        {
+            "stadium_name": "St Mary's Stadium",
+            "team": "Southampton"
+        },
+        {
+            "stadium_name": "King Power Stadium[n 6]",
+            "team": "Leicester City"
+        },
+        {
+            "stadium_name": "Bramall Lane",
+            "team": "Sheffield United"
+        },
+        {
+            "stadium_name": "Falmer Stadium[n 7]",
+            "team": "Brighton & Hove Albion"
+        },
+        {
+            "stadium_name": "Molineux",
+            "team": "Wolverhampton Wanderers"
+        },
+        {
+            "stadium_name": "Ewood Park",
+            "team": "Blackburn Rovers"
+        },
+        {
+            "stadium_name": "City Ground",
+            "team": "Nottingham Forest"
+        },
+        {
+            "stadium_name": "Stadium MK",
+            "team": "Milton Keynes Dons"
+        },
+        {
+            "stadium_name": "bet365 Stadium[n 8]",
+            "team": "Stoke City"
+        },
+        {
+            "stadium_name": "Portman Road",
+            "team": "Ipswich Town"
+        },
+        {
+            "stadium_name": "St Andrew's",
+            "team": "Birmingham City"
+        },
+        {
+            "stadium_name": "University of Bolton Stadium[n 9]",
+            "team": "Bolton Wanderers"
+        },
+        {
+            "stadium_name": "Carrow Road",
+            "team": "Norwich City"
+        },
+        {
+            "stadium_name": "The Valley",
+            "team": "Charlton Athletic"
+        },
+        {
+            "stadium_name": "The Hawthorns",
+            "team": "West Bromwich Albion"
+        },
+        {
+            "stadium_name": "Ashton Gate Stadium",
+            "team": "Bristol City"
+        },
+        {
+            "stadium_name": "MKM Stadium[n 10]",
+            "team": "Hull City"
+        },
+        {
+            "stadium_name": "Selhurst Park",
+            "team": "Crystal Palace"
+        },
+        {
+            "stadium_name": "DW Stadium[n 11]",
+            "team": "Wigan Athletic"
+        },
+        {
+            "stadium_name": "Valley Parade[n 12]",
+            "team": "Bradford City"
+        },
+        {
+            "stadium_name": "Madejski Stadium[n 13]",
+            "team": "Reading"
+        },
+        {
+            "stadium_name": "Kirklees Stadium[n 14]",
+            "team": "Huddersfield Town"
+        },
+        {
+            "stadium_name": "Deepdale",
+            "team": "Preston North End"
+        },
+        {
+            "stadium_name": "Oakwell",
+            "team": "Barnsley"
+        },
+        {
+            "stadium_name": "Craven Cottage",
+            "team": "Fulham"
+        },
+        {
+            "stadium_name": "Vicarage Road",
+            "team": "Watford"
+        },
+        {
+            "stadium_name": "Turf Moor",
+            "team": "Burnley"
+        },
+        {
+            "stadium_name": "Liberty Stadium[n 15]",
+            "team": "Swansea City"
+        },
+        {
+            "stadium_name": "Meadow Lane",
+            "team": "Notts County"
+        },
+        {
+            "stadium_name": "The Den",
+            "team": "Millwall"
+        },
+        {
+            "stadium_name": "Loftus Road[n 16]",
+            "team": "Queens Park Rangers"
+        },
+        {
+            "stadium_name": "Home Park",
+            "team": "Plymouth Argyle"
+        },
+        {
+            "stadium_name": "Fratton Park",
+            "team": "Portsmouth"
+        },
+        {
+            "stadium_name": "Brentford Community Stadium[n 17]",
+            "team": "Brentford"
+        },
+        {
+            "stadium_name": "Brunton Park",
+            "team": "Carlisle United"
+        },
+        {
+            "stadium_name": "Bloomfield Road",
+            "team": "Blackpool"
+        },
+        {
+            "stadium_name": "County Ground",
+            "team": "Swindon Town"
+        },
+        {
+            "stadium_name": "Keepmoat Stadium",
+            "team": "Doncaster Rovers"
+        },
+        {
+            "stadium_name": "Vale Park",
+            "team": "Port Vale"
+        },
+        {
+            "stadium_name": "Prenton Park",
+            "team": "Tranmere Rovers"
+        },
+        {
+            "stadium_name": "London Road[n 18]",
+            "team": "Peterborough United"
+        },
+        {
+            "stadium_name": "Boundary Park",
+            "team": "Oldham Athletic"
+        },
+        {
+            "stadium_name": "Kassam Stadium",
+            "team": "Oxford United"
+        },
+        {
+            "stadium_name": "Roots Hall",
+            "team": "Southend United"
+        },
+        {
+            "stadium_name": "New York Stadium",
+            "team": "Rotherham United"
+        },
+        {
+            "stadium_name": "Leigh Sports Village",
+            "team": "Manchester United Women"
+        },
+        {
+            "stadium_name": "Gateshead International Stadium",
+            "team": "Gateshead"
+        },
+        {
+            "stadium_name": "Gigg Lane",
+            "team": "Bury"
+        },
+        {
+            "stadium_name": "Priestfield Stadium",
+            "team": "Gillingham"
+        },
+        {
+            "stadium_name": "Dean Court[n 19]",
+            "team": "AFC Bournemouth"
+        },
+        {
+            "stadium_name": "Bescot Stadium[n 20]",
+            "team": "Walsall"
+        },
+        {
+            "stadium_name": "Edgeley Park",
+            "team": "Stockport County"
+        },
+        {
+            "stadium_name": "Sincil Bank[n 21]",
+            "team": "Lincoln City"
+        },
+        {
+            "stadium_name": "The Shay",
+            "team": "FC Halifax Town"
+        },
+        {
+            "stadium_name": "Racecourse Ground",
+            "team": "Wrexham"
+        },
+        {
+            "stadium_name": "Technique Stadium[n 22]",
+            "team": "Chesterfield"
+        },
+        {
+            "stadium_name": "Kenilworth Road",
+            "team": "Luton Town"
+        },
+        {
+            "stadium_name": "Gresty Road",
+            "team": "Crewe Alexandra"
+        },
+        {
+            "stadium_name": "Colchester Community Stadium[n 23]",
+            "team": "Colchester United"
+        },
+        {
+            "stadium_name": "New Meadow",
+            "team": "Shrewsbury Town"
+        },
+        {
+            "stadium_name": "Memorial Stadium",
+            "team": "Bristol Rovers"
+        },
+        {
+            "stadium_name": "Huish Park",
+            "team": "Yeovil Town"
+        },
+        {
+            "stadium_name": "Adams Park",
+            "team": "Wycombe Wanderers"
+        },
+        {
+            "stadium_name": "Spotland",
+            "team": "Rochdale"
+        },
+        {
+            "stadium_name": "Field Mill[n 24]",
+            "team": "Mansfield Town"
+        },
+        {
+            "stadium_name": "Brisbane Road[n 25]",
+            "team": "Leyton Orient"
+        },
+        {
+            "stadium_name": "Glanford Park",
+            "team": "Scunthorpe United"
+        },
+        {
+            "stadium_name": "Plough Lane",
+            "team": "AFC Wimbledon"
+        },
+        {
+            "stadium_name": "Blundell Park",
+            "team": "Grimsby Town"
+        },
+        {
+            "stadium_name": "Twerton Park",
+            "team": "Bath City"
+        },
+        {
+            "stadium_name": "Rodney Parade[n 26]",
+            "team": "Newport County"
+        },
+        {
+            "stadium_name": "St James Park",
+            "team": "Exeter City"
+        },
+        {
+            "stadium_name": "York Community Stadium[n 27]",
+            "team": "York City"
+        },
+        {
+            "stadium_name": "The Walks",
+            "team": "King's Lynn Town"
+        },
+        {
+            "stadium_name": "Abbey Stadium",
+            "team": "Cambridge United"
+        },
+        {
+            "stadium_name": "Victoria Park",
+            "team": "Hartlepool United"
+        },
+        {
+            "stadium_name": "Sixfields Stadium",
+            "team": "Northampton Town"
+        },
+        {
+            "stadium_name": "Broadhall Way[n 28]",
+            "team": "Stevenage"
+        },
+        {
+            "stadium_name": "Recreation Ground[n 29]",
+            "team": "Aldershot Town"
+        },
+        {
+            "stadium_name": "Pirelli Stadium",
+            "team": "Burton Albion"
+        },
+        {
+            "stadium_name": "Academy Stadium",
+            "team": "Manchester City Women's F.C."
+        },
+        {
+            "stadium_name": "Whaddon Road[n 30]",
+            "team": "Cheltenham Town"
+        },
+        {
+            "stadium_name": "York Street",
+            "team": "Boston United"
+        },
+        {
+            "stadium_name": "Plainmoor",
+            "team": "Torquay United"
+        },
+        {
+            "stadium_name": "Bower Fold",
+            "team": "Stalybridge Celtic"
+        },
+        {
+            "stadium_name": "Moss Rose",
+            "team": "Macclesfield F.C."
+        },
+        {
+            "stadium_name": "New Bucks Head",
+            "team": "AFC Telford United"
+        },
+        {
+            "stadium_name": "Globe Arena[n 31]",
+            "team": "Morecambe"
+        },
+        {
+            "stadium_name": "Aggborough",
+            "team": "Kidderminster Harriers"
+        },
+        {
+            "stadium_name": "Moss Lane",
+            "team": "Altrincham"
+        },
+        {
+            "stadium_name": "Victoria Road[n 32]",
+            "team": "Dagenham & Redbridge"
+        },
+        {
+            "stadium_name": "Keys Park",
+            "team": "Hednesford Town"
+        },
+        {
+            "stadium_name": "Haig Avenue",
+            "team": "Southport"
+        },
+        {
+            "stadium_name": "Kingfield Stadium",
+            "team": "Woking"
+        },
+        {
+            "stadium_name": "Mill Farm",
+            "team": "AFC Fylde"
+        },
+        {
+            "stadium_name": "The Camrose[n 33]",
+            "team": "Basingstoke Town"
+        },
+        {
+            "stadium_name": "Cherrywood Road",
+            "team": "Farnborough"
+        },
+        {
+            "stadium_name": "Broadfield Stadium[n 34]",
+            "team": "Crawley Town"
+        },
+        {
+            "stadium_name": "Crabble Athletic Ground",
+            "team": "Dover Athletic"
+        },
+        {
+            "stadium_name": "Damson Park",
+            "team": "Solihull Moors"
+        },
+        {
+            "stadium_name": "Holker Street",
+            "team": "Barrow"
+        },
+        {
+            "stadium_name": "Crown Ground[n 35]",
+            "team": "Accrington Stanley"
+        },
+        {
+            "stadium_name": "Westleigh Park",
+            "team": "Havant & Waterlooville"
+        },
+        {
+            "stadium_name": "The Hive Stadium",
+            "team": "Barnet"
+        },
+        {
+            "stadium_name": "Ten Acres[n 36]",
+            "team": "Eastleigh"
+        },
+        {
+            "stadium_name": "Highbury Stadium",
+            "team": "Fleetwood Town"
+        },
+        {
+            "stadium_name": "Deva Stadium[n 37]",
+            "team": "Chester"
+        },
+        {
+            "stadium_name": "Gander Green Lane",
+            "team": "Sutton United"
+        },
+        {
+            "stadium_name": "Moor Lane",
+            "team": "Salford City"
+        },
+        {
+            "stadium_name": "Wetherby Road",
+            "team": "Harrogate Town"
+        },
+        {
+            "stadium_name": "Hayes Lane",
+            "team": "Bromley"
+        },
+        {
+            "stadium_name": "Stonebridge Road",
+            "team": "Ebbsfleet United"
+        },
+        {
+            "stadium_name": "The New Lawn",
+            "team": "Forest Green Rovers"
+        },
+        {
+            "stadium_name": "Kingsmeadow",
+            "team": "Chelsea Women"
+        },
+        {
+            "stadium_name": "Meadow Park",
+            "team": "Arsenal Women"
+        },
+        {
+            "stadium_name": "Walton Hall Park",
+            "team": "Everton Women"
+        },
+        {
+            "stadium_name": "Robins High Performance Centre",
+            "team": "Bristol City W.F.C."
+        }
+    ],
+    "Scotland": [
+        {
+            "stadium_name": "Celtic Park",
+            "team": "Celtic F.C."
+        },
+        {
+            "stadium_name": "Hampden Park",
+            "team": "None"
+        },
+        {
+            "stadium_name": "Ibrox Stadium",
+            "team": "SPFL"
+        },
+        {
+            "stadium_name": "Pittodrie Stadium",
+            "team": "Aberdeen F.C."
+        },
+        {
+            "stadium_name": "Easter Road",
+            "team": "Hibernian F.C."
+        },
+        {
+            "stadium_name": "Tynecastle Park",
+            "team": "SPFL"
+        },
+        {
+            "stadium_name": "Rugby Park",
+            "team": "Kilmarnock F.C."
+        },
+        {
+            "stadium_name": "Tannadice Park",
+            "team": "Dundee United F.C."
+        },
+        {
+            "stadium_name": "Fir Park",
+            "team": "Motherwell F.C."
+        },
+        {
+            "stadium_name": "Dens Park",
+            "team": "Dundee F.C."
+        },
+        {
+            "stadium_name": "Cappielow Park",
+            "team": "Greenock Morton F.C."
+        },
+        {
+            "stadium_name": "East End Park",
+            "team": "Dunfermline Athletic F.C."
+        },
+        {
+            "stadium_name": "McDiarmid Park",
+            "team": "St Johnstone F.C."
+        },
+        {
+            "stadium_name": "Somerset Park",
+            "team": "Ayr United F.C."
+        },
+        {
+            "stadium_name": "Firhill Stadium",
+            "team": "Partick Thistle F.C."
+        },
+        {
+            "stadium_name": "Excelsior Stadium",
+            "team": "Airdrieonians F.C.Glasgow University F.C."
+        },
+        {
+            "stadium_name": "Stark's Park",
+            "team": "Raith Rovers F.C."
+        },
+        {
+            "stadium_name": "Almondvale Stadium",
+            "team": "Livingston F.C."
+        },
+        {
+            "stadium_name": "Palmerston Park",
+            "team": "Queen of the South F.C.Heston Rovers F.C."
+        },
+        {
+            "stadium_name": "Broadwood Stadium",
+            "team": "Cumbernauld Colts"
+        },
+        {
+            "stadium_name": "St Mirren Park",
+            "team": "St Mirren F.C."
+        },
+        {
+            "stadium_name": "Falkirk Stadium",
+            "team": "Falkirk F.C.East Stirlingshire F.C."
+        },
+        {
+            "stadium_name": "Caledonian Stadium",
+            "team": "Inverness Caledonian Thistle F.C."
+        },
+        {
+            "stadium_name": "Station Park",
+            "team": "Forfar Athletic F.C.Forfar Farmington F.C."
+        },
+        {
+            "stadium_name": "Gayfield Park",
+            "team": "Arbroath F.C."
+        },
+        {
+            "stadium_name": "Victoria Park",
+            "team": "Ross County F.C."
+        },
+        {
+            "stadium_name": "New Douglas Park",
+            "team": "Hamilton Academical F.C.Clyde F.C."
+        },
+        {
+            "stadium_name": "Victoria Park",
+            "team": "Buckie Thistle F.C."
+        },
+        {
+            "stadium_name": "Beechwood Park",
+            "team": "Sauchie Juniors F.C."
+        },
+        {
+            "stadium_name": "Links Park",
+            "team": "Montrose F.C.Montrose Roselea"
+        },
+        {
+            "stadium_name": "Borough Briggs",
+            "team": "Elgin City F.C."
+        },
+        {
+            "stadium_name": "Central Park",
+            "team": "Cowdenbeath F.C."
+        },
+        {
+            "stadium_name": "Stair Park",
+            "team": "Stranraer F.C."
+        },
+        {
+            "stadium_name": "Glebe Park",
+            "team": "Brechin City F.C."
+        },
+        {
+            "stadium_name": "Claggan Park",
+            "team": "Fort William F.C."
+        },
+        {
+            "stadium_name": "Dudgeon Park",
+            "team": "Brora Rangers F.C."
+        },
+        {
+            "stadium_name": "Kynoch Park",
+            "team": "Keith F.C."
+        },
+        {
+            "stadium_name": "Newlandsfield Park",
+            "team": "Pollok F.C."
+        },
+        {
+            "stadium_name": "Hannah Park",
+            "team": "Shotts Bon Accord F.C."
+        },
+        {
+            "stadium_name": "Forthbank Stadium",
+            "team": "Stirling Albion F.C.andUniversity of Stirling F.C."
+        },
+        {
+            "stadium_name": "Ochilview Park",
+            "team": "Stenhousemuir F.C."
+        },
+        {
+            "stadium_name": "Ainslie Park",
+            "team": "The Spartans F.C.Spartans W.F.C."
+        },
+        {
+            "stadium_name": "Holm Park",
+            "team": "Clydebank F.C.Yoker Athletic F.C."
+        },
+        {
+            "stadium_name": "Balmoor Stadium",
+            "team": "Peterhead F.C."
+        },
+        {
+            "stadium_name": "Recreation Park",
+            "team": "Alloa Athletic F.C.BSC Glasgow F.C."
+        },
+        {
+            "stadium_name": "Bellslea Park",
+            "team": "Fraserburgh F.C."
+        },
+        {
+            "stadium_name": "Creamery Park",
+            "team": "Bathgate Thistle F.C."
+        },
+        {
+            "stadium_name": "Valefield Park",
+            "team": "Kilbirnie Ladeside F.C."
+        },
+        {
+            "stadium_name": "Mackessack Park",
+            "team": "Rothes F.C."
+        },
+        {
+            "stadium_name": "Mosset Park",
+            "team": "Forres Mechanics F.C."
+        },
+        {
+            "stadium_name": "New Central Park",
+            "team": "Kelty Hearts F.C."
+        },
+        {
+            "stadium_name": "Balmoral Stadium",
+            "team": "Cove Rangers F.C."
+        },
+        {
+            "stadium_name": "Princess Royal Park",
+            "team": "Deveronvale F.C."
+        },
+        {
+            "stadium_name": "Beechwood Park",
+            "team": "Auchinleck Talbot F.C."
+        },
+        {
+            "stadium_name": "New Pebble Park",
+            "team": "Annbank United F.C."
+        },
+        {
+            "stadium_name": "Galabank",
+            "team": "Annan Athletic F.C."
+        },
+        {
+            "stadium_name": "Harlaw Park",
+            "team": "Inverurie Loco Works F.C."
+        },
+        {
+            "stadium_name": "Newtown Park",
+            "team": "Bo'ness United F.C."
+        },
+        {
+            "stadium_name": "North Lodge Park",
+            "team": "Formartine United F.C."
+        },
+        {
+            "stadium_name": "Guy's Meadow",
+            "team": "Cumbernauld United F.C.Kirkintilloch Rob Roy F.C."
+        },
+        {
+            "stadium_name": "Ferguson Park",
+            "team": "Whitehill Welfare F.C."
+        },
+        {
+            "stadium_name": "Harmsworth Park",
+            "team": "Wick Academy F.C."
+        },
+        {
+            "stadium_name": "Forresters Park",
+            "team": "Tranent Juniors F.C."
+        },
+        {
+            "stadium_name": "Prestonfield",
+            "team": "Linlithgow Rose F.C."
+        },
+        {
+            "stadium_name": "Station Park",
+            "team": "Nairn County F.C."
+        },
+        {
+            "stadium_name": "Christie Park",
+            "team": "Huntly F.C."
+        },
+        {
+            "stadium_name": "New Dundas Park",
+            "team": "Bonnyrigg Rose Athletic F.C."
+        },
+        {
+            "stadium_name": "Raydale Park",
+            "team": "Gretna F.C. 2008"
+        },
+        {
+            "stadium_name": "The Haughs",
+            "team": "Turriff United F.C."
+        },
+        {
+            "stadium_name": "Meadow Park",
+            "team": "Irvine Meadow XI F.C."
+        },
+        {
+            "stadium_name": "Grant Street Park",
+            "team": "Clachnacuddin F.C."
+        },
+        {
+            "stadium_name": "Grant Park",
+            "team": "Lossiemouth F.C."
+        },
+        {
+            "stadium_name": "Dumbarton Football Stadium",
+            "team": "Dumbarton F.C."
+        },
+        {
+            "stadium_name": "Netherdale",
+            "team": "Gala Fairydean Rovers F.C."
+        },
+        {
+            "stadium_name": "Spain Park",
+            "team": "Banks O' Dee F.C."
+        },
+        {
+            "stadium_name": "Bayview Stadium",
+            "team": "East Fife F.C."
+        },
+        {
+            "stadium_name": "Lochburn Park",
+            "team": "Maryhill F.C."
+        },
+        {
+            "stadium_name": "Seafield Park",
+            "team": "Strathspey Thistle F.C."
+        },
+        {
+            "stadium_name": "Christie Gillies Park",
+            "team": "Civil Service Strollers F.C."
+        },
+        {
+            "stadium_name": "Meadow Park",
+            "team": "Threave Rovers F.C."
+        },
+        {
+            "stadium_name": "Pennypit Park",
+            "team": "Preston Athletic F.C."
+        },
+        {
+            "stadium_name": "Victoria Park",
+            "team": "Vale of Leithen F.C."
+        },
+        {
+            "stadium_name": "Islecroft Stadium",
+            "team": "Dalbeattie Star F.C."
+        },
+        {
+            "stadium_name": "Cliftonhill Stadium",
+            "team": "Albion Rovers F.C."
+        },
+        {
+            "stadium_name": "East Peffermill Stadium",
+            "team": "Edinburgh University F.C."
+        },
+        {
+            "stadium_name": "Albert Park",
+            "team": "Hawick Royal Albert F.C."
+        },
+        {
+            "stadium_name": "Beltane Park",
+            "team": "Wishaw Juniors F.C."
+        },
+        {
+            "stadium_name": "Petershill Park",
+            "team": "Petershill F.C.Glasgow City F.C.Rangers L.F.C."
+        }
+    ],
+    "Wales": [],
     "North Korea": [
         {
             "stadium_name": "Rungrado 1st of May Stadium",

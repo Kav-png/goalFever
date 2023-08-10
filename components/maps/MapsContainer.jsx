@@ -4,7 +4,7 @@ import MapsSearchScreen from "./MapsSearchScreen";
 import ViewOfMap from "./ViewOfMap";
 import ToggleSwitch from "./ToggleSwitch";
 import useFetchMaps from "../../hook/useFetchMaps";
-import GetTeamsByStadium from "./GetTeamsByStadium";
+import GetTeamsByStadium from "./GetTeamsbyStadium";
 
 const MapsContainer = () => {
   //   const [showContentA, setShowContentA] = useState(true);
