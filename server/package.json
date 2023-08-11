@@ -1,0 +1,11 @@
+{
+  "name": "locationAPI",
+  "version": "1.0.0",
+  "description": "Return Nearby Locations",
+  "main": "index.js",
+  "author": "kavya",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

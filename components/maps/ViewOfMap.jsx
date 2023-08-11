@@ -16,19 +16,6 @@ import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
 import ToggleSwitch from "./ToggleSwitch";
 const { width, height } = Dimensions.get("window");
 const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
-  const londonLocations = [
-    { latitude: 51.5074, longitude: -0.1278 }, // London city center
-    { latitude: 51.5282, longitude: -0.0836 }, // Shoreditch
-    { latitude: 51.4657, longitude: -0.1621 }, // Chelsea
-    { latitude: 51.5072, longitude: -0.1276 }, // Westminster
-    { latitude: 51.5079, longitude: -0.0877 }, // Tower Bridge
-    { latitude: 51.522, longitude: -0.1113 }, // King's Cross
-    { latitude: 51.4975, longitude: -0.1357 }, // Covent Garden
-    { latitude: 51.5224, longitude: -0.0931 }, // St. Paul's Cathedral
-    { latitude: 51.5123, longitude: -0.0907 }, // The Shard
-    { latitude: 51.4951, longitude: -0.1421 }, // Buckingham Palace
-  ];
-
   const [activeIndex, setActiveIndex] = useState(-1);
   const mapRef = (useRef < MapView) | (null > null);
   const navigation = useNavigation();
@@ -62,10 +49,10 @@ const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
           ) : error ? (
             <Text>Something went wrong</Text> //  Something went wrong error message
           ) : (
-            data.results?.map((i, index) => (
+            data?.map((i, index) => (
               <MapMarker
-                lat={i.location.lat}
-                long={i.location.lng}
+                lat={i.lat}
+                long={i.lon}
                 onPress={() => handleMarkerPress(index)}
                 color={activeIndex === index ? "#399bc6" : "#49c03f"}
                 key={index}
@@ -93,9 +80,9 @@ const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
             )}
             <View style={styles.stadiumCardStyle}>
               <StadiumCard
-                item={data.results[activeIndex]}
+                item={data[activeIndex]}
                 selectedMatch={0}
-                id={1}
+                id={data[activeIndex].place_id}
               />
             </View>
           </>

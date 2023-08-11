@@ -24,25 +24,22 @@ const MapsSearchScreen = ({
 }) => {
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView
-        contentContainerStyle={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <ScrollView contentContainerStyle={{ marginLeft: 10, marginTop: 60 }}>
         {isLoading ? (
           <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
         ) : error ? (
           <Text>Something went wrong</Text> //  Something went wrong error message
         ) : (
-          data.results?.map((item) => (
-            <View style={styles.stadiumCardStyle}>
+          data?.map((item, index) => (
+            <View
+              style={styles.stadiumCardStyle}
+              key={`${index}-${item.place_id}`}
+            >
               <StadiumCard
                 item={item}
                 selectedMatch={0}
-                id={item.id}
-                key={item.id}
+                id={item.place_id}
+                index={index}
               />
             </View>
           ))
@@ -66,8 +63,7 @@ const styles = StyleSheet.create({
   stadiumCardStyle: {
     marginBottom: 10,
     width: "95%",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
   },
 });
 

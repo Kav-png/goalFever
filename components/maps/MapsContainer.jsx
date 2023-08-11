@@ -4,8 +4,10 @@ import MapsSearchScreen from "./MapsSearchScreen";
 import ViewOfMap from "./ViewOfMap";
 import ToggleSwitch from "./ToggleSwitch";
 import useFetchMaps from "../../hook/useFetchMaps";
-// import GetTeamsByStadium from "./GetTeamsByStadium";
 import SearchBarQueryMain from "../common/searchbar/SearchBarQueryMain";
+import MapsData from "./MapsData";
+import GetTeamsByStadium from "./components/GetTeamsbyStadium";
+import useNearbyPlaces from "../../hook/useNearbyPlaces";
 
 const MapsContainer = () => {
   const [showContentA, setShowContentA] = useState(true);
@@ -14,11 +16,12 @@ const MapsContainer = () => {
     setShowContentA(!showContentA);
   };
 
-  const { data, isLoading, error, refetch } = useFetchMaps({
-    location: "51.481688,-0.190973",
-    type: "stadium",
-    radius: 10000,
-  });
+  const { data, isLoading, error, refetch } = useNearbyPlaces(
+    51.5086905952269,
+    -0.11864778959789828,
+    "stadium",
+    50000
+  );
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
@@ -54,6 +57,7 @@ const MapsContainer = () => {
         />
       )}
       {/* <GetTeamsByStadium /> */}
+      {/* <MapsData /> */}
     </View>
   );
 };

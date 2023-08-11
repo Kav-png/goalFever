@@ -2,22 +2,36 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import NewsFooter from "../../../news/NewsFooter";
 import PhoneCallButton from "./PhoneCallButton";
-import MoreInformationStadiumCard from "../../../maps/MoreInformationStadiumCard";
+import { useState } from "react";
+import GetTeamsByStadium from "../../../maps/components/GetTeamsbyStadium";
 
 const StadiumCard = ({ item, selectedMatch, id }) => {
+  const [moreInformation, setMoreInformation] = useState(false);
+  const [isMoreInformationAvailable, setIsMoreInformationAvailable] =
+    useState(false);
   return (
     <View style={styles.containerWrapper(selectedMatch, id)}>
       <View style={styles.attachedComponent}>
         <Text style={styles.nameHeader}>{item?.name}</Text>
-        <Text>{item?.distance}</Text>
-        <Text>{item?.address}</Text>
-        <NewsFooter url={item?.website} />
-        {/* <PhoneCallButton phoneNumber={item?.phone_number} /> */}
-        {item?.address ? (
-          <MoreInformationStadiumCard address={item.address} />
-        ) : (
-          <Text>Information Not Available</Text>
-        )}
+        <Text>{item?.distance} m away</Text>
+        <View style={styles.containerMoreInformation}>
+          <TouchableOpacity
+            style={styles.applyBtnMoreInformation}
+            onPress={() => setMoreInformation(!moreInformation)}
+          >
+            <Text style={styles.applyBtnTextMoreInformation}>
+              More Information
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {moreInformation ? (
+          <View>
+            <GetTeamsByStadium
+              address={item.address.name}
+              setIsMoreInformationAvailable={setIsMoreInformationAvailable}
+            />
+          </View>
+        ) : null}
       </View>
     </View>
   );
@@ -26,7 +40,7 @@ const StadiumCard = ({ item, selectedMatch, id }) => {
 const styles = StyleSheet.create({
   containerWrapper: (selectedMatch, id) => ({
     flexDirection: "row",
-    width: "100%",
+    width: "95%",
     padding: 10,
     borderRadius: 16,
     ...{
@@ -40,6 +54,8 @@ const styles = StyleSheet.create({
       elevation: 2,
     },
     backgroundColor: selectedMatch === id ? "#312651" : "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
   }),
   container: {
     justifyContent: "space-around",
@@ -101,6 +117,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     elevation: 4,
+    width: "90%",
   },
   applyBtn: {
     flex: 1,
@@ -113,6 +130,27 @@ const styles = StyleSheet.create({
     borderColor: "grey",
   },
   applyBtnText: {
+    fontSize: 15,
+    color: "grey",
+  },
+  containerMoreInformation: {
+    padding: 4,
+    backgroundColor: "#FFF",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  applyBtnMoreInformation: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    height: 30,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "grey",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  applyBtnTextMoreInformation: {
     fontSize: 15,
     color: "grey",
   },
