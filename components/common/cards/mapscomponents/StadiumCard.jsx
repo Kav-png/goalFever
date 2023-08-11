@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import NewsFooter from "../../../news/NewsFooter";
 import PhoneCallButton from "./PhoneCallButton";
+import MoreInformationStadiumCard from "../../../maps/MoreInformationStadiumCard";
 
 const StadiumCard = ({ item, selectedMatch, id }) => {
   return (
@@ -11,7 +12,12 @@ const StadiumCard = ({ item, selectedMatch, id }) => {
         <Text>{item?.distance}</Text>
         <Text>{item?.address}</Text>
         <NewsFooter url={item?.website} />
-        <PhoneCallButton phoneNumber={item?.phone_number} />
+        {/* <PhoneCallButton phoneNumber={item?.phone_number} /> */}
+        {item?.address ? (
+          <MoreInformationStadiumCard address={item.address} />
+        ) : (
+          <Text>Information Not Available</Text>
+        )}
       </View>
     </View>
   );

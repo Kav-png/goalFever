@@ -14,7 +14,7 @@ const NewsFooter = ({ url }) => {
         style={styles.applyBtn}
         onPress={() => Linking.openURL(url)}
       >
-        <Text style={styles.applyBtnText}>More Information</Text>
+        <Text style={styles.applyBtnText}>Website Link</Text>
       </TouchableOpacity>
     </View>
   );
