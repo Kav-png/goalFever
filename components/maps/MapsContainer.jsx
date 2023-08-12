@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import MapsSearchScreen from "./MapsSearchScreen";
 import ViewOfMap from "./ViewOfMap";
@@ -8,6 +8,7 @@ import SearchBarQueryMain from "../common/searchbar/SearchBarQueryMain";
 import MapsData from "./MapsData";
 import GetTeamsByStadium from "./components/GetTeamsbyStadium";
 import useNearbyPlaces from "../../hook/useNearbyPlaces";
+import AutocompleteSearch from "./components/AutocompleteSearch";
 
 const MapsContainer = () => {
   const [showContentA, setShowContentA] = useState(true);
@@ -23,20 +24,9 @@ const MapsContainer = () => {
     50000
   );
 
-  const [searchPhrase, setSearchPhrase] = useState("");
-  const [clicked, setClicked] = useState(false);
-  const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
-
   return (
     <View style={{ flex: 1 }}>
-      <SearchBarQueryMain
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        clicked={clicked}
-        setClicked={setClicked}
-        setSearchPhraseSubmitted={setSearchPhraseSubmitted}
-        searchPhraseSubmitted={searchPhraseSubmitted}
-      />
+      <AutocompleteSearch />
       {showContentA ? (
         <MapsSearchScreen
           onPress={toggleContent}

@@ -26,6 +26,22 @@ app.get("/api/nearby", async (req, res) => {
   }
 });
 
+// Handle autocomplete requests and proxy to LocationIQ Autocomplete API
+app.get("/api/autocomplete", async (req, res) => {
+  try {
+    const { q } = req.query;
+    const locationIQApiKey = "pk.84fa4f2c5c78c4870f780ed7fbca5704"; // Replace with your LocationIQ API key
+
+    const apiUrl = `https://api.locationiq.com/v1/autocomplete?key=${locationIQApiKey}&q=${q}`;
+    const response = await axios.get(apiUrl);
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
