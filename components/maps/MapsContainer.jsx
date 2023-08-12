@@ -9,6 +9,12 @@ import MapsData from "./MapsData";
 import GetTeamsByStadium from "./components/GetTeamsbyStadium";
 import useNearbyPlaces from "../../hook/useNearbyPlaces";
 import AutocompleteSearch from "./components/AutocompleteSearch";
+import * as Location from "expo-location";
+import { Button } from "react-native";
+import { Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const MapsContainer = () => {
   const [showContentA, setShowContentA] = useState(false);
@@ -19,6 +25,26 @@ const MapsContainer = () => {
 
   const toggleContent = () => {
     setShowContentA(!showContentA);
+  };
+
+  const handleGetLocation = async () => {
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status === "granted") {
+        const location = await Location.getCurrentPositionAsync({});
+        console.log("User location:", location.coords);
+        setCurrentLocation([
+          location.coords.latitude,
+          location.coords.longitude,
+        ]);
+        // You can use the location data as needed
+      } else {
+        console.error("Permission to access location was denied");
+      }
+    } catch (error) {
+      console.error("Error getting location:", error);
+    }
   };
 
   const { data, isLoading, error, refetch } = useNearbyPlaces(
@@ -35,6 +61,11 @@ const MapsContainer = () => {
   return (
     <View style={{ flex: 1 }}>
       <AutocompleteSearch setCurrentLocation={setCurrentLocation} />
+      <View style={styles.useMyLocation}>
+        <TouchableOpacity onPress={handleGetLocation}>
+          <Text>Use My Location</Text>
+        </TouchableOpacity>
+      </View>
       {showContentA ? (
         <ViewOfMap
           onPress={toggleContent}
@@ -54,10 +85,24 @@ const MapsContainer = () => {
           refetch={refetch}
         />
       )}
-      {/* <GetTeamsByStadium /> */}
-      {/* <MapsData /> */}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  useMyLocation: {
+    top: height * 0.07,
+    marginLeft: width * 0.56,
+    width: "45%",
+    width: "30%",
+    padding: 8,
+    borderRadius: 20,
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 5,
+    position: "absolute",
+  },
+});
 
 export default MapsContainer;

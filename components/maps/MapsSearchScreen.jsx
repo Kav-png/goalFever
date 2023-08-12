@@ -23,7 +23,7 @@ const MapsSearchScreen = ({
   refetch,
 }) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, zIndex: 1 }}>
       <ScrollView contentContainerStyle={{ marginLeft: 10, marginTop: 60 }}>
         {isLoading ? (
           <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
