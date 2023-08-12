@@ -11,7 +11,7 @@ import useNearbyPlaces from "../../hook/useNearbyPlaces";
 import AutocompleteSearch from "./components/AutocompleteSearch";
 
 const MapsContainer = () => {
-  const [showContentA, setShowContentA] = useState(true);
+  const [showContentA, setShowContentA] = useState(false);
 
   const [currentLocation, setCurrentLocation] = useState([
     51.5086905952269, -0.11864778959789828,
@@ -36,7 +36,7 @@ const MapsContainer = () => {
     <View style={{ flex: 1 }}>
       <AutocompleteSearch setCurrentLocation={setCurrentLocation} />
       {showContentA ? (
-        <MapsSearchScreen
+        <ViewOfMap
           onPress={toggleContent}
           isActive={showContentA}
           data={data}
@@ -45,7 +45,7 @@ const MapsContainer = () => {
           refetch={refetch}
         />
       ) : (
-        <ViewOfMap
+        <MapsSearchScreen
           onPress={toggleContent}
           isActive={showContentA}
           data={data}

@@ -13,7 +13,7 @@ const StadiumCard = ({ item, selectedMatch, id }) => {
     <View style={styles.containerWrapper(selectedMatch, id)}>
       <View style={styles.attachedComponent}>
         <Text style={styles.nameHeader}>{item?.name}</Text>
-        <Text>{item?.distance} m away</Text>
+        <Text>{(item?.distance / 1000).toFixed(2)} km away</Text>
         <View style={styles.containerMoreInformation}>
           <TouchableOpacity
             style={styles.applyBtnMoreInformation}
