@@ -36,7 +36,7 @@ const SearchBarQueryForAutoComplete = ({
           placeholder={`Search for a location`}
           placeholderTextColor="gray"
           value={searchPhrase}
-          onChangeText={onChangeTextInput}
+          onChangeText={setSearchPhrase}
           onFocus={() => {
             setClicked(true);
           }}

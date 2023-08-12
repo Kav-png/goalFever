@@ -3,19 +3,26 @@ import { useQuery } from "@tanstack/react-query";
 import Constants from "expo-constants";
 
 const useAutocomplete = (query) => {
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["autocomplete", query],
-    queryFn: async () => {
-      const { manifest } = Constants;
+  const { manifest } = Constants;
 
-      const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
-      const apiUrl = `${uri}/api/autocomplete?q=${query}`;
+  if (query.length < 3) {
+    return { data: [], isLoading: false, error: null, refetch: () => {} };
+  }
 
-      const response = await axios.get(apiUrl);
+  const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
+  const apiUrl = `${uri}/api/autocomplete?q=${query}`;
 
-      return response.data;
-    },
-  });
+  const { data, isLoading, error, refetch } = useQuery(
+    ["autocomplete", query], // Add query as a dependency here
+    async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    }
+  );
 
   return { data, isLoading, error, refetch };
 };
