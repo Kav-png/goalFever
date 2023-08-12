@@ -229,7 +229,7 @@ import Constants from "expo-constants";
 
 // const AutocompleteSearch = () => {
 //   const [searchPhrase, setSearchPhrase] = useState("");
-//   const [clicked, setClicked] = useState(false);
+// const [clicked, setClicked] = useState(false);
 //   const [searchPhraseSubmitted, setSearchPhraseSubmitted] = useState(false);
 
 //   const { data, isLoading, error, refetch } = useAutocomplete(searchPhrase);
@@ -237,10 +237,10 @@ import Constants from "expo-constants";
 //   return (
 //     <View>
 //       <SearchBarQueryForAutoComplete
-//         searchPhrase={searchPhrase}
-//         setSearchPhrase={setSearchPhrase}
-//         clicked={clicked}
-//         setClicked={setClicked}
+// searchPhrase={searchPhrase}
+// setSearchPhrase={setSearchPhrase}
+// clicked={clicked}
+// setClicked={setClicked}
 //         searchPhraseSubmitted={searchPhraseSubmitted}
 //         setSearchPhraseSubmitted={setSearchPhraseSubmitted}
 //       />
@@ -260,6 +260,8 @@ import Constants from "expo-constants";
 const AutocompleteSearch = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [clicked, setClicked] = useState(false);
+
   const { manifest } = Constants;
   const uri = `http://${manifest.debuggerHost.split(":").shift()}:3000`;
   const apiUrl = `${uri}/api/autocomplete?q=${query}`;
@@ -292,12 +294,17 @@ const AutocompleteSearch = () => {
 
   return (
     <View>
-      <TextInput
+      {/* <TextInput
         placeholder="Enter a location"
         value={query}
         onChangeText={setQuery}
+      /> */}
+      <SearchBarQueryForAutoComplete
+        searchPhrase={query}
+        setSearchPhrase={setQuery}
+        clicked={clicked}
+        setClicked={setClicked}
       />
-      <Button title="Search" onPress={handleSearch} />
       {uniqueData?.slice(0, 8).map((item) => (
         <Text key={item.place_id}>{item.display_name}</Text>
       ))}

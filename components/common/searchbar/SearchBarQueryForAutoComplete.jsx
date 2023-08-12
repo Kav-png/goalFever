@@ -8,9 +8,6 @@ const SearchBarQueryForAutoComplete = ({
   clicked,
   searchPhrase,
   setSearchPhrase,
-  onChangeTextInput,
-  setSearchPhraseSubmitted,
-  searchPhraseSubmitted,
 }) => {
   const router = useRouter();
   return (
@@ -26,9 +23,6 @@ const SearchBarQueryForAutoComplete = ({
           size={20}
           color="black"
           style={{ marginLeft: 2 }}
-          onPress={() => {
-            setSearchPhraseSubmitted(searchPhraseSubmitted + 1);
-          }}
         />
         {/* Input field */}
         <TextInput
