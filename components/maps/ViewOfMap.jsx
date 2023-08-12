@@ -14,6 +14,7 @@ import { useNavigation } from "expo-router";
 import { Feather, Entypo } from "@expo/vector-icons";
 import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
 import ToggleSwitch from "./ToggleSwitch";
+import { ActivityIndicator } from "react-native";
 const { width, height } = Dimensions.get("window");
 const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -44,10 +45,8 @@ const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
     <View style={{ flex: 1, overflow: "hidden" }}>
       <SafeAreaView style={{ flex: 1 }}>
         <MapView style={{ height: "100%", width: "100%" }}>
-          {isLoading ? (
-            <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
-          ) : error ? (
-            <Text>Something went wrong</Text> //  Something went wrong error message
+          {error ? (
+            <Text>No stadiums found</Text> //  Something went wrong error message
           ) : (
             data?.map((i, index) => (
               <MapMarker

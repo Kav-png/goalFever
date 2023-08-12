@@ -13,20 +13,28 @@ import AutocompleteSearch from "./components/AutocompleteSearch";
 const MapsContainer = () => {
   const [showContentA, setShowContentA] = useState(true);
 
+  const [currentLocation, setCurrentLocation] = useState([
+    51.5086905952269, -0.11864778959789828,
+  ]);
+
   const toggleContent = () => {
     setShowContentA(!showContentA);
   };
 
   const { data, isLoading, error, refetch } = useNearbyPlaces(
-    51.5086905952269,
-    -0.11864778959789828,
+    currentLocation[0],
+    currentLocation[1],
     "stadium",
     50000
   );
 
+  useEffect(() => {
+    refetch();
+  }, [currentLocation]);
+
   return (
     <View style={{ flex: 1 }}>
-      <AutocompleteSearch />
+      <AutocompleteSearch setCurrentLocation={setCurrentLocation} />
       {showContentA ? (
         <MapsSearchScreen
           onPress={toggleContent}
