@@ -21,6 +21,7 @@ const MapsSearchScreen = ({
   error,
   isLoading,
   refetch,
+  handleGetLocation,
 }) => {
   return (
     <View style={{ flex: 1, zIndex: 1 }}>
@@ -46,7 +47,11 @@ const MapsSearchScreen = ({
         )}
       </ScrollView>
       <View style={styles.toggleStyle}>
-        <ToggleSwitch onPress={onPress} isActive={isActive} />
+        <ToggleSwitch
+          onPress={onPress}
+          isActive={isActive}
+          handleGetLocation={handleGetLocation}
+        />
       </View>
     </View>
   );

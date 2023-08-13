@@ -61,11 +61,6 @@ const MapsContainer = () => {
   return (
     <View style={{ flex: 1 }}>
       <AutocompleteSearch setCurrentLocation={setCurrentLocation} />
-      <View style={styles.useMyLocation}>
-        <TouchableOpacity onPress={handleGetLocation}>
-          <Text>Use My Location</Text>
-        </TouchableOpacity>
-      </View>
       {showContentA ? (
         <ViewOfMap
           onPress={toggleContent}
@@ -74,6 +69,7 @@ const MapsContainer = () => {
           isLoading={isLoading}
           error={error}
           refetch={refetch}
+          handleGetLocation={handleGetLocation}
         />
       ) : (
         <MapsSearchScreen
@@ -83,6 +79,7 @@ const MapsContainer = () => {
           isLoading={isLoading}
           error={error}
           refetch={refetch}
+          handleGetLocation={handleGetLocation}
         />
       )}
     </View>

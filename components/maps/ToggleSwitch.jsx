@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
-const ToggleSwitch = ({ onPress, isActive }) => {
+const ToggleSwitch = ({ onPress, isActive, handleGetLocation }) => {
   return (
     <View style={{ flexDirection: "row" }}>
       <TouchableOpacity
@@ -20,8 +20,13 @@ const ToggleSwitch = ({ onPress, isActive }) => {
       >
         <View style={isActive ? styles.toggleActive : styles.toggle} />
       </TouchableOpacity>
-      <View style={styles.textContainer}>
+      <View style={[{ marginLeft: 5 }, styles.textContainer]}>
         <Text>{isActive ? "Switch Map View" : "Switch List View"}</Text>
+      </View>
+      <View style={[{ marginLeft: 30 }, styles.textContainer]}>
+        <TouchableOpacity onPress={handleGetLocation}>
+          <Text>Use My Location</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -51,7 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   textContainer: {
-    marginLeft: 5,
     paddingHorizontal: 10,
     borderRadius: 20,
     backgroundColor: "white",

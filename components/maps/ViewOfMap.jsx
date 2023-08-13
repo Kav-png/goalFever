@@ -159,7 +159,15 @@ import { ActivityIndicator } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
-const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
+const ViewOfMap = ({
+  onPress,
+  isActive,
+  data,
+  error,
+  isLoading,
+  refetch,
+  handleGetLocation,
+}) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const mapRef = useRef(null);
   const navigation = useNavigation();
@@ -210,7 +218,11 @@ const ViewOfMap = ({ onPress, isActive, data, error, isLoading, refetch }) => {
         </MapView>
         <>
           <View style={styles.toggleStyle}>
-            <ToggleSwitch onPress={onPress} isActive={isActive} />
+            <ToggleSwitch
+              onPress={onPress}
+              isActive={isActive}
+              handleGetLocation={handleGetLocation}
+            />
           </View>
         </>
         {activeIndex > -1 && (
@@ -277,8 +289,8 @@ const styles = StyleSheet.create({
   toggleStyle: {
     flexDirection: "column-reverse",
     top: height * 0.795,
-    paddingRight: width * 0.25,
-    width: "75%",
+    paddingRight: width * 0.12,
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
