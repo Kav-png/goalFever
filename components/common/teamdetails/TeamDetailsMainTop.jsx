@@ -4,7 +4,13 @@ import { useLocalSearchParams } from "expo-router";
 import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
 import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
 
-const TeamDetailsMainTop = ({ selectedItem, item, index, handleCardPress }) => {
+const TeamDetailsMainTop = ({
+  selectedItem,
+  item,
+  index,
+  handleCardPress,
+  type,
+}) => {
   const id = item?.id;
 
   // switches images fetch details based on the search parameters
@@ -27,12 +33,14 @@ const TeamDetailsMainTop = ({ selectedItem, item, index, handleCardPress }) => {
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity
         style={[styles.containerWrapper(selectedItem, id), styles.container]}
-        onPress={() => handleCardPress(index)}
+        onPress={type === "main-screen" ? null : () => handleCardPress(index)}
       >
         <View style={styles.container}>
           <TouchableOpacity
             style={styles.logoContainer(selectedItem, id)}
-            onPress={() => handleCardPress(index)}
+            onPress={
+              type === "main-screen" ? null : () => handleCardPress(index)
+            }
           >
             {imageContainer()}
           </TouchableOpacity>

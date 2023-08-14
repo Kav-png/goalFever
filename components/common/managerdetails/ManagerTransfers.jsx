@@ -61,6 +61,7 @@ const ManagerTransfers = ({ managerId }) => {
                     item={item.team}
                     index={index}
                     handleCardPress={handleCardPress}
+                    type="pressable"
                   />
                 </View>
               </View>

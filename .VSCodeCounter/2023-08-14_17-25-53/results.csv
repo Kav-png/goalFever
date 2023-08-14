@@ -1,0 +1,91 @@
+"filename", "language", "JavaScript", "JSON", "Markdown", "log", "Draw.io", "JavaScript JSX", "comment", "blank", "total"
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\README.md", "Markdown", 0, 0, 9, 0, 0, 0, 0, 6, 15
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app.json", "JSON", 0, 10, 0, 0, 0, 0, 0, 1, 11
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\Home.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 23, 6, 58
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\Maps.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 16, 0, 3, 19
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\News.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 23, 8, 4, 35
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\(tabs)\_layout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 3, 29
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\_layout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 6, 36
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\event-details\[id].js", "JavaScript", 171, 0, 0, 0, 0, 0, 0, 6, 177
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\index.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 1, 3, 10
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\manager-details\[id].js", "JavaScript", 86, 0, 0, 0, 0, 0, 0, 6, 92
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\search-details\[id].js", "JavaScript", 177, 0, 0, 0, 0, 0, 49, 20, 246
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\search-events\SearchEvents.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 171, 12, 21, 204
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\app\team-details\[id].js", "JavaScript", 112, 0, 0, 0, 0, 0, 0, 7, 119
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\babel.config.js", "JavaScript", 11, 0, 0, 0, 0, 0, 0, 1, 12
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\LiveMatchesCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 163, 0, 4, 167
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\SearchCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 209, 2, 7, 218
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\UpcomingMatchesCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 191, 15, 4, 210
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\mapscomponents\PhoneCallButton.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 57, 0, 5, 62
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\mapscomponents\StadiumCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 152, 4, 4, 160
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\ExtraInformationContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 142, 1, 4, 147
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\SearchImageContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 25, 0, 4, 29
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\SearchTeamCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 127, 2, 6, 135
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\cards\searchcomponents\SearchTeamCardContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 54, 0, 7, 61
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\AnimatedStatistics.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 85, 0, 6, 91
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\EventDetailsMainTop.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 184, 0, 4, 188
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\LeagueSelectionMenu.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 53, 0, 4, 57
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\Lineup.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 128, 5, 7, 140
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\OddsBar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 66, 1, 6, 73
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\StatsBar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 43, 1, 4, 48
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\lineupData.json", "JSON", 0, 6522, 0, 0, 0, 0, 0, 1, 6523
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\eventdetails\statsData.json", "JSON", 0, 995, 0, 0, 0, 0, 0, 1, 996
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\managerdetails\ManagerTransfers.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 79, 1, 7, 87
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesFilter.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 81, 0, 5, 86
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesList.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 37, 3, 6, 46
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesListContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 79, 6, 13, 98
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\recentmatchescomponents\RecentMatchesTitle.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 37, 3, 4, 44
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchbar\SearchBarQuery.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 98, 4, 4, 106
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchbar\SearchBarQueryForAutoComplete.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 93, 4, 4, 101
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchbar\SearchBarQueryMain.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 98, 4, 4, 106
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchdetails\RecentSearches.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 36, 0, 3, 39
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchdetails\SearchResults.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 30, 0, 3, 33
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchdetails\SortButtons.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 64, 0, 4, 68
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchevents\SearchEventsResult.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 172, 7, 19, 198
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\searchevents\SearchEventsResultMoreDates.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 172, 6, 12, 190
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\teamdetails\ManagerInfo.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 117, 2, 7, 126
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\teamdetails\MoreInformation.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 75, 0, 3, 78
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\teamdetails\TeamDetailsMainTop.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 127, 1, 7, 135
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\teamdetails\TeamSeasons.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 59, 1, 7, 67
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\common\teamdetails\TeamsMatches.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 47, 1, 6, 54
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\livematches\LiveMatches.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 75, 5, 9, 89
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\recentmatches\RecentMatches.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 2, 3, 18
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\welcome\SearchButtons.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 92, 0, 5, 97
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\welcome\Welcome.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 75, 3, 9, 87
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\home\welcome\WelcomeTop.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 60, 0, 3, 63
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\MapMarker.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 3, 16
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\MapsContainer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 93, 1, 12, 106
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\MapsData.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 34, 2, 4, 40
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\MapsSearchScreen.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 71, 0, 5, 76
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\MoreInformationStadiumCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 56, 0, 5, 61
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\ToggleSwitch.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 64, 0, 4, 68
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\ViewOfMap.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 146, 3, 10, 159
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\components\AutocompleteSearch.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 77, 13, 9, 99
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\components\GetTeamsbyStadium.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 84, 6, 16, 106
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\maps\stadiumData.json", "JSON", 0, 8140, 0, 0, 0, 0, 0, 1, 8141
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsContent.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 4, 3, 19
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsFooter.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 44, 0, 4, 48
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsHeading.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 32, 2, 4, 38
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsList.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 3, 3, 28
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\components\news\NewsListCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 117, 0, 3, 120
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\constants\icons.js", "JavaScript", 22, 0, 0, 0, 0, 0, 0, 2, 24
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\constants\index.js", "JavaScript", 1, 0, 0, 0, 0, 0, 0, 1, 2
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\postViaAxiosData.js", "JavaScript", 20, 0, 0, 0, 0, 0, 0, 4, 24
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetch.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 3, 27
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchLineups.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 5, 29
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchMaps.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 4, 28
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchNews.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 4, 28
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchStats.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 3, 27
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchTeam.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 3, 27
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useFetchTeamMatches.js", "JavaScript", 23, 0, 0, 0, 0, 0, 1, 3, 27
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\hook\useNearbyPlaces.js", "JavaScript", 16, 0, 0, 0, 0, 0, 0, 6, 22
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\index.js", "JavaScript", 1, 0, 0, 0, 0, 0, 0, 1, 2
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\notes.drawio", "Draw.io", 0, 0, 0, 0, 126, 0, 0, 0, 126
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\package.json", "JSON", 0, 60, 0, 0, 0, 0, 0, 1, 61
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\server\api.js", "JavaScript", 24, 0, 0, 0, 0, 0, 0, 6, 30
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\server\index.js", "JavaScript", 36, 0, 0, 0, 0, 0, 2, 10, 48
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\server\package.json", "JSON", 0, 11, 0, 0, 0, 0, 0, 1, 12
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\utils\index.js", "JavaScript", 45, 0, 0, 0, 0, 0, 2, 8, 55
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\utils\searchUtils.js", "JavaScript", 18, 0, 0, 0, 0, 0, 3, 3, 24
+"d:\Program-Files\Coding-Files\project-wboson\goalFever\yarn-error.log", "log", 0, 0, 0, 6667, 0, 0, 0, 1017, 7684
+"Total", "-", 901, 15738, 9, 6667, 126, 4661, 225, 1489, 29816

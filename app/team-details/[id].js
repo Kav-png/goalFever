@@ -43,7 +43,12 @@ const TeamDetailsPage = () => {
           ) : (
             <View style={{ flexDirection: "column" }}>
               <View style={styles.cardContainer}>
-                <TeamDetailsMainTop item={data.data} />
+                <TeamDetailsMainTop
+                  item={data.data}
+                  handleCardPress={() => {}}
+                  index={0}
+                  type="main-screen"
+                />
               </View>
               <View style={[{ margin: 10 }, styles.cardContainer]}>
                 <ManagerInfo item={data.data.manager} />
