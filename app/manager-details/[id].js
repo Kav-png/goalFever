@@ -40,7 +40,7 @@ const ManagerDetailsPage = () => {
                 <ManagerInfo item={data.data} />
               </View>
               <View style={{ margin: 10 }}>
-                <ManagerTransfers managerId={id} />
+                <ManagerTransfers managerId={id} type="managers" />
               </View>
             </View>
           )}

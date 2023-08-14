@@ -30,12 +30,7 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
               </Text>
             ) : null}
             {item?.start_at && item?.end_at ? (
-              <Text
-                style={[
-                  { fontSize: 20, fontFamily: "DMBold" },
-                  styles.scoreText(selectedItem, id),
-                ]}
-              >
+              <Text style={[{}, styles.scoreTextBold(selectedItem, id)]}>
                 From:{" "}
                 {item?.start_at ? item.start_at.substring(0, 10) : "No data"}
                 {"   "}To:{" "}
@@ -56,30 +51,49 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
       case "players":
         return (
           <View style={{ flexDirection: "row" }}>
-            <Text style={styles.scoreTextBold(selectedItem, id)}>
-              {item?.position_name ? item.position_name : "No data"}
-            </Text>
-            <Text style={styles.scoreTextBold(selectedItem, id)}>
-              {item?.flag
-                ? item.flag.substring(0, 1).toUpperCase() +
-                  item.flag.substring(1).toLowerCase()
-                : null}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              Age: {item?.age ? item.age : "No data"}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              {item?.market_currency ? item.market_currency : "No currency"}:{" "}
-              {item?.market_value
-                ? Intl.NumberFormat("en", {
-                    notation: "compact",
-                    compactDisplay: "long",
-                  }).format(item.market_value)
-                : "No data"}
-            </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              {item?.rating ? `Rating: ${item.rating}` : null}
-            </Text>
+            {/* SECTION 1 - EXTRA INFORMATION FOR POST REQUEST SEARCH CARD  */}
+            {item?.position_name ? (
+              <Text style={styles.scoreTextBold(selectedItem, id)}>
+                {item?.position_name ? item.position_name : "No data"}
+              </Text>
+            ) : null}
+            {item?.flag ? (
+              <Text style={styles.scoreTextBold(selectedItem, id)}>
+                {item?.flag
+                  ? item.flag.substring(0, 1).toUpperCase() +
+                    item.flag.substring(1).toLowerCase()
+                  : null}
+              </Text>
+            ) : null}
+            {item?.age ? (
+              <Text style={styles.scoreText(selectedItem, id)}>
+                Age: {item?.age ? item.age : "No data"}
+              </Text>
+            ) : null}
+            {item?.market_currency ? (
+              <Text style={styles.scoreText(selectedItem, id)}>
+                {item?.market_currency ? item.market_currency : "No currency"}:{" "}
+                {item?.market_value
+                  ? Intl.NumberFormat("en", {
+                      notation: "compact",
+                      compactDisplay: "long",
+                    }).format(item.market_value)
+                  : "No data"}
+              </Text>
+            ) : null}
+            {item?.rating ? (
+              <Text style={styles.scoreText(selectedItem, id)}>
+                {item?.rating ? `Rating: ${item.rating}` : null}
+              </Text>
+            ) : null}
+
+            {/* SECTION 2 - EXTRA INFORMATION FOR TRANSFERS */}
+
+            {item?.cost ? (
+              <Text style={styles.scoreTextBold(selectedItem, id)}>
+                {item?.cost ? `Cost: ${item.cost}` : null}
+              </Text>
+            ) : null}
           </View>
         );
       case "leagues":

@@ -1,27 +1,24 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
 import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
 
-const TeamDetailsMainTop = ({
-  selectedItem,
-  item,
-  index,
-  handleCardPress,
-  type,
-}) => {
+const PlayerDetailsMainTop = ({ selectedItem, item }) => {
+  // take id from item data
   const id = item?.id;
 
   // switches images fetch details based on the search parameters
   const imageContainer = () => {
-    return <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />;
+    return (
+      <SearchImageContainer img={item?.photo} has_image={item?.has_photo} />
+    );
   };
 
   const extraInformationContainer = () => {
     return (
       <ExtraInformationContainer
-        type="teams"
+        type="players"
         selectedItem={selectedItem}
         id={id}
         item={item}
@@ -32,19 +29,10 @@ const TeamDetailsMainTop = ({
   return (
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity
-        style={[
-          styles.containerWrapper(selectedItem, id, type),
-          styles.container,
-        ]}
-        onPress={type === "main-screen" ? null : () => handleCardPress(index)}
+        style={[styles.containerWrapper(selectedItem, id), styles.container]}
       >
         <View style={styles.container}>
-          <TouchableOpacity
-            style={styles.logoContainer(selectedItem, id)}
-            onPress={
-              type === "main-screen" ? null : () => handleCardPress(index)
-            }
-          >
+          <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
             {imageContainer()}
           </TouchableOpacity>
           <View>
@@ -56,7 +44,7 @@ const TeamDetailsMainTop = ({
                 : item?.name_translations?.en.substring(0, 36) + "..."}
             </Text>
             <View style={{ flexDirection: "column" }}>
-              {type === "split" ? null : extraInformationContainer()}
+              {extraInformationContainer()}
             </View>
           </View>
         </View>
@@ -66,9 +54,11 @@ const TeamDetailsMainTop = ({
 };
 
 const styles = StyleSheet.create({
-  containerWrapper: (selectedItem, id, type) => ({
+  containerWrapper: (selectedItem, id) => ({
     flexDirection: "row",
-    width: type === "split" ? "70%" : "100%",
+    marginBottom: 10,
+    width: "100%",
+    padding: 10,
     borderRadius: 16,
     ...{
       shadowColor: "#FFF",
@@ -80,11 +70,7 @@ const styles = StyleSheet.create({
       shadowRadius: 3.84,
       elevation: 2,
     },
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    backgroundColor:
-      type === "split" ? "#FFF" : selectedItem === id ? "#312651" : "#FFF",
-    justifyContent: "center",
+    backgroundColor: selectedItem === id ? "#312651" : "#FFF",
   }),
   container: {
     flexDirection: "row",
@@ -100,7 +86,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: "lightgrey",
     borderWidth: 3,
-    marginLeft: 10,
   }),
   scoreText: (selectedItem, id) => ({
     fontSize: 10,
@@ -139,4 +124,4 @@ const styles = StyleSheet.create({
   }),
 });
 
-export default TeamDetailsMainTop;
+export default PlayerDetailsMainTop;

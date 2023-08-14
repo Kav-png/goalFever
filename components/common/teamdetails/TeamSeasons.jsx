@@ -7,18 +7,18 @@ import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator } from "react-native";
 
-const TeamSeasons = ({ teamId }) => {
+const TeamSeasons = ({ id, type }) => {
   const router = useRouter();
   const { data, isLoading, error, refetch } = useFetchTeam(
-    `teams/${teamId}/seasons`,
+    `${type}/${id}/seasons`,
     {},
-    "seasons"
+    `seasons-${type}`
   );
 
   useEffect(() => {
-    // Fetch data whenever teamId changes
+    // Fetch data whenever id changes
     refetch();
-  }, [teamId]);
+  }, [id]);
 
   const handleCardPress = (index) => {
     const leaguesId = data.data[index]?.league_id;
@@ -40,7 +40,7 @@ const TeamSeasons = ({ teamId }) => {
             <TouchableOpacity
               onPress={() => handleCardPress(index)}
               style={styles.cardContainer}
-              key={`teams-seasons-${item?.id}`}
+              key={`${type}-seasons-${item?.id}`}
             >
               <Text>{item.name}</Text>
             </TouchableOpacity>

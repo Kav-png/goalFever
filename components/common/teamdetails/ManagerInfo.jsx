@@ -5,6 +5,7 @@ import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer
 import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
 
 const ManagerInfo = ({ selectedItem, item }) => {
+  const router = useRouter();
   // take id from item data
   const id = item?.id;
 
@@ -26,13 +27,23 @@ const ManagerInfo = ({ selectedItem, item }) => {
     );
   };
 
+  const handleCardPress = () => {
+    return router.push({
+      pathname: `/manager-details/${id}`,
+      params: { managerId: id, managerName: item.name },
+    });
+  };
   return (
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity
         style={[styles.containerWrapper(selectedItem, id), styles.container]}
+        onPress={() => handleCardPress()}
       >
         <View style={styles.container}>
-          <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedItem, id)}
+            onPress={() => handleCardPress()}
+          >
             {imageContainer()}
           </TouchableOpacity>
           <View>

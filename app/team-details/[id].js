@@ -66,9 +66,9 @@ const TeamDetailsPage = () => {
                 <View style={styles.cardContainer}>
                   <Text style={styles.leagueText}>Past Seasons</Text>
                 </View>
-                <TeamSeasons teamId={id} />
+                <TeamSeasons id={id} type="teams" />
               </View>
-              <MoreInformation data={data} />
+              <MoreInformation data={data} type="teams" />
             </View>
           )}
         </ScrollView>
