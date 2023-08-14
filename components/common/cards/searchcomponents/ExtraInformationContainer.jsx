@@ -6,7 +6,7 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
     switch (type) {
       case "managers":
         return (
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <Text style={styles.scoreText(selectedItem, id)}>
               Wins:{" "}
               {item?.performance?.wins ? item.performance?.wins : "No data"}
@@ -21,12 +21,35 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
                 ? item.performance?.goals_scored
                 : "No data"}
             </Text>
-            <Text style={styles.scoreText(selectedItem, id)}>
-              Formation:{" "}
-              {item?.performance?.preferred_formation
-                ? item.performance?.preferred_formation
-                : "No data"}
-            </Text>
+            {item?.performance?.totalPoints ? (
+              <Text style={styles.scoreText(selectedItem, id)}>
+                Total Points:{" "}
+                {item?.performance?.totalPoints
+                  ? item.performance?.totalPoints
+                  : "No data"}
+              </Text>
+            ) : null}
+            {item?.start_at && item?.end_at ? (
+              <Text
+                style={[
+                  { fontSize: 20, fontFamily: "DMBold" },
+                  styles.scoreText(selectedItem, id),
+                ]}
+              >
+                From:{" "}
+                {item?.start_at ? item.start_at.substring(0, 10) : "No data"}
+                {"   "}To:{" "}
+                {item?.end_at ? item.end_at.substring(0, 10) : "No data"}
+              </Text>
+            ) : null}
+            {item?.performance?.preferred_formation ? (
+              <Text style={styles.scoreText(selectedItem, id)}>
+                Formation:{" "}
+                {item?.performance?.preferred_formation
+                  ? item.performance?.preferred_formation
+                  : "No data"}
+              </Text>
+            ) : null}
           </View>
         );
       // TODO: Remove No data and replace it accordingly like you did to Rating
