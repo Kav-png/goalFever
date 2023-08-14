@@ -1,12 +1,20 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchImageContainer from "./SearchImageContainer";
 import ExtraInformationContainer from "./ExtraInformationContainer";
 
 const SearchTeamCard = ({ selectedItem, item }) => {
   // take id from item data
   const id = item?.id;
+  const router = useRouter();
+
+  const handleCardPress = () => {
+    return router.push({
+      pathname: `/team-details/${id}`,
+      params: { teamId: id, teamName: item.name },
+    });
+  };
 
   // switches images fetch details based on the search parameters
   const imageContainer = () => {
@@ -27,9 +35,13 @@ const SearchTeamCard = ({ selectedItem, item }) => {
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity
         style={[styles.containerWrapper(selectedItem, id), styles.container]}
+        onPress={() => handleCardPress()}
       >
         <View style={styles.container}>
-          <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedItem, id)}
+            onPress={() => handleCardPress()}
+          >
             {imageContainer()}
           </TouchableOpacity>
           <View>
@@ -42,16 +54,6 @@ const SearchTeamCard = ({ selectedItem, item }) => {
             </Text>
             <View style={{ flexDirection: "column" }}>
               {extraInformationContainer()}
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "grey",
-                  marginLeft: 5,
-                  marginTop: 5,
-                }}
-              >
-                Click for more information
-              </Text>
             </View>
           </View>
         </View>

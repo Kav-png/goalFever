@@ -15,7 +15,6 @@ import { TouchableOpacity } from "react-native";
 import MoreInformation from "../../components/common/teamdetails/MoreInformation";
 
 const PlayerDetails = () => {
-  const router = useRouter();
   const params = useLocalSearchParams();
   const id = params.playersId;
   const name = params.playersName;
@@ -24,16 +23,6 @@ const PlayerDetails = () => {
   useEffect(() => {
     refetch();
   }, [params.playersId]);
-
-  const handleCardPress = (index) => {
-    console.log(index);
-    const teamId = data.data[index]?.team?.id;
-    const teamName = data.data[index]?.team?.name;
-    return router.push({
-      pathname: `/team-details/${teamId}`,
-      params: { teamId: teamId, teamName: teamName },
-    });
-  };
 
   return (
     <View>

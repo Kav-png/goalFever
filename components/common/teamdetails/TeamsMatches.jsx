@@ -19,14 +19,6 @@ const TeamsMatches = ({ id, type }) => {
     refetch();
   }, [id]);
 
-  const handleCardPress = (index) => {
-    const eventId = data.data[index]?.id;
-    return router.push({
-      pathname: `/event-details/${eventId}`,
-      params: { eventId: eventId },
-    });
-  };
-
   return (
     <View>
       {isLoading ? (
@@ -39,7 +31,6 @@ const TeamsMatches = ({ id, type }) => {
             <UpcomingMatchesCard
               item={item}
               selectedMatch={2023} // change this to match the ID of the match you want to see
-              handleCardPress={handleCardPress}
               key={`teams-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
               index={index}
             />

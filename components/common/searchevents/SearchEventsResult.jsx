@@ -137,14 +137,6 @@ const SearchEventsResult = ({ index }) => {
 
   const sortedOrder = () => {};
 
-  const handleCardPress = (index) => {
-    const eventId = getFilteredItems()[index]?.id;
-    return router.push({
-      pathname: `/event-details/${eventId}`,
-      params: { eventId: eventId },
-    });
-  };
-
   return (
     <View style={{ paddingBottom: 10 }}>
       <View>
@@ -173,7 +165,6 @@ const SearchEventsResult = ({ index }) => {
               <UpcomingMatchesCard
                 key={item.id}
                 item={item}
-                handleCardPress={handleCardPress}
                 activeTab={2020}
                 index={index}
               />

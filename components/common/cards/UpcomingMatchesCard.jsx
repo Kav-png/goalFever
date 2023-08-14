@@ -1,22 +1,58 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
 import { checkImageURL } from "../../../utils"; // deprecated
+import { useRouter } from "expo-router";
 
-const UpcomingMatchesCard = ({
-  item,
-  selectedMatch,
-  handleCardPress,
-  index,
-}) => {
+const UpcomingMatchesCard = ({ item, selectedMatch }) => {
   const id = item?.id;
+  const router = useRouter();
+
+  const handleCardPress = () => {
+    const eventId = item?.id;
+    return router.push({
+      pathname: `/event-details/${eventId}`,
+      params: { eventId: eventId },
+    });
+  };
+
+  const handleCardPressTeamHome = () => {
+    const teamId = item?.home_team?.id;
+    const teamName = item?.home_team?.name;
+    return router.push({
+      pathname: `/team-details/${teamId}`,
+      params: { teamId: teamId, teamName: teamName },
+    });
+  };
+
+  const handleCardPressTeamAway = () => {
+    const teamId = item?.away_team?.id;
+    const teamName = item?.away_team?.name;
+    return router.push({
+      pathname: `/team-details/${teamId}`,
+      params: { teamId: teamId, teamName: teamName },
+    });
+  };
+
+  const handleCardPressLeague = () => {
+    const leaguesId = item?.league?.id;
+    const leaguesName = item?.league?.name;
+    return router.push({
+      pathname: `/leagues-details/${id}`,
+      params: { leaguesId: leaguesId, leaguesName: leaguesName },
+    });
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <TouchableOpacity
         style={styles.containerWrapper(selectedMatch, id)}
-        onPress={() => handleCardPress(index)}
+        onPress={() => handleCardPress()}
       >
         <View style={styles.container}>
-          <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedMatch, id)}
+            onPress={() => handleCardPressTeamHome()}
+          >
             <Image
               source={{
                 uri: item.home_score?.has_logo
@@ -27,7 +63,10 @@ const UpcomingMatchesCard = ({
               style={styles.logoImage}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedMatch, id)}
+            onPress={() => handleCardPressTeamAway()}
+          >
             <Image
               source={{
                 uri: item.away_score?.has_logo
@@ -98,7 +137,7 @@ const UpcomingMatchesCard = ({
               ...styles.container,
             }}
           >
-            <View
+            {/* <View
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
@@ -107,22 +146,23 @@ const UpcomingMatchesCard = ({
               <Text style={styles.teamName(selectedMatch, id)}>
                 {item.league?.name}
               </Text>
-            </View>
-            {/* <TouchableOpacity
-            style={styles.logoLeagueContainer(selectedMatch, id)}
-          >
-            {item.league?.has_logo ? (
-              <Image
-                source={{
-                  uri: item.league.logo,
-                }}
-                resizeMode="contain"
-                style={styles.logoImage}
-              />
-            ) : (
-              <View></View>
-            )}
-          </TouchableOpacity> */}
+            </View> */}
+            <TouchableOpacity
+              style={styles.logoLeagueContainer(selectedMatch, id)}
+              onPress={() => handleCardPressLeague()}
+            >
+              {item.league?.has_logo ? (
+                <Image
+                  source={{
+                    uri: item.league.logo,
+                  }}
+                  resizeMode="contain"
+                  style={styles.logoImage}
+                />
+              ) : (
+                <View></View>
+              )}
+            </TouchableOpacity>
           </View>
           <Text style={styles.stateOfMatch(selectedMatch, id)}>
             {item.section?.name}

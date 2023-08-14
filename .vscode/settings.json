@@ -1,4 +1,5 @@
 {
   "docwriter.style": "Auto-detect",
-  "cSpell.words": ["pressable"]
+  "cSpell.words": ["pressable"],
+  "findUnusedExports.detectCircularImports": false
 }

@@ -12,32 +12,16 @@ import LiveMatchesCard from "../../common/cards/LiveMatchesCard";
 import useFetch from "../../../hook/useFetch";
 
 function LiveMatches(props) {
-  // const isLoading = false;
-  // const error = false;
-  // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   const { data, isLoading, error } = useFetch("sports/1/events/live", {
     page: "1",
   });
 
   const [selectedMatch, setSelectedMatch] = useState();
 
-  const handleCardPress = (id) => {
-    // TODO: Route to a specific live match
-    setSelectedMatch(id);
-  };
-
   return (
     <View style={[styles.container, props.style]}>
       <View style={styles.textRow}>
         <Text style={styles.text}>Live Matches</Text>
-        <TouchableOpacity
-          onPress={() => {
-            // TODO: Route to all live matches
-          }}
-        >
-          <Text>Show all</Text>
-        </TouchableOpacity>
       </View>
       <View>
         {isLoading ? (
@@ -48,11 +32,7 @@ function LiveMatches(props) {
           <FlatList
             data={data.data}
             renderItem={({ item }) => (
-              <LiveMatchesCard
-                item={item}
-                selectedMatch={selectedMatch}
-                handleCardPress={handleCardPress}
-              />
+              <LiveMatchesCard item={item} selectedMatch={selectedMatch} />
             )}
             keyExtractor={(item) => item?.id}
             horizontal={true}

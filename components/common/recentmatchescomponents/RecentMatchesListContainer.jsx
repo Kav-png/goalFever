@@ -37,14 +37,6 @@ const RecentMatchesListContainer = ({ currentDate }) => {
     }
   };
 
-  const handleCardPress = (index) => {
-    const eventId = getFilteredItems()[index]?.id;
-    return router.push({
-      pathname: `/event-details/${eventId}`,
-      params: { eventId: eventId },
-    });
-  };
-
   const handleUniqueLeagueNames = () => {
     const uniqueLeagueNames = new Set();
 
@@ -81,7 +73,6 @@ const RecentMatchesListContainer = ({ currentDate }) => {
             <UpcomingMatchesCard
               item={item}
               selectedMatch={2023} // change this to match the ID of the match you want to see
-              handleCardPress={handleCardPress}
               key={`upcoming-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
               index={index}
             />

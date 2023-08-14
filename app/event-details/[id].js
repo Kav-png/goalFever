@@ -20,12 +20,23 @@ import MoreInformation from "../../components/common/teamdetails/MoreInformation
 
 const EventDetailsPage = () => {
   const params = useLocalSearchParams();
+  const router = useRouter();
   const id = params.eventId;
   const { data, isLoading, error, refetch } = useFetch(`events/${id}`, {});
 
   useEffect(() => {
     refetch();
   }, [params.eventId]);
+
+  const handleCardPressLeague = () => {
+    const leaguesId = data.data?.league?.id;
+    const leaguesName = data.data?.league?.name;
+    return router.push({
+      pathname: `/leagues-details/${id}`,
+      params: { leaguesId: leaguesId, leaguesName: leaguesName },
+    });
+  };
+
   return (
     <View>
       <Stack.Screen
@@ -75,13 +86,13 @@ const EventDetailsPage = () => {
               <View style={[{ margin: 5 }, styles.cardContainer]}>
                 <Lineup eventId={id} type={"events"} amountOfLineups={2} />
               </View>
-              <View style={[{ margin: 5 }, styles.cardContainer]}>
-                <AnimatedStatistics eventId={id} />
-              </View>
               <View>
                 {data.data?.league ? (
                   <View style={{ flexDirection: "row" }}>
-                    <TouchableOpacity style={styles.logoLeagueContainer}>
+                    <TouchableOpacity
+                      style={styles.logoLeagueContainer}
+                      onPress={() => handleCardPressLeague()}
+                    >
                       {data.data.league?.has_logo ? (
                         <Image
                           source={{
@@ -96,6 +107,7 @@ const EventDetailsPage = () => {
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={[{ paddingHorizontal: 50 }, styles.cardContainer]}
+                      onPress={() => handleCardPressLeague()}
                     >
                       <Text style={styles.leagueText}>
                         {data.data.league.name}
@@ -126,6 +138,9 @@ const EventDetailsPage = () => {
                   </View>
                 ) : null}
                 <MoreInformation data={data} />
+              </View>
+              <View style={[{ margin: 5 }, styles.cardContainer]}>
+                <AnimatedStatistics eventId={id} />
               </View>
             </View>
           )}

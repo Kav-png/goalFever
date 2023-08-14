@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
 import useFetch from "../../../hook/useFetch";
 import { useEffect } from "react";
 import useFetchLineups from "../../../hook/useFetchLineups";
-import data from "./lineupData.json";
 
 const Lineup = ({ eventId, type, amountOfLineups }) => {
   const { data, isLoading, error, refetch } = useFetchLineups(
@@ -35,7 +34,7 @@ const Lineup = ({ eventId, type, amountOfLineups }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.formationText}>Lineups</Text>
-      {data.data.slice(0, amountOfLineups).map((lineup) => (
+      {data.data?.slice(0, amountOfLineups).map((lineup) => (
         <View key={lineup.id} style={styles.lineupContainer}>
           <Text style={styles.formationText}>{lineup.formation}</Text>
           <View style={styles.playersContainer}>

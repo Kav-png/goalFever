@@ -1,12 +1,5 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Animated, {
-  Easing,
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-} from "react-native-reanimated";
-import data from "./statsData.json";
 import StatsBar from "./StatsBar";
 import useFetchStats from "../../../hook/useFetchStats";
 import { ActivityIndicator } from "react-native";
@@ -62,7 +55,7 @@ const styles = StyleSheet.create({
   statisticContainer: {
     alignItems: "center",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     backgroundColor: "white",
     marginBottom: 5,
     justifyContent: "space-between",

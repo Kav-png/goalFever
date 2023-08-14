@@ -20,13 +20,15 @@ const TeamSeasons = ({ id, type }) => {
     refetch();
   }, [id]);
 
-  const handleCardPress = (index) => {
-    const leaguesId = data.data[index]?.league_id;
-    return router.push({
-      pathname: `/event-details/${leaguesId}`,
-      params: { leaguesId: leaguesId },
-    });
-  };
+  // const handleCardPress = (index) => {
+  //   const leaguesId = data.data[index]?.league_id;
+  //   return router.push({
+  //     pathname: `/event-details/${leaguesId}`,
+  //     params: { leaguesId: leaguesId },
+  //   });
+  // };
+
+  // TODO! Create a details page for seasons
 
   return (
     <View>
@@ -38,7 +40,8 @@ const TeamSeasons = ({ id, type }) => {
         <View>
           {data.data.slice(0, 6)?.map((item, index) => (
             <TouchableOpacity
-              onPress={() => handleCardPress(index)}
+              // onPress={() => handleCardPress(index)}
+              onPress={() => {}}
               style={styles.cardContainer}
               key={`${type}-seasons-${item?.id}`}
             >

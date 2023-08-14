@@ -1,14 +1,38 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
 
 const EventDetailsMainTop = ({ item }) => {
   const id = item?.id;
+  const router = useRouter();
   const selectedMatch = 0;
+
+  const handleCardPressTeamHome = () => {
+    const teamId = item?.home_team?.id;
+    const teamName = item?.home_team?.name;
+    return router.push({
+      pathname: `/team-details/${teamId}`,
+      params: { teamId: teamId, teamName: teamName },
+    });
+  };
+
+  const handleCardPressTeamAway = () => {
+    const teamId = item?.away_team?.id;
+    const teamName = item?.away_team?.name;
+    return router.push({
+      pathname: `/team-details/${teamId}`,
+      params: { teamId: teamId, teamName: teamName },
+    });
+  };
+
   return (
     <View>
       <View style={styles.containerWrapper(selectedMatch, id)}>
         <View style={styles.container}>
-          <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedMatch, id)}
+            onPress={() => handleCardPressTeamHome()}
+          >
             <Image
               source={{
                 uri: item.home_score?.has_logo
@@ -19,12 +43,15 @@ const EventDetailsMainTop = ({ item }) => {
               style={styles.logoImage}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedMatch, id)}
+            onPress={() => handleCardPressTeamAway()}
+          >
             <Image
               source={{
                 uri: item.away_score?.has_logo
                   ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
-                  : item.away_team.logo,
+                  : item.away_team?.logo,
               }}
               resizeMode="contain"
               style={styles.logoImage}

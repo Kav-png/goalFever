@@ -20,11 +20,11 @@ const Home = () => {
           <SafeAreaView>
             <QueryClientProvider client={queryClient}>
               <Welcome />
-              {/* <LiveMatches /> */}
+              <LiveMatches />
             </QueryClientProvider>
           </SafeAreaView>
           <QueryClientProvider client={queryClient2}>
-            {/* <RecentMatches /> */}
+            <RecentMatches />
           </QueryClientProvider>
         </View>
       </ScrollView>

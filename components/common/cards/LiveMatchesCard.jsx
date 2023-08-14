@@ -1,8 +1,18 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
 
-const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
+const LiveMatchesCard = ({ item, selectedMatch }) => {
   const id = item?.id;
+  const router = useRouter();
+
+  const handleCardPress = () => {
+    return router.push({
+      pathname: `/event-details/${id}`,
+      params: { eventId: id },
+    });
+  };
+
   return (
     <View style={styles.containerWrapper(selectedMatch, id)}>
       <View style={styles.stateOfMatchWrapper}>
@@ -12,7 +22,7 @@ const LiveMatchesCard = ({ item, selectedMatch, handleCardPress }) => {
       </View>
       <TouchableOpacity
         style={styles.container}
-        onPress={() => handleCardPress(item?.id)}
+        onPress={() => handleCardPress()}
       >
         <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
           <Image

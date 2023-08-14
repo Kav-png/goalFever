@@ -18,7 +18,7 @@ const ManagerDetailsPage = () => {
 
   useEffect(() => {
     refetch();
-  }, [params.teamId]);
+  }, [params.managerId]);
   return (
     <View>
       <Stack.Screen
@@ -40,7 +40,7 @@ const ManagerDetailsPage = () => {
                 <ManagerInfo item={data.data} />
               </View>
               <View style={{ margin: 10 }}>
-                <ManagerTransfers managerId={id} type="managers" />
+                <ManagerTransfers id={id} type="managers" />
               </View>
             </View>
           )}

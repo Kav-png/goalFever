@@ -166,7 +166,6 @@ const SearchEventsResultsMoreDates = ({ date }) => {
                 <UpcomingMatchesCard
                   key={item.id}
                   item={item}
-                  handleCardPress={() => {}}
                   activeTab={2020}
                   index={index}
                 />
