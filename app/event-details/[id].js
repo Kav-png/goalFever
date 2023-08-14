@@ -15,6 +15,7 @@ import EventDetailsMainTop from "../../components/common/eventdetails/EventDetai
 import OddsBar from "../../components/common/eventdetails/OddsBar";
 import { Image } from "react-native";
 import Lineup from "../../components/common/eventdetails/Lineup";
+import AnimatedStatistics from "../../components/common/eventdetails/AnimatedStatistics";
 
 const EventDetailsPage = () => {
   const params = useLocalSearchParams();
@@ -70,8 +71,11 @@ const EventDetailsPage = () => {
                   />
                 </View>
               ) : null}
-              <View style={styles.cardContainer}>
+              <View style={[{ margin: 5 }, styles.cardContainer]}>
                 <Lineup eventId={id} />
+              </View>
+              <View style={[{ margin: 5 }, styles.cardContainer]}>
+                <AnimatedStatistics eventId={id} />
               </View>
               <View>
                 {data.data?.league ? (

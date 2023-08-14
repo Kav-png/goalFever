@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   playerName: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "bold",
     marginBottom: 2,
   },
