@@ -60,7 +60,7 @@ const TeamDetailsPage = () => {
                 <View style={styles.cardContainer}>
                   <Text style={styles.leagueText}>Upcoming Matches</Text>
                 </View>
-                <TeamsMatches teamId={id} />
+                <TeamsMatches id={id} type="teams" />
               </View>
               <View>
                 <View style={styles.cardContainer}>

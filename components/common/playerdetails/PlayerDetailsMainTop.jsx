@@ -4,21 +4,30 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
 import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
 
-const PlayerDetailsMainTop = ({ selectedItem, item }) => {
+const PlayerDetailsMainTop = ({ selectedItem, item, type }) => {
   // take id from item data
   const id = item?.id;
 
   // switches images fetch details based on the search parameters
   const imageContainer = () => {
-    return (
-      <SearchImageContainer img={item?.photo} has_image={item?.has_photo} />
-    );
+    switch (type) {
+      case "players":
+        return (
+          <SearchImageContainer img={item?.photo} has_image={item?.has_photo} />
+        );
+      case "leagues":
+        return (
+          <SearchImageContainer img={item?.logo} has_image={item?.has_logo} />
+        );
+      default:
+        break;
+    }
   };
 
   const extraInformationContainer = () => {
     return (
       <ExtraInformationContainer
-        type="players"
+        type={type}
         selectedItem={selectedItem}
         id={id}
         item={item}

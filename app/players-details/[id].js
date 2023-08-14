@@ -53,26 +53,8 @@ const PlayerDetails = () => {
           ) : (
             <View style={{ flexDirection: "column" }}>
               <View style={styles.cardContainer}>
-                <PlayerDetailsMainTop item={data.data} />
+                <PlayerDetailsMainTop item={data.data} type="players" />
               </View>
-              {/* {data.data.map((item) => {
-                item?.main_team.map((i, d) => {
-                  <TeamDetailsMainTop
-                    item={i}
-                    index={d}
-                    handleCardPress={handleCardPress}
-                    type="main_team"
-                  />;
-                });
-              })} */}
-              {data.data[0]?.main_team.map((item, index) => {
-                <TeamDetailsMainTop
-                  item={item}
-                  index={index}
-                  handleCardPress={handleCardPress}
-                  type="main_team"
-                />;
-              })}
               {console.log(data.data[0]?.main_team[0].name)}
               <View style={{ margin: 5 }}>
                 <ManagerTransfers id={id} type="players" />

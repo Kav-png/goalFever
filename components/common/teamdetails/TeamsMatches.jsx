@@ -6,18 +6,18 @@ import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import useFetchTeamMatches from "../../../hook/useFetchTeamMatches";
 import useFetchTeam from "../../../hook/useFetchTeam";
 
-const TeamsMatches = ({ teamId }) => {
+const TeamsMatches = ({ id, type }) => {
   const router = useRouter();
   const { data, isLoading, error, refetch } = useFetchTeam(
-    `teams/${teamId}/events`,
+    `${type}/${id}/events`,
     {},
-    "teams-matches"
+    `${type}-matches`
   );
 
   useEffect(() => {
-    // Fetch data whenever teamId changes
+    // Fetch data whenever id changes
     refetch();
-  }, [teamId]);
+  }, [id]);
 
   const handleCardPress = (index) => {
     const eventId = data.data[index]?.id;
