@@ -16,6 +16,7 @@ import OddsBar from "../../components/common/eventdetails/OddsBar";
 import { Image } from "react-native";
 import Lineup from "../../components/common/eventdetails/Lineup";
 import AnimatedStatistics from "../../components/common/eventdetails/AnimatedStatistics";
+import MoreInformation from "../../components/common/teamdetails/MoreInformation";
 
 const EventDetailsPage = () => {
   const params = useLocalSearchParams();
@@ -72,7 +73,7 @@ const EventDetailsPage = () => {
                 </View>
               ) : null}
               <View style={[{ margin: 5 }, styles.cardContainer]}>
-                <Lineup eventId={id} />
+                <Lineup eventId={id} type={"events"} amountOfLineups={2} />
               </View>
               <View style={[{ margin: 5 }, styles.cardContainer]}>
                 <AnimatedStatistics eventId={id} />
@@ -124,56 +125,7 @@ const EventDetailsPage = () => {
                     </TouchableOpacity>
                   </View>
                 ) : null}
-                {data.data?.venue ? (
-                  <View>
-                    <View style={{ flexDirection: "row" }}>
-                      <TouchableOpacity
-                        style={[
-                          { paddingHorizontal: 50 },
-                          styles.cardContainer,
-                        ]}
-                      >
-                        <Text style={styles.leagueText}>
-                          {data.data.venue.stadium?.en}
-                        </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={[
-                          { paddingHorizontal: 50 },
-                          styles.cardContainer,
-                        ]}
-                      >
-                        <Text style={styles.leagueText}>
-                          {data.data.venue.city.en}
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    {data.data.venue.country_name?.en ? (
-                      <TouchableOpacity
-                        style={[
-                          { paddingHorizontal: 50 },
-                          styles.cardContainer,
-                        ]}
-                      >
-                        <Text style={styles.leagueText}>
-                          {data.data.venue.country_name.en}
-                        </Text>
-                      </TouchableOpacity>
-                    ) : null}
-                    {data.data.attendance ? (
-                      <TouchableOpacity
-                        style={[
-                          { paddingHorizontal: 50 },
-                          styles.cardContainer,
-                        ]}
-                      >
-                        <Text style={styles.leagueText}>
-                          Attendance - {data.data.attendance}
-                        </Text>
-                      </TouchableOpacity>
-                    ) : null}
-                  </View>
-                ) : null}
+                <MoreInformation data={data} />
               </View>
             </View>
           )}

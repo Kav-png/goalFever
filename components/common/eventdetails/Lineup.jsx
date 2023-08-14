@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import useFetchLineups from "../../../hook/useFetchLineups";
 import data from "./lineupData.json";
 
-const Lineup = ({ eventId }) => {
+const Lineup = ({ eventId, type, amountOfLineups }) => {
   const { data, isLoading, error, refetch } = useFetchLineups(
-    `events/${eventId}/lineups`,
+    `${type}/${eventId}/lineups`,
     {}
   );
 
@@ -34,8 +34,8 @@ const Lineup = ({ eventId }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.formationText}>Predicted / Confirmed Lineups</Text>
-      {data.data.slice(0, 2).map((lineup) => (
+      <Text style={styles.formationText}>Lineups</Text>
+      {data.data.slice(0, amountOfLineups).map((lineup) => (
         <View key={lineup.id} style={styles.lineupContainer}>
           <Text style={styles.formationText}>{lineup.formation}</Text>
           <View style={styles.playersContainer}>

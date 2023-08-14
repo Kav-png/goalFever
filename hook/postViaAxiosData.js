@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_KEY } from "../constants";
 
 const fetchData = async (endpoint, query) => {
   try {
@@ -7,7 +8,7 @@ const fetchData = async (endpoint, query) => {
       url: `https://sportscore1.p.rapidapi.com/${endpoint}`,
       params: { ...query },
       headers: {
-        "X-RapidAPI-Key": "1f6e575a84mshd541683c0aa837cp192745jsndeaa023f7c48",
+        "X-RapidAPI-Key": API_KEY,
         "X-RapidAPI-Host": "sportscore1.p.rapidapi.com",
       },
     };

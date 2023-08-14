@@ -21,7 +21,7 @@ const UpcomingMatchesCard = ({
               source={{
                 uri: item.home_score?.has_logo
                   ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
-                  : item.home_team.logo,
+                  : item.home_team?.logo,
               }}
               resizeMode="contain"
               style={styles.logoImage}
@@ -32,7 +32,7 @@ const UpcomingMatchesCard = ({
               source={{
                 uri: item.away_score?.has_logo
                   ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
-                  : item.away_team.logo,
+                  : item.away_team?.logo,
               }}
               resizeMode="contain"
               style={styles.logoImage}

@@ -24,7 +24,7 @@ const Home = () => {
             </QueryClientProvider>
           </SafeAreaView>
           <QueryClientProvider client={queryClient2}>
-            <RecentMatches />
+            {/* <RecentMatches /> */}
           </QueryClientProvider>
         </View>
       </ScrollView>

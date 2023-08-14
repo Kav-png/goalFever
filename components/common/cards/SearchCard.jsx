@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import SearchImageContainer from "./searchcomponents/SearchImageContainer";
 import ExtraInformationContainer from "./searchcomponents/ExtraInformationContainer";
 
 const SearchCard = ({ selectedItem, item }) => {
   const { searchCurrentQuery } = useLocalSearchParams();
+  const router = useRouter();
   // take id from item data
   const id = item?.id;
 
@@ -75,13 +76,43 @@ const SearchCard = ({ selectedItem, item }) => {
         break;
     }
   };
+
+  const handleCardPress = () => {
+    switch (searchCurrentQuery) {
+      case "managers":
+        return router.push({
+          pathname: `/manager-details/${id}`,
+          params: { managerId: id, managerName: item.name },
+        });
+      case "players":
+        return router.push({
+          pathname: `/players-details/${id}`,
+          params: { playersId: id, playersName: item.name },
+        });
+      case "leagues":
+        return router.push({
+          pathname: `/leagues-details/${id}`,
+          params: { leaguesId: id, leaguesName: item.name },
+        });
+      case "teams":
+        return router.push({
+          pathname: `/team-details/${id}`,
+          params: { teamId: id, teamName: item.name },
+        });
+      default:
+        break;
+    }
+  };
   return (
     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       <TouchableOpacity
         style={[styles.containerWrapper(selectedItem, id), styles.container]}
       >
         <View style={styles.container}>
-          <TouchableOpacity style={styles.logoContainer(selectedItem, id)}>
+          <TouchableOpacity
+            style={styles.logoContainer(selectedItem, id)}
+            onPress={handleCardPress}
+          >
             {imageContainer()}
           </TouchableOpacity>
           <View>
