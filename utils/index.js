@@ -39,3 +39,16 @@ function removeEmojis(str) {
   var emojiRE = /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu;
   return str.replace(emojiRE, "");
 }
+
+export const getPast5Days = () => {
+  const today = new Date();
+  const past5Days = [];
+
+  for (let i = 0; i < 5; i++) {
+    const day = new Date(today);
+    day.setDate(today.getDate() - i);
+    past5Days.push(day.toISOString().split("T")[0]);
+  }
+
+  return past5Days;
+};

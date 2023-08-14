@@ -162,12 +162,13 @@ const SearchEventsResultsMoreDates = ({ date }) => {
               data={uniqueData}
               currentPage={currentPage}
               itemsPerPage={ITEMS_PER_PAGE}
-              renderItem={({ item }) => (
+              renderItem={({ item, index }) => (
                 <UpcomingMatchesCard
                   key={item.id}
                   item={item}
                   handleCardPress={() => {}}
                   activeTab={2020}
+                  index={index}
                 />
               )}
             />

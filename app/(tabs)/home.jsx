@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ flex: 1, padding: 10 }}>
+        <View style={{ padding: 10 }}>
           <SafeAreaView>
             <QueryClientProvider client={queryClient}>
               <Welcome />
@@ -24,7 +24,7 @@ const Home = () => {
             </QueryClientProvider>
           </SafeAreaView>
           <QueryClientProvider client={queryClient2}>
-            {/* <RecentMatches /> */}
+            <RecentMatches />
           </QueryClientProvider>
         </View>
       </ScrollView>

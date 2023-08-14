@@ -1,27 +1,19 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
-import { checkImageURL } from "../../../utils"; // deprecated
 
-const UpcomingMatchesCard = ({
-  item,
-  selectedMatch,
-  handleCardPress,
-  index,
-}) => {
+const EventDetailsMainTop = ({ item }) => {
   const id = item?.id;
+  const selectedMatch = 0;
   return (
-    <View style={{ flex: 1 }}>
-      <TouchableOpacity
-        style={styles.containerWrapper(selectedMatch, id)}
-        onPress={() => handleCardPress(index)}
-      >
+    <View>
+      <View style={styles.containerWrapper(selectedMatch, id)}>
         <View style={styles.container}>
           <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
             <Image
               source={{
                 uri: item.home_score?.has_logo
                   ? "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg"
-                  : item.home_team.logo,
+                  : item.home_team?.logo,
               }}
               resizeMode="contain"
               style={styles.logoImage}
@@ -40,9 +32,9 @@ const UpcomingMatchesCard = ({
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
-          {item.home_team.name?.length > 18 ? (
+          {item.home_team?.name?.length > 18 ? (
             <Text style={styles.teamName(selectedMatch, id)}>
-              {item.home_team.name?.substring(0, 18)}...
+              {item.home_team?.name?.substring(0, 18)}...
             </Text>
           ) : (
             <Text style={styles.teamName(selectedMatch, id)}>
@@ -108,27 +100,12 @@ const UpcomingMatchesCard = ({
                 {item.league?.name}
               </Text>
             </View>
-            {/* <TouchableOpacity
-            style={styles.logoLeagueContainer(selectedMatch, id)}
-          >
-            {item.league?.has_logo ? (
-              <Image
-                source={{
-                  uri: item.league.logo,
-                }}
-                resizeMode="contain"
-                style={styles.logoImage}
-              />
-            ) : (
-              <View></View>
-            )}
-          </TouchableOpacity> */}
           </View>
           <Text style={styles.stateOfMatch(selectedMatch, id)}>
             {item.section?.name}
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -138,8 +115,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 10,
     width: "100%",
+    height: 150,
     padding: 14,
-    borderRadius: 16,
     ...{
       shadowColor: "#FFF",
       shadowOffset: {
@@ -151,6 +128,7 @@ const styles = StyleSheet.create({
       elevation: 2,
     },
     backgroundColor: selectedMatch === id ? "#312651" : "#FFF",
+    position: "relative",
   }),
   container: {
     justifyContent: "space-around",
@@ -206,4 +184,4 @@ const styles = StyleSheet.create({
   }),
 });
 
-export default UpcomingMatchesCard;
+export default EventDetailsMainTop;

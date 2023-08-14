@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+
 import { API_KEY } from "../constants";
-const useFetch = (endpoint, query) => {
+
+const useFetchLineups = (endpoint, query) => {
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["liveEvent"],
+    queryKey: ["lineups"],
     queryFn: async () => {
       const { data } = await axios.get(
         `https://sportscore1.p.rapidapi.com/${endpoint}`,
@@ -23,4 +25,4 @@ const useFetch = (endpoint, query) => {
   return { data, isLoading, error, refetch };
 };
 
-export default useFetch;
+export default useFetchLineups;
