@@ -1,16 +1,23 @@
-import { View, Text } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import { View } from "react-native";
+import React, { useState } from "react";
 import RecentMatchesListContainer from "./RecentMatchesListContainer";
 import { dateFetch } from "../../../utils";
 import RecentMatchesFilter from "./RecentMatchesFilter";
 
+/**
+ * The `RecentMatchesList` component renders a list of recent matches
+ *  based on the selected date tab.
+ */
 const RecentMatchesList = () => {
   const dates = dateFetch(); // ********************************
 
   const [activeTab, setActiveTab] = useState(dates[0]);
 
-  const functionThatSavesOrBreaksMe = () => {
+  /**
+   * `switchTabs` returns component based on the value of the `activeTab`
+   * variable.
+   */
+  const switchTabs = () => {
     switch (activeTab) {
       case dates[0]:
         return <RecentMatchesListContainer currentDate={dates[0]} />;
@@ -33,11 +40,10 @@ const RecentMatchesList = () => {
       {/* Pass back: onPress Function, date selected */}
       <RecentMatchesFilter
         dates={dates}
-        // onPressRefresh={onPressRefresh}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      {functionThatSavesOrBreaksMe()}
+      {switchTabs()}
     </View>
   );
 };

@@ -1,21 +1,16 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
+/**
+ * The RecentMatchesTitle displays the title "Recent Matches"
+ * in a styled container.
+ */
 const RecentMatchesTitle = () => {
   return (
     <View style={styles.container}>
-      {/* ----------------------------------------- */}
       <View style={styles.textRow}>
         <Text style={styles.text}>Recent Matches</Text>
-        <TouchableOpacity
-          onPress={() => {
-            // TODO: Route to all live matches
-          }}
-        >
-          <Text>Show all</Text>
-        </TouchableOpacity>
       </View>
-      {/* ----------------------------------------- */}
     </View>
   );
 };

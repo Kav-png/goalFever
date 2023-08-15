@@ -1,16 +1,16 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
   FlatList,
-  TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 
 import LiveMatchesCard from "../../common/cards/LiveMatchesCard";
 import useFetch from "../../../hook/useFetch";
 
+/* LiveMatches renders a list of live matches. */
 function LiveMatches(props) {
   const { data, isLoading, error } = useFetch("sports/1/events/live", {
     page: "1",

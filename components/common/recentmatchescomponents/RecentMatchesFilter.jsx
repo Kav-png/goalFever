@@ -2,13 +2,15 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
   TouchableOpacity,
-  Pressable,
   ScrollView,
 } from "react-native";
 import React from "react";
 
+/**
+ * TabButton displays a name and changes its style based on whether it
+ * is the active tab or not. Also, capitalises the name attribute and manages onpress
+ */
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
     <TouchableOpacity
@@ -23,13 +25,10 @@ function TabButton({ name, activeTab, onHandleSearchType }) {
   );
 }
 
+// RecentMatchesFilter`. displays a list of tabs that can be pressed to change the active tab
 const RecentMatchesFilter = ({ dates, activeTab, setActiveTab }) => {
   return (
-    <ScrollView
-      horizontal
-      alwaysBounceHorizontal
-      contentContainerStyle={styles.container}
-    >
+    <ScrollView horizontal alwaysBounceHorizontal>
       <View style={{ ...styles.tabsContainer, flexDirection: "row" }}>
         {dates.map((item) => {
           return (
@@ -49,20 +48,6 @@ const RecentMatchesFilter = ({ dates, activeTab, setActiveTab }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
-  btn: (name, activeTab) => ({
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: name === activeTab ? "#444262" : "#F3F4F8",
-    borderRadius: 14,
-    marginLeft: 2,
-    shadowColor: "FFFFFF",
-  }),
-  btnText: (name, activeTab) => ({
-    fontFamily: "DMMedium",
-    fontSize: 6,
-    color: name === activeTab ? "#C3BFCC" : "#AAA9B8",
-  }),
   tabsContainer: {
     width: "100%",
     marginBottom: 12,

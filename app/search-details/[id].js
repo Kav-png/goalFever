@@ -194,52 +194,12 @@ const SearchDetails = () => {
 };
 
 const SearchDetailsApp = () => {
-  const queryClient3 = new QueryClient();
+  const queryClientSearchDetails = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient3}>
+    <QueryClientProvider client={queryClientSearchDetails}>
       <SearchDetails />
     </QueryClientProvider>
   );
 };
 
 export default SearchDetailsApp;
-
-// TODO: Design All in one search view that epo pushes into the seperate details page using the currect acticve array
-
-// {/* <View style={{}}>
-//   <SearchCard />
-// </View> */}
-// {/* <ScrollView
-//   showVerticalScrollIndicator={false}
-//   // refreshControl={
-//   //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-//   // }
-// >
-//   {isLoading ? (
-//     <ActivityIndicator size="large" color={"lightgrey"} />
-//   ) : error ? (
-//     <Text>Something went wrong</Text>
-//   ) : data.data.length === 0 ? (
-//     <Text>No data</Text>
-//   ) : (
-//     <View style={{ padding: 10, paddingBottom: 100 }}>
-//       {console.log(data)}
-//     </View>
-//   )}
-// </ScrollView> */}
-// const { data, isLoading, error, refetch } = useFetch(
-//   `${searchCurrentQuery}`,
-//   {}
-// );
-
-// useEffect(() => {
-//   // Fetch data whenever currentDate changes
-//   refetch();
-// }, [searchCurrentQuery]);
-
-// const [refreshing, setRefreshing] = useState(false);
-// const onRefresh = useCallback(() => {
-//   setRefreshing(true);
-//   refetch();
-//   setRefreshing(false);
-// }, []);

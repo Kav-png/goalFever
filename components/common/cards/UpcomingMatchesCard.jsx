@@ -1,12 +1,19 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
-import { checkImageURL } from "../../../utils"; // deprecated
 import { useRouter } from "expo-router";
 
+// Displays Data of each match that has been selected in the data array
+// Has a conditional rendering that checks if the sections of
+// data structure is available ot not and rendering only ones that are available
 const UpcomingMatchesCard = ({ item, selectedMatch }) => {
   const id = item?.id;
   const router = useRouter();
 
+  /**
+   * The handleCardPress set defines four functions that handle different card press events
+   * and navigate to different
+   * routes using expo router, leading to the details page of selected route
+   */
   const handleCardPress = () => {
     const eventId = item?.id;
     return router.push({
@@ -137,16 +144,6 @@ const UpcomingMatchesCard = ({ item, selectedMatch }) => {
               ...styles.container,
             }}
           >
-            {/* <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
-              <Text style={styles.teamName(selectedMatch, id)}>
-                {item.league?.name}
-              </Text>
-            </View> */}
             <TouchableOpacity
               style={styles.logoLeagueContainer(selectedMatch, id)}
               onPress={() => handleCardPressLeague()}
@@ -231,11 +228,6 @@ const styles = StyleSheet.create({
     fontFamily: "DMBold",
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
-  location: {
-    fontSize: 14,
-    fontFamily: "DMRegular",
-    color: "#B3AEC6",
-  },
   logoLeagueContainer: (selectedMatch, id) => ({
     width: 30,
     height: 30,

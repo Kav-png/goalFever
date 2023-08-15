@@ -2,14 +2,18 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
   TouchableOpacity,
-  Pressable,
   ScrollView,
 } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
+/**
+ * TabButton displays a name and an icon, and triggers a search type
+ * when clicked.
+ * returns TouchableOpacity component with an Icon and Text
+ * component inside.
+ */
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
     <TouchableOpacity
@@ -25,6 +29,7 @@ function TabButton({ name, activeTab, onHandleSearchType }) {
   );
 }
 
+/* The SearchButtons displays Tabs to click with dates on them*/
 const SearchButtons = ({
   dates,
   activeTab,
@@ -33,11 +38,7 @@ const SearchButtons = ({
   sameTabClicked,
 }) => {
   return (
-    <ScrollView
-      horizontal
-      alwaysBounceHorizontal
-      contentContainerStyle={styles.container}
-    >
+    <ScrollView horizontal alwaysBounceHorizontal>
       <View style={{ ...styles.tabsContainer, flexDirection: "row" }}>
         {dates.map((item) => {
           return (
@@ -60,20 +61,6 @@ const SearchButtons = ({
 };
 
 const styles = StyleSheet.create({
-  container: {},
-  btn: (name, activeTab) => ({
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: name === activeTab ? "#444262" : "#F3F4F8",
-    borderRadius: 14,
-    marginLeft: 2,
-    shadowColor: "FFFFFF",
-  }),
-  btnText: (name, activeTab) => ({
-    fontFamily: "DMMedium",
-    fontSize: 6,
-    color: name === activeTab ? "#C3BFCC" : "#AAA9B8",
-  }),
   tabsContainer: {
     width: "100%",
     marginBottom: 12,

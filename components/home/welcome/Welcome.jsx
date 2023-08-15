@@ -1,19 +1,22 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import SearchButtons from "./SearchButtons";
 import WelcomeTop from "./WelcomeTop";
 
+/* Welcome renders a view with `WelcomeTop` component and a `SearchButtons` component. */
 const Welcome = () => {
   const router = useRouter();
+
   const search = ["leagues", "teams", "players", "managers"];
   const [activeTab, setActiveTab] = useState("");
-  const params = useLocalSearchParams();
-  const [searchPhrase, setSearchPhrase] = useState("");
+
+  /* `searchPhrase` and `sameTabClicked` are two state variables that can be changed with the 
+  setters as other tabs are selected they are dependencies of the switchTabsSearch */
   const [sameTabClicked, setSameTabClicked] = useState(0);
 
   // Pushes the search phrase and the pushes to the search screen with a unique id
-  const functionThatSavesOrBreaksMe = useCallback(() => {
+  const switchTabsSearch = useCallback(() => {
     switch (activeTab) {
       case search[0]:
         return router.push({
@@ -40,25 +43,11 @@ const Welcome = () => {
     }
   }, [activeTab, router, search]);
 
+  /* used to call the `switchTabsSearch` function whenever the `activeTab`, `switchTabsSearch`, 
+or `sameTabClicked` variables change. */
   useEffect(() => {
-    if (searchPhrase === "") {
-      console.log("No search phrase");
-    }
-    if (searchPhrase.length > 3) {
-      console.log(searchPhrase);
-      // Carry out new post query and take results
-    } else {
-      console.log("Not enough characters");
-    }
-  }, [searchPhrase]);
-
-  useEffect(() => {
-    functionThatSavesOrBreaksMe();
-  }, [activeTab, functionThatSavesOrBreaksMe]);
-
-  useEffect(() => {
-    functionThatSavesOrBreaksMe();
-  }, [sameTabClicked, functionThatSavesOrBreaksMe]);
+    switchTabsSearch();
+  }, [activeTab, switchTabsSearch, sameTabClicked]);
 
   return (
     <View style={styles.container}>

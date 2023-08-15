@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
+// Picks a league from the list of leagues and sends which league is selected for
+// the parent component to sort the data for that league
 const LeaguePicker = ({
   leagues,
   selectedLeague,
@@ -22,7 +24,7 @@ const LeaguePicker = ({
         <Picker
           ref={pickerRef}
           selectedValue={selectedLeague}
-          onValueChange={(itemValue, itemIndex) => onSelectLeague(itemValue)}
+          onValueChange={(itemValue) => onSelectLeague(itemValue)}
         >
           <Picker.Item label="Select a league" value="" />
           {leagues?.map((leagueName, index) => (

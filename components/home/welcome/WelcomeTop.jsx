@@ -1,8 +1,13 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import { Feather, Entypo } from "@expo/vector-icons";
+import React from "react";
+import { Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
+/**
+ * Renders a welcome message and a search bar for searching events.
+ * returns view containing a welcome message and
+ * a search bar.
+ */
 const WelcomeTop = () => {
   const router = useRouter();
   return (

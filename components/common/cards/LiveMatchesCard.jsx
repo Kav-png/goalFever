@@ -2,10 +2,14 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 
+/* `LiveMatchesCard` displays graphically the live matches information */
 const LiveMatchesCard = ({ item, selectedMatch }) => {
   const id = item?.id;
   const router = useRouter();
 
+  /**
+   * `handleCardPress` navigates to the event details page with the specified event ID.
+   */
   const handleCardPress = () => {
     return router.push({
       pathname: `/event-details/${id}`,
@@ -166,11 +170,6 @@ const styles = StyleSheet.create({
     fontFamily: "DMBold",
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
-  location: {
-    fontSize: 14,
-    fontFamily: "DMRegular",
-    color: "#B3AEC6",
-  },
 });
 
 export default LiveMatchesCard;

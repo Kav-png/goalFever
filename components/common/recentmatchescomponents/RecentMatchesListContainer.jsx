@@ -1,22 +1,18 @@
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import axios from "axios";
-import useFetch from "../../../hook/useFetch";
-import LeagueSelectionMenu from "../eventdetails/LeagueSelectionMenu";
+import { View, Text, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
 import _ from "lodash";
 
+import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
+import useFetch from "../../../hook/useFetch";
+import LeagueSelectionMenu from "../eventdetails/LeagueSelectionMenu";
+
 const RecentMatchesListContainer = ({ currentDate }) => {
-  const router = useRouter();
   const [selectedLeague, setSelectedLeague] = useState(""); // Track the selected league
   const handleLeagueSelect = (leagueId) => {
     setSelectedLeague(leagueId);
     console.log(selectedLeague);
   };
-  const [leagueDataProcessed, setLeagueDataProcessed] = useState(false);
 
-  const params = useLocalSearchParams();
   const { data, isLoading, error, refetch } = useFetch(
     `sports/1/events/date/${currentDate}`,
     {
@@ -29,6 +25,10 @@ const RecentMatchesListContainer = ({ currentDate }) => {
     refetch();
   }, [currentDate]);
 
+  /**
+   * `getFilteredItems` filters an array of data based on the value of `selectedLeague`
+   * and returns the data or the filtered array
+   */
   const getFilteredItems = () => {
     if (selectedLeague) {
       return data.data.filter((item) => item.league.name === selectedLeague);
@@ -37,6 +37,10 @@ const RecentMatchesListContainer = ({ currentDate }) => {
     }
   };
 
+  /**
+   * `handleUniqueLeagueNames` extracts unique league names
+   * from a given data array and returns them as an array.
+   */
   const handleUniqueLeagueNames = () => {
     const uniqueLeagueNames = new Set();
 
@@ -84,5 +88,3 @@ const RecentMatchesListContainer = ({ currentDate }) => {
 };
 
 export default RecentMatchesListContainer;
-
-// Log: 1 - Instead of passing the object in which is currently not working. I am just going to pass the id and refetch the information in the search screen which I would have to do anyway
