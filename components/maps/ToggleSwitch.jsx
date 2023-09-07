@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, SIZES } from "../../constants";
 
-const { width, height } = Dimensions.get("window");
+// displays a toggle switch to switch between map and list view
+// params: onPress, isActive, handleGetLocation
 const ToggleSwitch = ({ onPress, isActive, handleGetLocation }) => {
   return (
     <View style={{ flexDirection: "row" }}>
@@ -35,8 +31,8 @@ const ToggleSwitch = ({ onPress, isActive, handleGetLocation }) => {
 const styles = StyleSheet.create({
   toggleContainer: {
     width: 50,
-    height: 30,
-    borderRadius: 15,
+    height: SIZES.x2Large,
+    borderRadius: SIZES.medium,
     borderWidth: 1,
     borderColor: "#ccc",
     justifyContent: "center",
@@ -47,18 +43,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#007AFF",
   },
   toggle: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
+    width: SIZES.x26Large,
+    height: SIZES.x26Large,
+    borderRadius: SIZES.small,
     backgroundColor: "#ccc",
   },
   toggleActive: {
     backgroundColor: "#fff",
   },
   textContainer: {
-    paddingHorizontal: 10,
-    borderRadius: 20,
-    backgroundColor: "white",
+    paddingHorizontal: SIZES.xSmall,
+    borderRadius: SIZES.large,
+    backgroundColor: COLORS.white,
     justifyContent: "center",
     alignItems: "center",
   },

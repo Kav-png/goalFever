@@ -1,11 +1,12 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
 import React from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
 /**
  * TabButton displays a name and changes its style based on whether it
@@ -50,20 +51,21 @@ const RecentMatchesFilter = ({ dates, activeTab, setActiveTab }) => {
 const styles = StyleSheet.create({
   tabsContainer: {
     width: "100%",
-    marginBottom: 12,
-    color: "white",
+    marginBottom: SIZES.small,
+    color: COLORS.white,
   },
   tab: (activeTab, name) => ({
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 8,
+    paddingVertical: SIZES.x4Small,
+    paddingHorizontal: SIZES.x2Small,
+    borderRadius: SIZES.x2Small,
     borderWidth: 1,
-    borderColor: activeTab === name ? "#444262" : "#C1C0C8",
-    marginHorizontal: 3,
+    borderColor: activeTab === name ? COLORS.tertiary : COLORS.gray,
+    marginHorizontal: SIZES.x4Small,
+    margin: SIZES.x3Small,
   }),
   tabText: (activeTab, name) => ({
-    fontFamily: "DMMedium",
-    color: activeTab === name ? "#444262" : "#C1C0C8",
+    fontFamily: FONT.medium,
+    color: activeTab === name ? COLORS.tertiary : COLORS.gray,
   }),
 });
 

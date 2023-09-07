@@ -1,15 +1,21 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { StyleSheet } from "react-native";
-import useFetch from "../../hook/useFetch";
-import ManagerInfo from "../../components/common/teamdetails/ManagerInfo";
-import ManagerTransfers from "../../components/common/managerdetails/ManagerTransfers";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ScrollView } from "react-native";
-import { ActivityIndicator } from "react-native";
-import { useEffect } from "react";
-
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import ManagerTransfers from "../../components/common/managerdetails/ManagerTransfers";
+import ManagerInfo from "../../components/common/teamdetails/ManagerInfo";
+import { COLORS, FONT, SIZES } from "../../constants";
+import useFetch from "../../hook/useFetch";
+/**
+ * `ManagerDetailsPage` displays details of a manager,
+ * including their name, information, and transfers.
+ */
 const ManagerDetailsPage = () => {
   const params = useLocalSearchParams();
   const id = params.managerId;
@@ -64,17 +70,17 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: "#FFF",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: SIZES.xSmall,
   },
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    margin: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
   },
   logoImage: {
@@ -82,8 +88,8 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   leagueText: {
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: "#312651",
   },
 });

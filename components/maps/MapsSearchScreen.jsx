@@ -1,19 +1,21 @@
-import {
-  View,
-  Text,
-  Dimensions,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
 import React from "react";
-import ToggleSwitch from "./ToggleSwitch";
-import { StyleSheet } from "react-native";
-import useFetchMaps from "../../hook/useFetchMaps";
-import { useEffect } from "react";
+import {
+  ActivityIndicator,
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { SIZES } from "../../constants";
 import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
+import ToggleSwitch from "./ToggleSwitch";
 
 const { width, height } = Dimensions.get("window");
-
+// dispays the list of stadiums in the area
+// the user can toggle between the list and the map
+// the user can also get the current location
+// params: onPress, isActive, data, error, isLoading, refetch, handleGetLocation
 const MapsSearchScreen = ({
   onPress,
   isActive,
@@ -25,7 +27,9 @@ const MapsSearchScreen = ({
 }) => {
   return (
     <View style={{ flex: 1, zIndex: 1 }}>
-      <ScrollView contentContainerStyle={{ marginLeft: 10, marginTop: 60 }}>
+      <ScrollView
+        contentContainerStyle={{ marginLeft: SIZES.xSmall, marginTop: 60 }}
+      >
         {isLoading ? (
           <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
         ) : error ? (
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
     width: "45%",
   },
   stadiumCardStyle: {
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: "95%",
     alignSelf: "center",
   },

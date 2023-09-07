@@ -1,8 +1,11 @@
-import React from "react";
-import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
-import { Feather, Entypo } from "@expo/vector-icons";
+import { Entypo, Feather } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
+import React from "react";
+import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
+// Search bar for the query screen, handles the props and the styling
+// props are: setClicked, clicked, searchPhrase, setSearchPhrase, setSearchPhraseSubmitted, searchPhraseSubmitted
 const SearchBarQuery = ({
   setClicked,
   clicked,
@@ -73,33 +76,33 @@ export default SearchBarQuery;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 5,
+    margin: SIZES.x3Small,
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
   },
   searchBar__unclicked: {
-    padding: 7,
+    padding: SIZES.x2Small,
     flexDirection: "row",
     width: "95%",
-    backgroundColor: "#d9dbda",
-    borderRadius: 15,
+    backgroundColor: COLORS.primary,
+    borderRadius: SIZES.medium,
     alignItems: "center",
   },
   searchBar__clicked: {
-    padding: 7,
+    padding: SIZES.x2Small,
     flexDirection: "row",
     width: "80%",
-    backgroundColor: "#d9dbda",
-    borderRadius: 15,
+    backgroundColor: COLORS.primary,
+    borderRadius: SIZES.medium,
     alignItems: "center",
     justifyContent: "space-evenly",
   },
   input: {
-    fontFamily: "DMRegular",
-    fontSize: 20,
-    marginLeft: 5,
+    fontFamily: FONT.regular,
+    fontSize: SIZES.large,
+    marginLeft: SIZES.x3Small,
     width: "90%",
   },
 });

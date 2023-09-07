@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
+import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
 
+// Renders the details screen top part for players and leagues @common component
 const PlayerDetailsMainTop = ({ selectedItem, item, type }) => {
   // take id from item data
   const id = item?.id;
@@ -23,7 +24,7 @@ const PlayerDetailsMainTop = ({ selectedItem, item, type }) => {
         break;
     }
   };
-
+  // contains extra information based on the search parameters
   const extraInformationContainer = () => {
     return (
       <ExtraInformationContainer
@@ -65,20 +66,10 @@ const PlayerDetailsMainTop = ({ selectedItem, item, type }) => {
 const styles = StyleSheet.create({
   containerWrapper: (selectedItem, id) => ({
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: "100%",
-    padding: 10,
-    borderRadius: 16,
-    ...{
-      shadowColor: "#FFF",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 2,
-    },
+    padding: SIZES.xSmall,
+    borderRadius: SIZES.medium,
     backgroundColor: selectedItem === id ? "#312651" : "#FFF",
   }),
   container: {
@@ -86,48 +77,48 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoContainer: (selectedItem, id) => ({
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: 60,
     height: 65,
     backgroundColor: selectedItem === id ? "#F3F4F8" : "#FFF",
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "lightgrey",
-    borderWidth: 3,
+    borderColor: COLORS.gray2,
+    borderWidth: SIZES.x4Small,
   }),
   scoreText: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.regular,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatch: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMBold",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.bold,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
     justifyContent: "space-around",
     alignItems: "flex-end",
-    paddingHorizontal: 10,
+    paddingHorizontal: SIZES.xSmall,
     flex: 3,
   },
   teamName: (selectedItem, id) => ({
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
-    marginLeft: 10,
+    marginLeft: SIZES.xSmall,
   }),
   location: {
-    fontSize: 14,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.regular,
     color: "#B3AEC6",
   },
   logoLeagueContainer: (selectedItem, id) => ({
-    width: 30,
-    height: 30,
+    width: SIZES.x2Large,
+    height: SIZES.x2Large,
     backgroundColor: selectedItem === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
   }),

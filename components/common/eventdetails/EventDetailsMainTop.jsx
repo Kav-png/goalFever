@@ -1,7 +1,9 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import React from "react";
 import { useRouter } from "expo-router";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FONT, SIZES } from "../../../constants";
 
+// Displays the Details of an event taking item as a prop and handles routing
 const EventDetailsMainTop = ({ item }) => {
   const id = item?.id;
   const router = useRouter();
@@ -140,20 +142,10 @@ const EventDetailsMainTop = ({ item }) => {
 const styles = StyleSheet.create({
   containerWrapper: (selectedMatch, id) => ({
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: "100%",
     height: 150,
-    padding: 14,
-    ...{
-      shadowColor: "#FFF",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 2,
-    },
+    padding: SIZES.medium,
     backgroundColor: selectedMatch === id ? "#312651" : "#FFF",
     position: "relative",
   }),
@@ -163,11 +155,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoContainer: (selectedMatch, id) => ({
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: 50,
     height: 50,
     backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
   }),
@@ -176,36 +168,36 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   scoreText: (selectedMatch, id) => ({
-    fontSize: 10,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.regular,
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatch: (selectedMatch, id) => ({
-    fontSize: 12,
-    fontFamily: "DMBold",
+    fontSize: SIZES.small,
+    fontFamily: FONT.bold,
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
     justifyContent: "space-around",
     alignItems: "flex-end",
-    paddingHorizontal: 10,
+    paddingHorizontal: SIZES.xSmall,
     flex: 3,
   },
   teamName: (selectedMatch, id) => ({
-    fontSize: 14,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   location: {
-    fontSize: 14,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.regular,
     color: "#B3AEC6",
   },
   logoLeagueContainer: (selectedMatch, id) => ({
-    width: 30,
-    height: 30,
+    width: SIZES.x2Large,
+    height: SIZES.x2Large,
     backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
   }),

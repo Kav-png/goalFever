@@ -1,15 +1,11 @@
-import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import React, { useRef, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SIZES } from "../../../constants";
 
 // Picks a league from the list of leagues and sends which league is selected for
 // the parent component to sort the data for that league
-const LeaguePicker = ({
-  leagues,
-  selectedLeague,
-  onSelectLeague,
-  setSelectedLeague,
-}) => {
+const LeaguePicker = ({ leagues, selectedLeague, onSelectLeague }) => {
   const [isLeagueSelected, setIsLeagueSelected] = useState(false);
   const pickerRef = useRef();
   return (
@@ -39,17 +35,17 @@ const LeaguePicker = ({
 const styles = StyleSheet.create({
   container: {
     padding: 0,
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
   },
   title: {
-    fontSize: 15,
+    fontSize: SIZES.medium,
     fontWeight: "bold",
   },
   button: {
     width: "40%",
     position: "relative",
-    borderRadius: 10,
-    padding: 8,
+    borderRadius: SIZES.xSmall,
+    padding: SIZES.x2Small,
     justifyContent: "center",
     borderWidth: 1,
   },

@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
 /**
  * Renders a welcome message and a search bar for searching events.
@@ -30,7 +31,9 @@ const WelcomeTop = () => {
               });
             }}
           >
-            <Text style={[{ color: "grey" }, styles.input]}>Search Events</Text>
+            <Text style={[{ color: COLORS.gray }, styles.input]}>
+              Search Events
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -41,27 +44,28 @@ const WelcomeTop = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    paddingVertical: 5,
+    paddingVertical: SIZES.x3Small,
   },
   welcomeMessage: {
-    fontFamily: "DMBold",
-    fontSize: 20,
-    paddingHorizontal: 15,
+    fontFamily: FONT.bold,
+    fontSize: SIZES.large,
+    paddingHorizontal: SIZES.medium,
   },
   containerMessage: {
-    margin: 5,
+    margin: SIZES.x3Small,
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
   },
   searchBar: {
-    padding: 7,
+    padding: SIZES.x2Small,
     flexDirection: "row",
     width: "95%",
-    backgroundColor: "#d9dbda",
-    borderRadius: 15,
+    backgroundColor: COLORS.primary,
+    borderRadius: SIZES.medium,
     alignItems: "center",
   },
 });
+
 export default WelcomeTop;

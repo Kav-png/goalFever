@@ -1,6 +1,8 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { FONT, SIZES } from "../../../../constants";
 
+// Contains Exxtra Information for each card depending on the type of the card that is given
 const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
   const extraInformation = () => {
     switch (type) {
@@ -110,8 +112,11 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
               }}
             >
               {item?.facts
-                ? item.facts.slice(0, 3).map((fact) => (
-                    <Text style={styles.scoreText(selectedItem, id)}>
+                ? item.facts.slice(0, 3).map((fact, index) => (
+                    <Text
+                      style={styles.scoreText(selectedItem, id)}
+                      key={index}
+                    >
                       {fact.name} - {fact.value}
                     </Text>
                   ))
@@ -139,20 +144,20 @@ const ExtraInformationContainer = ({ type, selectedItem, id, item }) => {
 
 const styles = StyleSheet.create({
   scoreText: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.regular,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
-    marginLeft: 10,
+    marginLeft: SIZES.xSmall,
   }),
   scoreTextBold: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMBold",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.bold,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
-    marginLeft: 10,
+    marginLeft: SIZES.xSmall,
   }),
   teamName: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMBold",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.bold,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
 });

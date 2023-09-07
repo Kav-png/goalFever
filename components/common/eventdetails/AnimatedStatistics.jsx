@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import StatsBar from "./StatsBar";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 import useFetchStats from "../../../hook/useFetchStats";
-import { ActivityIndicator } from "react-native";
+import StatsBar from "./StatsBar";
 
+// Displays the stats of an eventId in terms of bars and numbers
 const AnimatedStatistics = ({ eventId }) => {
   const { data, isLoading, error, refetch } = useFetchStats(
     `events/${eventId}/statistics`,
@@ -28,19 +29,22 @@ const AnimatedStatistics = ({ eventId }) => {
 
   return (
     <View style={styles.container}>
+      <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
+        <View></View>
+        <Text style={styles.leagueText}>Home</Text>
+        <Text style={styles.leagueText}>Away</Text>
+      </View>
       {data.data.map((statistic) => (
         <View key={statistic.id} style={styles.statisticContainer}>
           <Text style={styles.statisticText}>
             {formatString(statistic.name)}:
           </Text>
-          <Text>
-            Home {statistic.home.substring(0, 4)} - Away{" "}
-            {statistic.away.substring(0, 4)}
-          </Text>
+          <Text>{statistic.home.substring(0, 4)}</Text>
           <StatsBar
             value1={parseInt(statistic.home)}
             value2={parseInt(statistic.away)}
           />
+          <Text>{statistic.away.substring(0, 4)}</Text>
         </View>
       ))}
     </View>
@@ -56,19 +60,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "white",
-    marginBottom: 5,
-    justifyContent: "space-between",
-    borderRadius: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    marginBottom: SIZES.x3Small,
+    borderRadius: SIZES.xSmall,
+    padding: SIZES.xSmall,
   },
   statisticName: {
-    marginBottom: 5,
+    marginBottom: SIZES.x3Small,
   },
   ratioContainer: {
     flexDirection: "row",
-    height: 10, // Height of the ratio bar
-    borderRadius: 5,
+    height: SIZES.xSmall, // Height of the ratio bar
+    borderRadius: SIZES.x3Small,
     overflow: "hidden",
   },
   bar: {
@@ -76,7 +79,13 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   statisticText: {
-    marginRight: 10,
+    marginRight: SIZES.xSmall,
+    width: "30%",
+  },
+  leagueText: {
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
+    color: "#312651",
   },
 });
 

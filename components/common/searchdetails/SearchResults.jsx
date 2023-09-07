@@ -14,15 +14,17 @@ const SearchResults = ({
     <View>
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text>Error: {error}</Text> : null}
-      <View style={{ marginHorizontal: 15 }}>
+      <View style={{ marginHorizontal: 5 }}>
         {sortedData || sortedByAgeData ? (
           sortedOrder()
         ) : (
-          <FlatList
-            data={uniqueData}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <SearchCard item={item} />}
-          />
+          <View style={{}}>
+            <FlatList
+              data={uniqueData.slice(0, 40)}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <SearchCard item={item} />}
+            />
+          </View>
         )}
       </View>
     </View>

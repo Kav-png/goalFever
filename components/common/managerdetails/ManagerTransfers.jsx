@@ -1,15 +1,13 @@
-import { View, Text } from "react-native";
-import React from "react";
-import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native";
-import { ActivityIndicator } from "react-native";
-import useFetchTeam from "../../../hook/useFetchTeam";
-import { useEffect } from "react";
-import TeamDetailsMainTop from "../teamdetails/TeamDetailsMainTop";
-import { useRouter } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
+import useFetchTeam from "../../../hook/useFetchTeam";
+import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
+import TeamDetailsMainTop from "../teamdetails/TeamDetailsMainTop";
 
+// Displays Transfers for Managers and Players @common component
 const ManagerTransfers = ({ id, type }) => {
   const router = useRouter();
   const { data, isLoading, error, refetch } = useFetchTeam(
@@ -75,7 +73,12 @@ const ManagerTransfers = ({ id, type }) => {
                       item={item}
                     />
                   </View>
-                  <View style={{ marginHorizontal: 5, marginVertical: 10 }}>
+                  <View
+                    style={{
+                      marginHorizontal: SIZES.x3Small,
+                      marginVertical: SIZES.xSmall,
+                    }}
+                  >
                     <TeamDetailsMainTop
                       item={item.team}
                       index={index}
@@ -89,7 +92,7 @@ const ManagerTransfers = ({ id, type }) => {
           ) : (
             <View>
               <View style={styles.cardContainer}>
-                <Text style={{ fontFamily: "DMBold" }}>Transfers: </Text>
+                <Text style={{ fontFamily: FONT.bold }}>Transfers: </Text>
               </View>
               {data.data.slice(0, 6)?.map((item, index) => (
                 <View
@@ -113,8 +116,8 @@ const ManagerTransfers = ({ id, type }) => {
                     <View
                       style={[
                         {
-                          marginVertical: 10,
-                          marginHorizontal: 5,
+                          marginVertical: SIZES.xSmall,
+                          marginHorizontal: SIZES.x3Small,
                           flexDirection: "row",
                           flexWrap: "wrap",
                           justifyContent: "space-between",
@@ -155,9 +158,9 @@ const ManagerTransfers = ({ id, type }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
   },
 });

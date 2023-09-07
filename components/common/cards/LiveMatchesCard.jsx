@@ -1,6 +1,7 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import React from "react";
 import { useRouter } from "expo-router";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants/theme";
 
 /* `LiveMatchesCard` displays graphically the live matches information */
 const LiveMatchesCard = ({ item, selectedMatch }) => {
@@ -17,18 +18,48 @@ const LiveMatchesCard = ({ item, selectedMatch }) => {
     });
   };
 
+  const handleCardPressTeamHome = () => {
+    const teamId = item?.home_team?.id;
+    const teamName = item?.home_team?.name;
+    return router.push({
+      pathname: `/team-details/${teamId}`,
+      params: { teamId: teamId, teamName: teamName },
+    });
+  };
+
+  const handleCardPressTeamAway = () => {
+    const teamId = item?.away_team?.id;
+    const teamName = item?.away_team?.name;
+    return router.push({
+      pathname: `/team-details/${teamId}`,
+      params: { teamId: teamId, teamName: teamName },
+    });
+  };
+
+  const handleCardPressLeague = () => {
+    const leaguesId = item?.league?.id;
+    const leaguesName = item?.league?.name;
+    return router.push({
+      pathname: `/leagues-details/${id}`,
+      params: { leaguesId: leaguesId, leaguesName: leaguesName },
+    });
+  };
+
   return (
-    <View style={styles.containerWrapper(selectedMatch, id)}>
+    <TouchableOpacity
+      style={styles.containerWrapper(selectedMatch, id)}
+      onPress={() => handleCardPress()}
+    >
       <View style={styles.stateOfMatchWrapper}>
         <Text style={styles.stateOfMatch(selectedMatch, id)}>
           {item.status_more}
         </Text>
       </View>
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => handleCardPress()}
-      >
-        <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.logoContainer(selectedMatch, id)}
+          onPress={() => handleCardPressTeamHome()}
+        >
           <Image
             source={{
               uri: item.home_score.has_logo
@@ -46,7 +77,10 @@ const LiveMatchesCard = ({ item, selectedMatch }) => {
         <Text style={styles.scoreText(selectedMatch, id)}>
           {item.away_score.display}
         </Text>
-        <TouchableOpacity style={styles.logoContainer(selectedMatch, id)}>
+        <TouchableOpacity
+          style={styles.logoContainer(selectedMatch, id)}
+          onPress={() => handleCardPressTeamAway()}
+        >
           <Image
             source={{
               uri: item.away_score.has_logo
@@ -57,7 +91,7 @@ const LiveMatchesCard = ({ item, selectedMatch }) => {
             style={styles.logoImage}
           />
         </TouchableOpacity>
-      </TouchableOpacity>
+      </View>
       <View style={styles.teamNameWrapper}>
         {item.home_team.name.length > 12 ? (
           <Text style={styles.teamName(selectedMatch, id)}>
@@ -80,7 +114,10 @@ const LiveMatchesCard = ({ item, selectedMatch }) => {
       </View>
       <View style={styles.container}></View>
       <View style={{ ...styles.container, justifyContent: "flex-start" }}>
-        <TouchableOpacity style={styles.logoLeagueContainer(selectedMatch, id)}>
+        <TouchableOpacity
+          style={styles.logoLeagueContainer(selectedMatch, id)}
+          onPress={() => handleCardPressLeague()}
+        >
           {item.league.has_logo ? (
             <Image
               source={{
@@ -99,51 +136,43 @@ const LiveMatchesCard = ({ item, selectedMatch }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   teamNameWrapper: {
-    marginTop: 5,
+    marginTop: SIZES.x3Small,
     justifyContent: "space-between",
     flexDirection: "row",
     flexWrap: 1,
   },
   container: {
-    marginTop: 5,
+    marginTop: SIZES.x3Small,
     justifyContent: "space-between",
     flexDirection: "row",
   },
   containerWrapper: (selectedMatch, id) => ({
     width: 250,
     padding: 14,
-    borderRadius: 16,
-    ...{
-      shadowColor: "#FFF",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 2,
-    },
-    backgroundColor: selectedMatch === id ? "#312651" : "#FFF",
+    borderRadius: SIZES.medium,
+    ...SHADOWS.small,
+    backgroundColor: selectedMatch === id ? COLORS.tertiary : COLORS.white,
+    margin: SIZES.x3Small,
   }),
   logoContainer: (selectedMatch, id) => ({
     width: 50,
     height: 50,
-    backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    backgroundColor: selectedMatch === id ? COLORS.white : COLORS.lightWhite,
+    borderRadius: SIZES.xLarge,
     justifyContent: "center",
     alignItems: "center",
   }),
   logoLeagueContainer: (selectedMatch, id) => ({
     width: 30,
     height: 30,
-    backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    backgroundColor: selectedMatch === id ? COLORS.white : COLORS.lightWhite,
+    borderRadius: SIZES.xLarge,
     justifyContent: "center",
     alignItems: "center",
   }),
@@ -152,23 +181,23 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   scoreText: (selectedMatch, id) => ({
-    fontSize: 30,
-    fontFamily: "DMBold",
-    color: selectedMatch === id ? "#FAFAFC" : "#312651",
+    fontSize: SIZES.xxLarge,
+    fontFamily: FONT.bold,
+    color: selectedMatch === id ? COLORS.lightWhite : COLORS.tertiary,
   }),
   stateOfMatch: (selectedMatch, id) => ({
-    fontSize: 10,
-    fontFamily: "DMBold",
-    color: selectedMatch === id ? "#FAFAFC" : "#312651",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.bold,
+    color: selectedMatch === id ? COLORS.lightWhite : COLORS.tertiary,
   }),
   stateOfMatchWrapper: {
     justifyContent: "flex-start",
     alignItems: "center",
   },
   teamName: (selectedMatch, id) => ({
-    fontSize: 14,
-    fontFamily: "DMBold",
-    color: selectedMatch === id ? "#FAFAFC" : "#312651",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
+    color: selectedMatch === id ? COLORS.lightWhite : COLORS.tertiary,
   }),
 });
 

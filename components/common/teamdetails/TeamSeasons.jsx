@@ -1,14 +1,12 @@
-import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { COLORS, SHADOWS, SIZES } from "../../../constants";
 import useFetchTeam from "../../../hook/useFetchTeam";
-import { StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
-import { useEffect } from "react";
-import { ActivityIndicator } from "react-native";
 
+// Component to display the seasons of type
+// params: id, type
 const TeamSeasons = ({ id, type }) => {
-  const router = useRouter();
   const { data, isLoading, error, refetch } = useFetchTeam(
     `${type}/${id}/seasons`,
     {},
@@ -20,15 +18,14 @@ const TeamSeasons = ({ id, type }) => {
     refetch();
   }, [id]);
 
-  // const handleCardPress = (index) => {
-  //   const leaguesId = data.data[index]?.league_id;
-  //   return router.push({
-  //     pathname: `/event-details/${leaguesId}`,
-  //     params: { leaguesId: leaguesId },
-  //   });
-  // };
-
-  // TODO! Create a details page for seasons
+  const uniqueData = data?.data?.reduce((acc, current) => {
+    const x = acc.find((item) => item.id === current.id);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
 
   return (
     <View>
@@ -38,10 +35,9 @@ const TeamSeasons = ({ id, type }) => {
         <Text>Something went wrong</Text> //  Something went wrong error message
       ) : (
         <View>
-          {data.data.slice(0, 6)?.map((item, index) => (
+          {uniqueData.slice(0, 6)?.map((item, index) => (
             <TouchableOpacity
               // onPress={() => handleCardPress(index)}
-              onPress={() => {}}
               style={styles.cardContainer}
               key={`${type}-seasons-${item?.id}`}
             >
@@ -57,12 +53,13 @@ const TeamSeasons = ({ id, type }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    marginHorizontal: 10,
-    marginVertical: 5,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    marginHorizontal: SIZES.xSmall,
+    marginVertical: SIZES.x3Small,
+    padding: SIZES.xSmall,
     justifyContent: "center",
+    ...SHADOWS.small,
   },
 });
 

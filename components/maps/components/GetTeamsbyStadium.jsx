@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import stadiumData from "../stadiumData.json";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import stringSimilarity from "string-similarity";
+import { COLORS, SIZES } from "../../../constants";
 import SearchTeamCardContainer from "../../common/cards/searchcomponents/SearchTeamCardContainer";
+import stadiumData from "../stadiumData.json";
 
+// Component to search for teams based on stadium name
+// This component is used in the SearchScreen
+// It takes in the address as a prop and returns the teams that play in
+// that stadium
+// uses json file with stadium data to search for teams
 const GetTeamsByStadium = ({ address, setIsMoreInformationAvailable }) => {
   const [searchedTeams, setSearchedTeams] = useState([]);
 
@@ -91,14 +97,14 @@ const GetTeamsByStadium = ({ address, setIsMoreInformationAvailable }) => {
 
 const styles = StyleSheet.create({
   text: {
-    color: "white",
+    color: COLORS.white,
     fontWeight: "bold",
     textAlign: "center",
-    borderRadius: 10,
+    borderRadius: SIZES.xSmall,
   },
   container: {
     backgroundColor: "lightblue",
-    borderRadius: 10,
+    borderRadius: SIZES.xSmall,
   },
 });
 

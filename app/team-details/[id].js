@@ -1,20 +1,27 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
-import useFetch from "../../hook/useFetch";
-import { useEffect } from "react";
-import TeamDetailsMainTop from "../../components/common/teamdetails/TeamDetailsMainTop";
-import { ScrollView } from "react-native";
-import { ActivityIndicator } from "react-native";
-import ManagerInfo from "../../components/common/teamdetails/ManagerInfo";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native";
-import MoreInformation from "../../components/common/teamdetails/MoreInformation";
-import TeamsMatches from "../../components/common/teamdetails/TeamsMatches";
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import Lineup from "../../components/common/eventdetails/Lineup";
+import ManagerInfo from "../../components/common/teamdetails/ManagerInfo";
+import MoreInformation from "../../components/common/teamdetails/MoreInformation";
+import TeamDetailsMainTop from "../../components/common/teamdetails/TeamDetailsMainTop";
 import TeamSeasons from "../../components/common/teamdetails/TeamSeasons";
+import TeamsMatches from "../../components/common/teamdetails/TeamsMatches";
+import useFetch from "../../hook/useFetch";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../constants";
 
+/**
+ * `TeamDetailsPage`  displays details about a specific team,
+ * including its manager, lineup, upcoming matches, past seasons,
+ * and additional information.
+ */
 const TeamDetailsPage = () => {
   const params = useLocalSearchParams();
   const id = params.teamId;
@@ -91,26 +98,27 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: "#FFF",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: SIZES.xSmall,
   },
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    margin: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
+    ...SHADOWS.small,
   },
   logoImage: {
     width: "70%",
     height: "70%",
   },
   leagueText: {
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: "#312651",
   },
 });

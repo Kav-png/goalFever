@@ -1,28 +1,19 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  RefreshControl,
-  ActivityIndicator,
-  Button,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Stack, useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { Button, FlatList, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import useFetch from "../../hook/useFetch";
-import SearchBarQuery from "../../components/common/searchbar/SearchBarQuery";
 import SearchCard from "../../components/common/cards/SearchCard";
-import fetchData from "../../hook/postViaAxiosData";
-import { sortByAge, sortByTransferValue } from "../../utils/searchUtils";
+import SearchBarQuery from "../../components/common/searchbar/SearchBarQuery";
 import RecentSearches from "../../components/common/searchdetails/RecentSearches";
 import SearchResults from "../../components/common/searchdetails/SearchResults";
 import SortButtons from "../../components/common/searchdetails/SortButtons";
+import { SIZES } from "../../constants";
+import fetchData from "../../hook/postViaAxiosData";
+import { sortByAge, sortByTransferValue } from "../../utils/searchUtils";
 
+// Search Details page - displays the search bar, recent searches and search results
 const SearchDetails = () => {
   const { searchCurrentQuery } = useLocalSearchParams();
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -74,20 +65,20 @@ const SearchDetails = () => {
   // updates the variables depending on if searchPhraseSubmitted is updated or not, and checks if there is a match between the previous search and the current search
   useEffect(() => {
     if (searchPhrase === "") {
-      console.log("No search phrase");
+      setError("No search phrase");
     }
-    if (searchPhrase.length > 3) {
+    if (searchPhrase.length > 3 && searchPhrase.length < 20) {
       if (searchPhrase === previousSearchPhrase) {
-        console.log("Already found");
+        setError("Already found");
       } else {
         setPreviousSearchPhrase(searchPhrase);
-        console.log(searchPhrase);
+        setError("");
       }
       // Carry out new post query and take results
     } else {
-      console.log("Not enough characters");
+      setError("Not enough characters");
     }
-  }, [searchPhraseSubmitted]);
+  }, [searchPhrase]);
 
   // removes redundant data so the key is unique
   const uniqueData = fetchedData?.reduce((acc, current) => {
@@ -145,7 +136,7 @@ const SearchDetails = () => {
     }
   };
   return (
-    <SafeAreaView style={{}}>
+    <SafeAreaView style={{ flex: 1, paddingBottom: 340 }}>
       <Stack.Screen
         options={{
           headerStyle: {},
@@ -154,7 +145,7 @@ const SearchDetails = () => {
         }}
       />
       <>
-        <View style={{ margin: 5, position: "absolute" }}>
+        <View style={{ margin: SIZES.x4Small, position: "absolute" }}>
           <SearchBarQuery
             searchPhrase={searchPhrase}
             setSearchPhrase={setSearchPhrase}
@@ -176,9 +167,12 @@ const SearchDetails = () => {
             />
           ) : null}
           {recentSearches.length > 0 && (
-            <RecentSearches recentSearches={recentSearches} />
+            <RecentSearches
+              recentSearches={recentSearches}
+              setSearchPhrase={setSearchPhrase}
+            />
           )}
-          <Button title="Fetch Data" onPress={handleFetchData} />
+          <Button title="Search" onPress={handleFetchData} />
           <SearchResults
             isLoading={isLoading}
             error={error}

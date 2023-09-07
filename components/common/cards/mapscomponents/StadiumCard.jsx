@@ -1,14 +1,13 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
-import NewsFooter from "../../../news/NewsFooter";
-import PhoneCallButton from "./PhoneCallButton";
-import { useState } from "react";
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import GetTeamsByStadium from "../../../maps/components/GetTeamsbyStadium";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
+/* `StadiumCard` displays information about the locations of stadiums */
 const StadiumCard = ({ item, selectedMatch, id }) => {
   const [moreInformation, setMoreInformation] = useState(false);
   const [isMoreInformationAvailable, setIsMoreInformationAvailable] =
-    useState(false);
+    useState(true);
   return (
     <View style={styles.containerWrapper(selectedMatch, id)}>
       <View style={styles.attachedComponent}>
@@ -31,7 +30,9 @@ const StadiumCard = ({ item, selectedMatch, id }) => {
               setIsMoreInformationAvailable={setIsMoreInformationAvailable}
             />
           </View>
-        ) : null}
+        ) : isMoreInformationAvailable ? null : (
+          <Text>More information not Available</Text>
+        )}
       </View>
     </View>
   );
@@ -41,18 +42,9 @@ const styles = StyleSheet.create({
   containerWrapper: (selectedMatch, id) => ({
     flexDirection: "row",
     width: "95%",
-    padding: 10,
-    borderRadius: 16,
-    ...{
-      shadowColor: "#FFF",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 2,
-    },
+    padding: SIZES.xSmall,
+    borderRadius: SIZES.medium,
+    ...SHADOWS.small,
     backgroundColor: selectedMatch === id ? "#312651" : "#FFF",
     justifyContent: "center",
     alignItems: "center",
@@ -63,11 +55,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoContainer: (selectedMatch, id) => ({
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: 50,
     height: 50,
     backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
   }),
@@ -76,13 +68,13 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   scoreText: (selectedMatch, id) => ({
-    fontSize: 10,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.regular,
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatch: (selectedMatch, id) => ({
-    fontSize: 12,
-    fontFamily: "DMBold",
+    fontSize: SIZES.small,
+    fontFamily: FONT.bold,
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
@@ -91,50 +83,46 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   teamName: (selectedMatch, id) => ({
-    fontSize: 14,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: selectedMatch === id ? "#FAFAFC" : "#312651",
   }),
   location: {
-    fontSize: 14,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.regular,
     color: "#B3AEC6",
   },
   logoLeagueContainer: (selectedMatch, id) => ({
-    width: 30,
-    height: 30,
+    width: SIZES.x2Large,
+    height: SIZES.x2Large,
     backgroundColor: selectedMatch === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
   }),
   attachedComponent: {
-    // top: 100, // Adjust the top position as needed
-    // left: 20, // Adjust the left position as needed
-    // Add other styling properties for your attached component
-    // For example:
-    backgroundColor: "white",
-    padding: 10,
-    borderRadius: 5,
-    elevation: 4,
+    backgroundColor: COLORS.white,
+    padding: SIZES.xSmall,
+    borderRadius: SIZES.x3Small,
+    elevation: SIZES.x4Small,
     width: "90%",
   },
   applyBtn: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    height: 30,
+    height: SIZES.x2Large,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 16,
+    borderRadius: SIZES.medium,
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: COLORS.gray,
   },
   applyBtnText: {
-    fontSize: 15,
-    color: "grey",
+    fontSize: SIZES.medium,
+    color: COLORS.gray,
   },
   containerMoreInformation: {
-    padding: 4,
+    padding: SIZES.x4Small,
     backgroundColor: "#FFF",
     justifyContent: "space-between",
     alignItems: "center",
@@ -143,16 +131,16 @@ const styles = StyleSheet.create({
   applyBtnMoreInformation: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    height: 30,
-    borderRadius: 16,
+    height: SIZES.x2Large,
+    borderRadius: SIZES.medium,
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: COLORS.gray,
     justifyContent: "center",
     alignItems: "center",
   },
   applyBtnTextMoreInformation: {
-    fontSize: 15,
-    color: "grey",
+    fontSize: SIZES.medium,
+    color: COLORS.gray,
   },
 });
 

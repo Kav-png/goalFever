@@ -31,7 +31,7 @@ const TeamsMatches = ({ id, type }) => {
             <UpcomingMatchesCard
               item={item}
               selectedMatch={2023} // change this to match the ID of the match you want to see
-              key={`teams-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
+              key={`${type}-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
               index={index}
             />
           ))}

@@ -1,24 +1,21 @@
-import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
-import React, { useState } from "react";
-import { Stack, useRouter } from "expo-router";
-import { useEffect } from "react";
-import { Button } from "react-native";
+import { Stack } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Feather, Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { dateFetch, dateFetchWordFormat } from "../../utils";
+import { dateFetchWordFormat } from "../../utils";
 
 import RecentMatchesFilter from "../../components/common/recentmatchescomponents/RecentMatchesFilter";
-import UpcomingMatchesCard from "../../components/common/cards/UpcomingMatchesCard";
 import SearchEventsResult from "../../components/common/searchevents/SearchEventsResult";
 import SearchEventsResultsMoreDates from "../../components/common/searchevents/SearchEventsResultMoreDates";
-import SearchResults from "../../components/common/searchdetails/SearchResults";
-import fetchData from "../../hook/postViaAxiosData";
-import SearchBarQueryMain from "../../components/common/searchbar/SearchBarQueryMain";
+import { COLORS, SIZES } from "../../constants";
 
+/* functions to handle date selection 
+and display search results
+based on the selected date. */
 const SearchEvents = () => {
   const dates = dateFetchWordFormat(); // ********************************
 
@@ -51,16 +48,17 @@ const SearchEvents = () => {
 
   const [showDates, setShowDates] = useState(false);
 
-  const [originalDate, setOriginalDate] = useState("09/08/2023");
   const [rearrangedDate, setRearrangedDate] = useState("");
 
-  const rearrangeDate = () => {};
-
+  /**
+   * `onChange` takes an event and selected date as parameters,
+   * updates the state with the
+   * selected date, and rearranges the date format to match the expected API structure.
+   */
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
 
     setDate(currentDate);
-    console.log("Log #1" + currentDate.toLocaleString());
     // Error: Using this to fix error, as api expected different currentDate structure than the one being returned
     const [day, month, year] = currentDate
       .toLocaleString()
@@ -68,14 +66,19 @@ const SearchEvents = () => {
       .split("/");
     const newDate = `${year}-${month}-${day}`;
     setRearrangedDate(newDate);
-    console.log("Log #3" + rearrangedDate);
   };
 
+  /**
+   * `showMode` sets the current mode to the provided value.
+   */
   const showMode = (currentMode) => {
     setMode(currentMode);
   };
 
-  const showDatepicker = () => {
+  /**
+   *  `showDatePicker` toggles the visibility of a datepicker component.
+   */
+  const showDatePicker = () => {
     showMode("date");
     setShowDates(!showDates);
   };
@@ -96,17 +99,15 @@ const SearchEvents = () => {
               <View style={{ flexDirection: "row" }}>
                 <RecentMatchesFilter
                   dates={dates}
-                  // onPressRefresh={onPressRefresh}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
                 />
-                {/* <Button onPress={showDatepicker} title="Select more dates" /> */}
                 <View style={styles.calenderIcon}>
                   <FontAwesome
                     name="calendar-plus-o"
                     size={24}
                     color="black"
-                    onPress={showDatepicker}
+                    onPress={showDatePicker}
                   />
                 </View>
               </View>
@@ -123,15 +124,6 @@ const SearchEvents = () => {
                   is24Hour={true}
                   onChange={onChange}
                 />
-                {/* <Entypo
-                  name="cross"
-                  size={20}
-                  color="black"
-                  style={styles.cross}
-                  onPress={() => {
-                    setShowDates(false);
-                  }}
-                /> */}
                 <View style={styles.calenderIcon}>
                   <FontAwesome
                     name="calendar-times-o"
@@ -144,9 +136,6 @@ const SearchEvents = () => {
                 </View>
               </View>
             )}
-
-            {console.log("selected:" + date.toLocaleString())}
-            {console.log("Log #3 inside the function" + rearrangedDate)}
           </View>
           <View style={{ flex: 1 }}>
             {showDates === false ? (
@@ -163,29 +152,29 @@ const SearchEvents = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
+    paddingTop: SIZES.xSmall,
     position: "absolute",
     flexDirection: "column",
     justifyContent: "center",
     alignContent: "center",
   },
   cross: {
-    margin: 6,
+    margin: SIZES.x3Small,
     padding: 1,
-    backgroundColor: "#d9dbda",
-    borderRadius: 30,
+    backgroundColor: COLORS.primary,
+    borderRadius: SIZES.x2Large,
     alignItems: "center",
     justifyContent: "center",
   },
   calenderIcon: {
-    marginLeft: 10,
-    backgroundColor: "#d9dbda",
-    borderRadius: 30,
-    height: 32,
+    marginLeft: SIZES.xSmall,
+    backgroundColor: COLORS.primary,
+    borderRadius: SIZES.x2Large,
+    height: SIZES.xxLarge,
     width: 40,
-    paddingLeft: 6,
-    paddingHorizontal: 5,
-    paddingVertical: 4,
+    paddingLeft: SIZES.x3Small,
+    paddingHorizontal: SIZES.x3Small,
+    paddingVertical: SIZES.x4Small,
     alignItems: "center",
     justifyContent: "center",
   },

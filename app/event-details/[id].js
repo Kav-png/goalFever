@@ -1,23 +1,27 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import React from "react";
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import useFetch from "../../hook/useFetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect } from "react";
-import EventDetailsMainTop from "../../components/common/eventdetails/EventDetailsMainTop";
-import OddsBar from "../../components/common/eventdetails/OddsBar";
-import { Image } from "react-native";
-import Lineup from "../../components/common/eventdetails/Lineup";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import AnimatedStatistics from "../../components/common/eventdetails/AnimatedStatistics";
+import EventDetailsMainTop from "../../components/common/eventdetails/EventDetailsMainTop";
+import Lineup from "../../components/common/eventdetails/Lineup";
+import OddsBar from "../../components/common/eventdetails/OddsBar";
 import MoreInformation from "../../components/common/teamdetails/MoreInformation";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../constants";
+import useFetch from "../../hook/useFetch";
 
+/**
+ * The `EventDetailsPage` displays details of a specific event,
+ * including its main odds, lineup, league information, round information, and season information
+ */
 const EventDetailsPage = () => {
   const params = useLocalSearchParams();
   const router = useRouter();
@@ -96,7 +100,7 @@ const EventDetailsPage = () => {
                       {data.data.league?.has_logo ? (
                         <Image
                           source={{
-                            uri: data.data.league.logo,
+                            uri: data.data?.league.logo,
                           }}
                           resizeMode="contain"
                           style={styles.logoImage}
@@ -110,7 +114,7 @@ const EventDetailsPage = () => {
                       onPress={() => handleCardPressLeague()}
                     >
                       <Text style={styles.leagueText}>
-                        {data.data.league.name}
+                        {data.data?.league.name}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -121,7 +125,7 @@ const EventDetailsPage = () => {
                       style={[{ paddingHorizontal: 50 }, styles.cardContainer]}
                     >
                       <Text style={styles.leagueText}>
-                        Round - {data.data.round_info.round}
+                        Round - {data.data?.round_info.round}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -132,11 +136,17 @@ const EventDetailsPage = () => {
                       style={[{ paddingHorizontal: 50 }, styles.cardContainer]}
                     >
                       <Text style={styles.leagueText}>
-                        {data.data.season.name}
+                        {data.data?.season.name}
                       </Text>
                     </TouchableOpacity>
                   </View>
                 ) : null}
+                <TouchableOpacity
+                  style={[{ margin: 5 }, styles.cardContainer]}
+                  onPress={() => refetch()}
+                >
+                  <Text style={styles.leagueText}>Reload Information</Text>
+                </TouchableOpacity>
                 <MoreInformation data={data} />
               </View>
               <View style={[{ margin: 5 }, styles.cardContainer]}>
@@ -164,26 +174,27 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: "#FFF",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: SIZES.xSmall,
   },
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    margin: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
+    ...SHADOWS.small,
   },
   logoImage: {
     width: "70%",
     height: "70%",
   },
   leagueText: {
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: "#312651",
   },
 });

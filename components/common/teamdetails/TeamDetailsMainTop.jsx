@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
-import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 import ExtraInformationContainer from "../cards/searchcomponents/ExtraInformationContainer";
+import SearchImageContainer from "../cards/searchcomponents/SearchImageContainer";
 
+// this component is used in the main screen and in the split screen
+// it is used to display the top part of the screen
+// it displays the team logo, name and extra information
+// params: selectedItem, item, index, handleCardPress, type
 const TeamDetailsMainTop = ({
   selectedItem,
   item,
@@ -69,19 +73,9 @@ const styles = StyleSheet.create({
   containerWrapper: (selectedItem, id, type) => ({
     flexDirection: "row",
     width: type === "split" ? "70%" : "100%",
-    borderRadius: 16,
-    ...{
-      shadowColor: "#FFF",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 2,
-    },
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    borderRadius: SIZES.medium,
+    paddingHorizontal: SIZES.medium,
+    paddingVertical: SIZES.xSmall,
     backgroundColor:
       type === "split" ? "#FFF" : selectedItem === id ? "#312651" : "#FFF",
     justifyContent: "center",
@@ -91,49 +85,49 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoContainer: (selectedItem, id) => ({
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
     width: 60,
     height: 65,
     backgroundColor: selectedItem === id ? "#F3F4F8" : "#FFF",
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "lightgrey",
-    borderWidth: 3,
-    marginLeft: 10,
+    borderColor: COLORS.gray2,
+    borderWidth: SIZES.x4Small,
+    marginLeft: SIZES.xSmall,
   }),
   scoreText: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.regular,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatch: (selectedItem, id) => ({
-    fontSize: 10,
-    fontFamily: "DMBold",
+    fontSize: SIZES.xSmall,
+    fontFamily: FONT.bold,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
   }),
   stateOfMatchWrapper: {
     justifyContent: "space-around",
     alignItems: "flex-end",
-    paddingHorizontal: 10,
+    paddingHorizontal: SIZES.xSmall,
     flex: 3,
   },
   teamName: (selectedItem, id) => ({
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: selectedItem === id ? "#FAFAFC" : "#312651",
-    marginLeft: 10,
+    marginLeft: SIZES.xSmall,
   }),
   location: {
-    fontSize: 14,
-    fontFamily: "DMRegular",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.regular,
     color: "#B3AEC6",
   },
   logoLeagueContainer: (selectedItem, id) => ({
-    width: 30,
-    height: 30,
+    width: SIZES.x2Large,
+    height: SIZES.x2Large,
     backgroundColor: selectedItem === id ? "#FFF" : "#F3F4F8",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
   }),

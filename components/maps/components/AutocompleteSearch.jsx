@@ -5,7 +5,11 @@ import axios from "axios";
 import Constants from "expo-constants";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { SIZES } from "../../../constants";
 
+// displays a list of locations based on the user's search query
+// the user can select a location from the list to set it as their current location
+// params: setCurrentLocation - function that sets the current location state
 const AutocompleteSearch = ({ setCurrentLocation }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -87,10 +91,10 @@ const styles = StyleSheet.create({
   touchButton: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 15,
-    padding: 5,
+    borderRadius: SIZES.medium,
+    padding: SIZES.x3Small,
     width: "95%",
-    marginBottom: 5,
+    marginBottom: SIZES.x3Small,
     alignItems: "center",
   },
 });

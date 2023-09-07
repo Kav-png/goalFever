@@ -1,6 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { SIZES } from "../../../constants";
 
+// Calculates the ratio between two values and displays it as a bar
 const StatsBar = ({ value1, value2 }) => {
   // Calculate the ratio of the values
   const totalValue = value1 + value2;
@@ -34,8 +36,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: 100,
-    height: 20,
-    borderRadius: 10,
+    height: SIZES.large,
+    borderRadius: SIZES.xSmall,
     backgroundColor: "#E0E0E0",
     overflow: "hidden",
   },

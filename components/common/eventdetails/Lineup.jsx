@@ -1,10 +1,14 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
-import useFetch from "../../../hook/useFetch";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+import { SIZES } from "../../../constants";
 import useFetchLineups from "../../../hook/useFetchLineups";
+import { TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
+// displays lineups of a team based on the players passed in and dictates
+// how many lineups there should be
 const Lineup = ({ eventId, type, amountOfLineups }) => {
+  const router = useRouter();
   const { data, isLoading, error, refetch } = useFetchLineups(
     `${type}/${eventId}/lineups`,
     {}
@@ -14,82 +18,103 @@ const Lineup = ({ eventId, type, amountOfLineups }) => {
     refetch();
   }, [eventId]);
 
-  if (isLoading) {
-    return <ActivityIndicator size="large" color="#312651" />;
-  } else if (error) {
-    return <Text>Something went wrong</Text>;
-  }
+  const handlePlayerPress = (id, playerName) => {
+    console.log("Inside function" + id + " " + playerName);
+    return router.push({
+      pathname: `/players-details/${id}`,
+      params: { playersId: id, playersName: playerName },
+    });
+  };
+
   /**
    * The function `renderPlayer` takes in a player object and an index, and returns a React component
    * that displays the player's photo, name, and position.
    */
   const renderPlayer = (player, index) => (
-    <View key={index} style={styles.player}>
+    <TouchableOpacity
+      key={index}
+      style={styles.player}
+      onPress={() => handlePlayerPress(player.player_id, player.player.name)}
+    >
       <Image source={{ uri: player.player.photo }} style={styles.playerImage} />
       <Text style={styles.playerName}>{player.player.name}</Text>
       <Text style={styles.positionName}>{player.position_name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
       <Text style={styles.formationText}>Lineups</Text>
-      {data.data?.slice(0, amountOfLineups).map((lineup) => (
-        <View key={lineup.id} style={styles.lineupContainer}>
-          <Text style={styles.formationText}>{lineup.formation}</Text>
-          <View style={styles.playersContainer}>
-            {/* Goalkeeper */}
-            <View style={styles.row}>
-              {lineup.lineup_players.slice(0, 1).map(renderPlayer)}
-            </View>
-            <View style={styles.row}>
-              {lineup.lineup_players
-                .slice(1, Number(lineup.formation.split("-")[0]) + 1)
-                .map(renderPlayer)}
-            </View>
-            <View style={styles.row}>
-              {lineup.lineup_players
-                .slice(
-                  Number(lineup.formation.split("-")[0]) + 1,
-                  Number(lineup.formation.split("-")[0]) +
-                    1 +
-                    Number(lineup.formation.split("-")[1])
-                )
-                .map(renderPlayer)}
-            </View>
-            <View style={styles.row}>
-              {lineup.lineup_players
-                .slice(
-                  Number(lineup.formation.split("-")[0]) +
-                    1 +
-                    Number(lineup.formation.split("-")[1]),
-                  Number(lineup.formation.split("-")[0]) +
-                    1 +
-                    Number(lineup.formation.split("-")[1]) +
-                    Number(lineup.formation.split("-")[2])
-                )
-                .map(renderPlayer)}
-            </View>
-            {Number(lineup.formation.split("-")[3]) ? (
-              <View style={styles.row}>
-                {lineup.lineup_players
-                  .slice(
-                    Number(lineup.formation.split("-")[0]) +
-                      1 +
-                      Number(lineup.formation.split("-")[1]) +
-                      Number(lineup.formation.split("-")[2]),
-                    Number(lineup.formation.split("-")[0]) +
-                      1 +
-                      Number(lineup.formation.split("-")[1]) +
-                      Number(lineup.formation.split("-")[2]) +
-                      Number(lineup.formation.split("-")[3])
-                  )
-                  .map(renderPlayer)}
+      {isLoading ? (
+        <ActivityIndicator size="large" colors="#312651" /> // Loading indicator for the data source
+      ) : error ? (
+        <Text>Something went wrong</Text> //  Something went wrong error message
+      ) : (
+        data?.data?.slice(0, amountOfLineups).map((lineup) => (
+          <View key={lineup?.id} style={styles.lineupContainer}>
+            <Text style={styles.formationText}>{lineup.formation}</Text>
+            {Number(lineup?.formation?.split("-")[0]) === 1 ||
+            Number(lineup?.formation?.split("-")[0]) === 2 ||
+            Number(lineup?.formation?.split("-")[0]) === 3 ||
+            Number(lineup?.formation?.split("-")[0]) === 4 ||
+            Number(lineup?.formation?.split("-")[0]) === 5 ? (
+              <View style={styles.playersContainer}>
+                {/* Goalkeeper */}
+                <View style={styles.row}>
+                  {lineup?.lineup_players.slice(0, 1).map(renderPlayer)}
+                </View>
+                <View style={styles.row}>
+                  {lineup?.lineup_players
+                    ?.slice(1, Number(lineup?.formation.split("-")[0]) + 1)
+                    .map(renderPlayer)}
+                </View>
+                <View style={styles.row}>
+                  {lineup?.lineup_players
+                    ?.slice(
+                      Number(lineup?.formation.split("-")[0]) + 1,
+                      Number(lineup?.formation.split("-")[0]) +
+                        1 +
+                        Number(lineup?.formation.split("-")[1])
+                    )
+                    .map(renderPlayer)}
+                </View>
+                <View style={styles.row}>
+                  {lineup?.lineup_players
+                    ?.slice(
+                      Number(lineup?.formation.split("-")[0]) +
+                        1 +
+                        Number(lineup?.formation.split("-")[1]),
+                      Number(lineup?.formation.split("-")[0]) +
+                        1 +
+                        Number(lineup?.formation.split("-")[1]) +
+                        Number(lineup?.formation.split("-")[2])
+                    )
+                    .map(renderPlayer)}
+                </View>
+                {Number(lineup?.formation.split("-")[3]) ? (
+                  <View style={styles.row}>
+                    {lineup?.lineup_players
+                      ?.slice(
+                        Number(lineup?.formation.split("-")[0]) +
+                          1 +
+                          Number(lineup?.formation.split("-")[1]) +
+                          Number(lineup?.formation.split("-")[2]),
+                        Number(lineup?.formation.split("-")[0]) +
+                          1 +
+                          Number(lineup?.formation.split("-")[1]) +
+                          Number(lineup?.formation.split("-")[2]) +
+                          Number(lineup?.formation.split("-")[3])
+                      )
+                      .map(renderPlayer)}
+                  </View>
+                ) : null}
               </View>
-            ) : null}
+            ) : (
+              <Text>No lineup available</Text>
+            )}
           </View>
-        </View>
-      ))}
+        ))
+      )}
     </View>
   );
 };
@@ -97,13 +122,13 @@ const Lineup = ({ eventId, type, amountOfLineups }) => {
 const styles = StyleSheet.create({
   container: {},
   lineupContainer: {
-    marginBottom: 20,
+    marginBottom: SIZES.large,
     alignItems: "center",
   },
   formationText: {
-    fontSize: 20,
+    fontSize: SIZES.large,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: SIZES.xSmall,
   },
   playersContainer: {
     flexDirection: "row",
@@ -112,22 +137,22 @@ const styles = StyleSheet.create({
   },
   player: {
     alignItems: "center",
-    marginHorizontal: 10,
-    marginBottom: 10,
+    marginHorizontal: SIZES.xSmall,
+    marginBottom: SIZES.xSmall,
   },
   playerImage: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginBottom: 5,
+    marginBottom: SIZES.x3Small,
   },
   playerName: {
-    fontSize: 10,
+    fontSize: SIZES.xSmall,
     fontWeight: "bold",
     marginBottom: 2,
   },
   positionName: {
-    fontSize: 10,
+    fontSize: SIZES.xSmall,
     color: "gray",
   },
   row: {

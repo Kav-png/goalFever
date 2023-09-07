@@ -73,14 +73,16 @@ const RecentMatchesListContainer = ({ currentDate }) => {
             onSelectLeague={handleLeagueSelect}
             setSelectedLeague={setSelectedLeague}
           />
-          {getFilteredItems()?.map((item, index) => (
-            <UpcomingMatchesCard
-              item={item}
-              selectedMatch={2023} // change this to match the ID of the match you want to see
-              key={`upcoming-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
-              index={index}
-            />
-          ))}
+          {getFilteredItems()
+            ?.slice(0, 100)
+            .map((item, index) => (
+              <UpcomingMatchesCard
+                item={item}
+                selectedMatch={2023} // change this to match the ID of the match you want to see
+                key={`upcoming-matches-${item?.id}`} // TODO: Temp key, add key from API when needed
+                index={index}
+              />
+            ))}
         </View>
       )}
     </View>

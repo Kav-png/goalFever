@@ -1,19 +1,24 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import useFetch from "../../hook/useFetch";
-import PlayerDetailsMainTop from "../../components/common/playerdetails/PlayerDetailsMainTop";
-import TeamSeasons from "../../components/common/teamdetails/TeamSeasons";
-import { useEffect } from "react";
-import { ScrollView } from "react-native";
-import { ActivityIndicator } from "react-native";
-import { StyleSheet } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import ManagerTransfers from "../../components/common/managerdetails/ManagerTransfers";
-import TeamDetailsMainTop from "../../components/common/teamdetails/TeamDetailsMainTop";
-import { TouchableOpacity } from "react-native";
+import PlayerDetailsMainTop from "../../components/common/playerdetails/PlayerDetailsMainTop";
 import MoreInformation from "../../components/common/teamdetails/MoreInformation";
+import TeamSeasons from "../../components/common/teamdetails/TeamSeasons";
+import { COLORS, FONT, SIZES } from "../../constants";
+import useFetch from "../../hook/useFetch";
 
+/**
+ * `PlayerDetails` displays player details, including their
+ * name, main team, past seasons, and additional information.
+ */
 const PlayerDetails = () => {
   const params = useLocalSearchParams();
   const id = params.playersId;
@@ -75,15 +80,15 @@ const PlayerDetailsApp = () => {
 const styles = StyleSheet.create({
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    margin: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
   },
   leagueText: {
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: "#312651",
   },
 });

@@ -1,17 +1,24 @@
-import { View, Text } from "react-native";
-import React from "react";
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import TeamsMatches from "../../components/common/teamdetails/TeamsMatches";
-import PlayerDetailsMainTop from "../../components/common/playerdetails/PlayerDetailsMainTop";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import TeamSeasons from "../../components/common/teamdetails/TeamSeasons";
-import useFetch from "../../hook/useFetch";
-import { useEffect } from "react";
-import { ScrollView } from "react-native";
-import { ActivityIndicator } from "react-native";
-import { StyleSheet } from "react-native";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import PlayerDetailsMainTop from "../../components/common/playerdetails/PlayerDetailsMainTop";
 import TeamDetailsMainTop from "../../components/common/teamdetails/TeamDetailsMainTop";
+import TeamSeasons from "../../components/common/teamdetails/TeamSeasons";
+import TeamsMatches from "../../components/common/teamdetails/TeamsMatches";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../constants";
+import useFetch from "../../hook/useFetch";
 
+/**
+ * LeagueDetails` displays details
+ *  about a league, including the title holders, most titles, recent matches, and team seasons.
+ */
 const LeagueDetails = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -59,7 +66,9 @@ const LeagueDetails = () => {
           ) : (
             <View style={{ flexDirection: "column" }}>
               <View style={{ margin: 10 }}>
-                <PlayerDetailsMainTop item={data.data} type="leagues" />
+                {data.data?.name ? (
+                  <PlayerDetailsMainTop item={data.data} type="leagues" />
+                ) : null}
                 {data.data?.title_holder_team ? (
                   <View>
                     <View style={styles.cardContainer}>
@@ -109,26 +118,27 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: "#FFF",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: SIZES.xSmall,
   },
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    margin: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
+    ...SHADOWS.small,
   },
   logoImage: {
     width: "70%",
     height: "70%",
   },
   leagueText: {
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: "#312651",
   },
 });

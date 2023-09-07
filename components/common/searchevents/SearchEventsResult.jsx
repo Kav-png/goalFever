@@ -1,20 +1,26 @@
+import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  FlatList,
   Button,
+  FlatList,
   Keyboard,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
-import React, { useState } from "react";
+import { SIZES } from "../../../constants";
 import fetchData from "../../../hook/postViaAxiosData";
-import SearchBarQueryMain from "../searchbar/SearchBarQueryMain";
-import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
 import { dateFetch } from "../../../utils";
-import { useEffect } from "react";
+import UpcomingMatchesCard from "../cards/UpcomingMatchesCard";
+import SearchBarQueryMain from "../searchbar/SearchBarQueryMain";
 
 const ITEMS_PER_PAGE = 4;
+
+// This component is used to search for events by name
+// The user can search for events by name and the results are displayed in a
+// flatlist
+// The user can also search for events by name and date,
+// but this is done in the SearchEventsDate component
+// params: index
 
 const SearchEventsResult = ({ index }) => {
   const datesForDataPost = dateFetch();
@@ -68,20 +74,20 @@ const SearchEventsResult = ({ index }) => {
   // updates the variables depending on if searchPhraseSubmitted is updated or not, and checks if there is a match between the previous search and the current search
   useEffect(() => {
     if (searchPhrase === "") {
-      console.log("No search phrase");
+      setError("No search phrase");
     }
-    if (searchPhrase.length > 3) {
+    if (searchPhrase.length > 3 && searchPhrase.length < 20) {
       if (searchPhrase === previousSearchPhrase) {
-        console.log("Already found");
+        setError("Already found");
       } else {
         setPreviousSearchPhrase(searchPhrase);
-        console.log(searchPhrase);
+        setError("");
       }
       // Carry out new post query and take results
     } else {
-      console.log("Not enough characters");
+      setError("Not enough characters");
     }
-  }, [searchPhraseSubmitted]);
+  }, [searchPhrase]);
 
   // removes redundant data so the key is unique
   const uniqueData = fetchedData?.reduce((acc, current) => {
@@ -92,7 +98,9 @@ const SearchEventsResult = ({ index }) => {
       return acc;
     }
   }, []);
-
+  // renders the pagination buttonsl
+  // the buttons are disabled if the current page is the first or last page
+  // the buttons are used to navigate between pages
   const PaginationControls = ({ currentPage, totalPages, goToPage }) => {
     return (
       <View style={styles.paginationButtons}>
@@ -110,7 +118,9 @@ const SearchEventsResult = ({ index }) => {
       </View>
     );
   };
-
+  // renders the flatlist
+  // the flatlist is rendered with the data from the post request
+  // the data is sliced so that only the data for the current page is displayed
   const RenderFlatList = ({ data, currentPage, itemsPerPage, renderItem }) => {
     return (
       <>
@@ -135,8 +145,6 @@ const SearchEventsResult = ({ index }) => {
     );
   };
 
-  const sortedOrder = () => {};
-
   return (
     <View style={{ paddingBottom: 10 }}>
       <View>
@@ -148,30 +156,27 @@ const SearchEventsResult = ({ index }) => {
           setSearchPhraseSubmitted={setSearchPhraseSubmitted}
           searchPhraseSubmitted={searchPhraseSubmitted}
         />
-        <Button title="Fetch Data" onPress={handleFetchData} />
+        <Button title="Search" onPress={handleFetchData} />
       </View>
 
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text>Error: {error}</Text> : null}
-      {sortedData ? (
-        sortedOrder()
-      ) : (
-        <View>
-          <RenderFlatList
-            data={uniqueData}
-            currentPage={currentPage}
-            itemsPerPage={ITEMS_PER_PAGE}
-            renderItem={({ item, index }) => (
-              <UpcomingMatchesCard
-                key={item.id}
-                item={item}
-                activeTab={2020}
-                index={index}
-              />
-            )}
-          />
-        </View>
-      )}
+
+      <View>
+        <RenderFlatList
+          data={uniqueData}
+          currentPage={currentPage}
+          itemsPerPage={ITEMS_PER_PAGE}
+          renderItem={({ item, index }) => (
+            <UpcomingMatchesCard
+              key={item.id}
+              item={item}
+              activeTab={2020}
+              index={index}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 };
@@ -180,8 +185,8 @@ const styles = StyleSheet.create({
   paginationButtons: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 5,
-    paddingBottom: 10,
+    marginTop: SIZES.x3Small,
+    paddingBottom: SIZES.xSmall,
   },
 });
 

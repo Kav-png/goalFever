@@ -1,23 +1,18 @@
+import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { Text, View } from "react-native";
+import useNearbyPlaces from "../../hook/useNearbyPlaces";
 import MapsSearchScreen from "./MapsSearchScreen";
 import ViewOfMap from "./ViewOfMap";
-import ToggleSwitch from "./ToggleSwitch";
-import useFetchMaps from "../../hook/useFetchMaps";
-import SearchBarQueryMain from "../common/searchbar/SearchBarQueryMain";
-import MapsData from "./MapsData";
-import GetTeamsByStadium from "./components/GetTeamsbyStadium";
-import useNearbyPlaces from "../../hook/useNearbyPlaces";
 import AutocompleteSearch from "./components/AutocompleteSearch";
-import * as Location from "expo-location";
-import { Button } from "react-native";
-import { Dimensions } from "react-native";
-import { StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("window");
+// displays the map and the search bar and search screen
+// fetches data from the api and displays it on the map
+// params: none
 
 const MapsContainer = () => {
   const [showContentA, setShowContentA] = useState(false);
+  const [internalError, setInternalError] = useState(false);
 
   const [currentLocation, setCurrentLocation] = useState([
     51.5086905952269, -0.11864778959789828,
@@ -40,10 +35,10 @@ const MapsContainer = () => {
         ]);
         // You can use the location data as needed
       } else {
-        console.error("Permission to access location was denied");
+        setInternalError("Permission to access location was denied");
       }
     } catch (error) {
-      console.error("Error getting location:", error);
+      setInternalError("Error getting location:", error);
     }
   };
 
@@ -61,7 +56,11 @@ const MapsContainer = () => {
   return (
     <View style={{ flex: 1 }}>
       <AutocompleteSearch setCurrentLocation={setCurrentLocation} />
-      {showContentA ? (
+      {internalError ? <Text>{internalError}</Text> : null}
+      {error ? <Text>{error}</Text> : null}
+      {isLoading ? (
+        <Text>Loading...</Text>
+      ) : showContentA ? (
         <ViewOfMap
           onPress={toggleContent}
           isActive={showContentA}
@@ -85,21 +84,5 @@ const MapsContainer = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  useMyLocation: {
-    top: height * 0.07,
-    marginLeft: width * 0.56,
-    width: "45%",
-    width: "30%",
-    padding: 8,
-    borderRadius: 20,
-    backgroundColor: "white",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 5,
-    position: "absolute",
-  },
-});
 
 export default MapsContainer;

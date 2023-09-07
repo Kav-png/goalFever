@@ -1,8 +1,10 @@
-import { View, Text } from "react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
+// displays more information about the player or team
+// depending on the type of data passed
+// params: data, type
 const MoreInformation = ({ data, type }) => {
   const switchFunction = () => {
     switch (type) {
@@ -68,7 +70,7 @@ const MoreInformation = ({ data, type }) => {
                     </Text>
                   </TouchableOpacity>
                 ) : null}
-                {data.data.attendance ? (
+                {data.data?.attendance ? (
                   <TouchableOpacity
                     style={[{ paddingHorizontal: 50 }, styles.cardContainer]}
                   >
@@ -92,17 +94,17 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: "#FFF",
-    borderRadius: 20,
+    borderRadius: SIZES.large,
     justifyContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: SIZES.xSmall,
   },
   cardContainer: {
     position: "relative",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 10,
-    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.xSmall,
+    margin: SIZES.xSmall,
+    padding: SIZES.xSmall,
     justifyContent: "center",
   },
   logoImage: {
@@ -110,8 +112,8 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   leagueText: {
-    fontSize: 16,
-    fontFamily: "DMBold",
+    fontSize: SIZES.medium,
+    fontFamily: FONT.bold,
     color: "#312651",
   },
 });

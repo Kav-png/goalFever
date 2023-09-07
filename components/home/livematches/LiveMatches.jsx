@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
   ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 
-import LiveMatchesCard from "../../common/cards/LiveMatchesCard";
+import { COLORS, FONT, SIZES } from "../../../constants";
 import useFetch from "../../../hook/useFetch";
+import LiveMatchesCard from "../../common/cards/LiveMatchesCard";
 
 /* LiveMatches renders a list of live matches. */
 function LiveMatches(props) {
@@ -36,8 +37,9 @@ function LiveMatches(props) {
             )}
             keyExtractor={(item) => item?.id}
             horizontal={true}
-            contentContainerStyle={{ columnGap: 12 }}
+            contentContainerStyle={{ columnGap: 10 }}
             maxToRenderPerBatch={12}
+            showsHorizontalScrollIndicator={false}
           />
         )}
       </View>
@@ -47,19 +49,19 @@ function LiveMatches(props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginBottom: 2,
   },
   text: {
-    fontFamily: "DMRegular",
-    color: "#121212",
-    height: 26,
+    fontFamily: FONT.regular,
+    color: COLORS.gray,
+    height: SIZES.x26Large,
     width: 183,
-    fontSize: 20,
+    fontSize: SIZES.large,
   },
   textRow: {
-    marginBottom: 8,
-    height: 26,
-    paddingHorizontal: 16,
+    marginBottom: 4,
+    height: SIZES.x26Large,
+    paddingHorizontal: SIZES.medium,
     flexDirection: "row",
     justifyContent: "space-between",
   },

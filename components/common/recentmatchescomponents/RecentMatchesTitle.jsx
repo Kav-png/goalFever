@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
 /**
  * The RecentMatchesTitle displays the title "Recent Matches"
@@ -17,19 +18,19 @@ const RecentMatchesTitle = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 12,
+    paddingHorizontal: SIZES.xSmall,
   },
   text: {
-    fontFamily: "DMRegular",
-    color: "#121212",
-    height: 26,
+    fontFamily: FONT.bold,
+    color: COLORS.gray,
+    height: 30,
     width: 183,
-    fontSize: 20,
+    fontSize: SIZES.large,
   },
   textRow: {
-    marginBottom: 8,
-    height: 26,
-    paddingHorizontal: 10,
+    marginBottom: SIZES.x2Small,
+    height: SIZES.x26Large,
+    paddingHorizontal: SIZES.xSmall,
     flexDirection: "row",
     justifyContent: "space-between",
   },

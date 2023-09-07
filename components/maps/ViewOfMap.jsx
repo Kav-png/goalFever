@@ -1,23 +1,28 @@
+import { Entypo } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
 import React, { useRef, useState } from "react";
 import {
-  View,
-  Text,
-  Platform,
-  TouchableOpacity,
-  StyleSheet,
   Dimensions,
+  Platform,
   SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import MapView from "react-native-maps";
-import MapMarker from "./MapMarker";
-import { useNavigation } from "expo-router";
-import { Feather, Entypo } from "@expo/vector-icons";
+import { COLORS, SIZES } from "../../constants";
 import StadiumCard from "../common/cards/mapscomponents/StadiumCard";
+import MapMarker from "./MapMarker";
 import ToggleSwitch from "./ToggleSwitch";
-import { ActivityIndicator } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
+// displays the map with the markers
+// also displays the stadium card when a marker is pressed
+// also displays the toggle switch to switch between map and list view
+// also displays the exit button to exit the stadium card
+// params: onPress, isActive, data, error, isLoading, refetch, handleGetLocation
 const ViewOfMap = ({
   onPress,
   isActive,
@@ -29,7 +34,6 @@ const ViewOfMap = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const mapRef = useRef(null);
-  const navigation = useNavigation();
 
   const handleMarkerPress = (index) => {
     if (Platform.OS === "ios") {
@@ -45,10 +49,6 @@ const ViewOfMap = ({
     }
   };
 
-  const handleRegionChangeComplete = (region) => {
-    // You can use the region object to update the map's current position if needed
-  };
-
   const unFocusProperty = () => {
     setActiveIndex(-1);
   };
@@ -56,13 +56,11 @@ const ViewOfMap = ({
   return (
     <View style={{ flex: 1, overflow: "hidden" }}>
       <SafeAreaView style={{ flex: 1 }}>
-        <MapView
-          style={{ height: "100%", width: "100%" }}
-          ref={mapRef}
-          onRegionChangeComplete={handleRegionChangeComplete}
-        >
-          {error ? (
-            <Text>No stadiums found</Text>
+        <MapView style={{ height: "100%", width: "100%" }} ref={mapRef}>
+          {isLoading ? (
+            <Text>Loading...</Text>
+          ) : error ? (
+            <Text>No stadiums found, {error}</Text>
           ) : (
             data?.map((i, index) => (
               <MapMarker
@@ -121,21 +119,21 @@ const styles = StyleSheet.create({
     left: width * 0.87,
     width: "7.5%",
     height: "3.75%",
-    borderRadius: 20,
-    backgroundColor: "white",
+    borderRadius: SIZES.large,
+    backgroundColor: COLORS.white,
     justifyContent: "center",
     alignItems: "center",
   },
   attachedComponent: {
     position: "absolute",
-    top: 20, // Adjust the top position as needed
-    left: 20, // Adjust the left position as needed
+    top: SIZES.large, // Adjust the top position as needed
+    left: SIZES.large, // Adjust the left position as needed
     // Add other styling properties for your attached component
     // For example:
-    backgroundColor: "white",
-    padding: 10,
-    borderRadius: 5,
-    elevation: 4,
+    backgroundColor: COLORS.white,
+    padding: SIZES.xSmall,
+    borderRadius: SIZES.x3Small,
+    elevation: SIZES.x4Small,
   },
   stadiumCardStyle: {
     flexDirection: "column-reverse",

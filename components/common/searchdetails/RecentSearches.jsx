@@ -1,13 +1,16 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
-const RecentSearches = ({ recentSearches }) => {
+// Displays Recent Searches
+const RecentSearches = ({ recentSearches, setSearchPhrase }) => {
   const recentSearchesList = recentSearches.slice(0, 4).map((item, index) => (
     <TouchableOpacity
       key={index.toString()}
       style={styles.recentSearchesButton}
+      onPress={() => setSearchPhrase(item)}
     >
-      <Text style={{ fontFamily: "DMRegular" }}>{item}</Text>
+      <Text style={{ fontFamily: FONT.regular }}>{item}</Text>
     </TouchableOpacity>
   ));
   return (
@@ -19,19 +22,19 @@ const RecentSearches = ({ recentSearches }) => {
 };
 const styles = StyleSheet.create({
   recentSearchesText: {
-    marginTop: 10,
-    fontFamily: "DMBold",
-    marginLeft: 10,
-    fontSize: 16,
+    marginTop: SIZES.xSmall,
+    fontFamily: FONT.bold,
+    marginLeft: SIZES.xSmall,
+    fontSize: SIZES.medium,
   },
   recentSearchesButton: {
-    borderColor: "grey",
+    borderColor: COLORS.gray,
     borderWidth: 1,
-    padding: 5,
-    paddingHorizontal: 5,
-    marginHorizontal: 10,
-    marginTop: 7,
-    borderRadius: 8,
+    padding: SIZES.x3Small,
+    paddingHorizontal: SIZES.x3Small,
+    marginHorizontal: SIZES.xSmall,
+    marginTop: SIZES.x2Small,
+    borderRadius: SIZES.x2Small,
   },
 });
 
