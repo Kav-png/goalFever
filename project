@@ -1,0 +1,29 @@
+
+Get the "express" library and name it as express
+Get the "axios" library and name it as axios
+Create an "app" using express
+Set the "PORT" to the provided environment variable or default to 3000
+
+Tell the app to use JSON parsing middleware
+
+Define a route for the root path ("/") that responds with "Hello, Express!"
+
+Define a route for "/api/nearby" that handles nearby places request and talks to LocationIQ API
+    Get latitude, longitude, tag, and radius from the request query
+    Set LocationIQ API key to "pk.84fa4f2c5c78c4870f780ed7fbca5704" (Replace with your key)
+    Build the API URL using the provided data
+    Make a GET request to the LocationIQ API
+    Respond with the data received from the API
+    Log the received data
+    If an error occurs, log the error and respond with a 500 status and an error message
+
+Define a route for "/api/autocomplete" that handles autocomplete requests and talks to LocationIQ Autocomplete API
+    Get the query parameter "q" from the request
+    Set LocationIQ API key to "pk.84fa4f2c5c78c4870f780ed7fbca5704" (Replace with your key)
+    Build the API URL for autocomplete using the query parameter
+    Make a GET request to the LocationIQ Autocomplete API
+    Respond with the data received from the Autocomplete API
+    If an error occurs, log the error and respond with a 500 status and an error message
+
+Make the app listen on the specified PORT
+    Log a message indicating the server is running on the specified port

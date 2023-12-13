@@ -36,6 +36,7 @@ app.get("/api/autocomplete", async (req, res) => {
     const response = await axios.get(apiUrl);
 
     res.json(response.data);
+    console.log(response.data);
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal server error" });

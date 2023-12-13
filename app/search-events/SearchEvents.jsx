@@ -17,12 +17,12 @@ import { COLORS, SIZES } from "../../constants";
 and display search results
 based on the selected date. */
 const SearchEvents = () => {
-  const dates = dateFetchWordFormat(); // ********************************
+  const dates = dateFetchWordFormat();
 
   const [indexOfDate, setIndexOfDate] = useState(0);
   const [activeTab, setActiveTab] = useState(dates[0]);
 
-  const functionThatSavesOrBreaksMe = () => {
+  const searchEventSwitcher = () => {
     switch (activeTab) {
       case dates[0]:
         return <SearchEventsResult index={indexOfDate} />;
@@ -139,7 +139,7 @@ const SearchEvents = () => {
           </View>
           <View style={{ flex: 1 }}>
             {showDates === false ? (
-              functionThatSavesOrBreaksMe()
+              searchEventSwitcher()
             ) : (
               <SearchEventsResultsMoreDates date={rearrangedDate} />
             )}
