@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { dateFetchWordFormat } from "../../utils";
 
-import RecentMatchesFilter from "../../components/common/recentmatchescomponents/RecentMatchesFilter";
+import CustomTabs from "../../components/common/recentmatchescomponents/CustomTabs";
 import SearchEventsResult from "../../components/common/searchevents/SearchEventsResult";
 import SearchEventsResultsMoreDates from "../../components/common/searchevents/SearchEventsResultMoreDates";
 import { COLORS, SIZES } from "../../constants";
@@ -97,7 +97,7 @@ const SearchEvents = () => {
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
             {showDates === false ? (
               <View style={{ flexDirection: "row" }}>
-                <RecentMatchesFilter
+                <CustomTabs
                   dates={dates}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}

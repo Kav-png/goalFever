@@ -26,8 +26,8 @@ function TabButton({ name, activeTab, onHandleSearchType }) {
   );
 }
 
-// RecentMatchesFilter`. displays a list of tabs that can be pressed to change the active tab
-const RecentMatchesFilter = ({ dates, activeTab, setActiveTab }) => {
+// CustomTabs`. displays a list of tabs that can be pressed to change the active tab
+const CustomTabs = ({ dates, activeTab, setActiveTab }) => {
   return (
     <ScrollView horizontal alwaysBounceHorizontal>
       <View style={{ ...styles.tabsContainer, flexDirection: "row" }}>
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   }),
 });
 
-export default RecentMatchesFilter;
+export default CustomTabs;
